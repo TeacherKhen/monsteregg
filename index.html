@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -9,14 +8,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Luckiest+Guy&display=swap');
 
 :root{
---purple:#24113f;--purple2:#3d1b68;--orange:#ff8a00;--gold:#ffd34d;
---green:#49d17d;--red:#ff5c6c;--white:#fff;--panel:rgba(18,8,36,.86);
---line:rgba(255,255,255,.18);--shadow:0 10px 35px rgba(0,0,0,.35);
+  --purple:#24113f;--purple2:#3d1b68;--orange:#ff8a00;--gold:#ffd34d;
+  --green:#49d17d;--red:#ff5c6c;--white:#fff;--panel:rgba(18,8,36,.86);
+  --line:rgba(255,255,255,.18);--shadow:0 10px 35px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;height:100%;font-family:"Comic Sans MS","Comic Sans",cursive;background:#140921;color:#fff;overflow:hidden}
 button,input,select,textarea{font:inherit}
-button{cursor:pointer}
+button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
 .hidden{display:none!important}
 .screen{position:fixed;inset:0;overflow:hidden}
 .bg{position:absolute;inset:0;background:#24113f center/cover no-repeat;z-index:-3}
@@ -36,14 +35,14 @@ button{cursor:pointer}
 .section h3{margin:0 0 12px;color:var(--gold)}
 label{display:block;font-weight:bold;margin:8px 0 5px}
 input[type=text],input[type=number],input[type=file],select,textarea{
-width:100%;padding:11px 12px;border-radius:10px;border:1px solid #755a93;background:#160a27;color:#fff;outline:none;
+ width:100%;padding:11px 12px;border-radius:10px;border:1px solid #755a93;background:#160a27;color:#fff;outline:none;
 }
 input[type=range]{width:100%}
 textarea{min-height:75px;resize:vertical}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .btn{
-border:0;border-radius:12px;padding:11px 16px;background:linear-gradient(135deg,#ff9d1c,#f25c1b);
-color:#fff;font-weight:bold;box-shadow:0 4px 0 #8b310b;transition:.15s transform,.15s filter;
+ border:0;border-radius:12px;padding:11px 16px;background:linear-gradient(135deg,#ff9d1c,#f25c1b);
+ color:#fff;font-weight:bold;box-shadow:0 4px 0 #8b310b;transition:.15s transform,.15s filter;
 }
 .btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
 .btn:active{transform:translateY(2px);box-shadow:0 2px 0 #8b310b}
@@ -52,38 +51,16 @@ color:#fff;font-weight:bold;box-shadow:0 4px 0 #8b310b;transition:.15s transform
 .btn.red{background:linear-gradient(135deg,#ff6877,#d9344c);box-shadow:0 4px 0 #7f1726}
 .btn.big{font-size:21px;padding:15px 24px}
 .help{font-size:13px;opacity:.7}
-.rangeVal{min-width:52px;text-align:right;color:var(--gold)}
-.customTimeChoices{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
-.timeChoice{border:1px solid #8a69ad;background:#24103f;color:#fff;border-radius:8px;padding:7px 10px;font-weight:bold;cursor:pointer}
-.timeChoice:hover,.timeChoice.active{background:#ff7a18;border-color:#ffc04d}
-.customTimeWrap input{margin-bottom:2px}
-
+.rangeVal{min-width:52px;text-align:right;color:var(--gold)}.customTimeChoices{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.timeChoice{border:1px solid #8a69ad;background:#24103f;color:#fff;border-radius:8px;padding:7px 10px;font-weight:bold;cursor:pointer}.timeChoice:hover,.timeChoice.active{background:#ff7a18;border-color:#ffc04d}.customTimeWrap input{margin-bottom:2px}
 #intro{display:flex;align-items:center;justify-content:center;text-align:center;background:#10051d;z-index:100}
 .introBg{position:absolute;inset:0;background:url("intro.gif") center/cover no-repeat;z-index:0}
 .introOverlay{position:absolute;inset:0;background:radial-gradient(circle at center,rgba(15,3,30,.12),rgba(10,2,20,.68));z-index:1}
 .introContent{position:relative;z-index:2;padding:24px;max-width:900px;width:94vw;text-shadow:0 4px 12px #000}
 .introTitle{font-size:clamp(55px,10vw,120px);line-height:.9;color:#ffb52e;text-shadow:0 5px 0 #6d2100,0 0 30px #ff6b00,0 0 60px #9b27ff;animation:introPulse 2s ease-in-out infinite}
-.introGameTitle{
-display:inline-block;
-font-family:"Creepster","Luckiest Guy",Impact,cursive;
-font-size:clamp(30px,5vw,58px);
-line-height:1;
-letter-spacing:2px;
-color:#ffd34d;
-text-shadow:0 3px 0 #6d2100,0 0 10px #ff8a00,0 0 24px #ff6b00,0 0 42px rgba(155,39,255,.9);
-animation:gameTitleGlow 2s ease-in-out infinite alternate;
-margin:4px 0 8px;
-}
-.introCreator{font-size:clamp(18px,3vw,30px);font-weight:bold;margin:24px 0 28px;color:#fff}
-.introCreator span{font-size:.8em;color:#ffd34d}
-@keyframes gameTitleGlow{
-from{filter:brightness(1);transform:scale(1)}
-to{filter:brightness(1.18);transform:scale(1.018)}
-}
+.introCreator{font-size:clamp(18px,3vw,30px);font-weight:bold;margin:24px 0 28px;color:#fff}.introCreator>span{font-size:.8em;color:#ffd34d}.introGameTitle{display:flex;align-items:center;justify-content:center;gap:.18em;white-space:nowrap;font-family:"Creepster","Luckiest Guy",Impact,cursive;font-size:clamp(30px,5vw,58px);line-height:1.05;letter-spacing:1px;margin-bottom:12px;filter:drop-shadow(0 4px 8px #000)}.titleMonster{color:#ffb52e;text-shadow:0 3px 0 #6d2100,0 0 18px #ff6b00}.titleHalloween{color:#ff8a00;text-shadow:0 3px 0 #6d2100,0 0 22px #ff6b00,0 0 34px #9b27ff}.titleGold{color:#ffd34d;text-shadow:0 3px 0 #6d2100,0 0 18px #ff9d1c}
 .introEnter{animation:introButton 1.4s ease-in-out infinite alternate}
 @keyframes introPulse{50%{transform:scale(1.035);filter:brightness(1.12)}}
 @keyframes introButton{to{transform:translateY(-4px) scale(1.025)}}
-
 #game{display:none}
 .gameUI{height:100%;display:grid;grid-template-rows:auto auto 1fr auto;gap:8px;padding:10px;position:relative}
 .topbar{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
@@ -91,32 +68,11 @@ to{filter:brightness(1.18);transform:scale(1.018)}
 .timer{font-size:clamp(24px,4vw,44px);font-weight:bold;background:rgba(0,0,0,.48);padding:5px 18px;border:2px solid var(--gold);border-radius:16px;text-align:center;min-width:150px}
 .timer.warning{animation:pulse .7s infinite;color:#ff6877;border-color:#ff6877}
 @keyframes pulse{50%{transform:scale(1.06)}}
-.topActions{display:flex;justify-content:flex-end;gap:7px;align-items:center}
-.round2Btn{border:2px solid #d8a7ff;background:linear-gradient(135deg,rgba(91,42,140,.95),rgba(40,17,72,.95));color:#fff;border-radius:12px;padding:8px 13px;font-family:"Creepster","Luckiest Guy",cursive;font-size:clamp(16px,2vw,22px);text-shadow:0 2px 4px rgba(0,0,0,.7);box-shadow:0 0 12px rgba(216,167,255,.35);transition:.2s}
-.round2Btn:hover{transform:translateY(-1px);box-shadow:0 0 18px rgba(216,167,255,.6)}
-.round2Btn.active{border-color:#ffd34d;background:linear-gradient(135deg,#7b2cbf,#d97706);box-shadow:0 0 20px rgba(255,211,77,.7);color:#fff3b0}
-.round2Btn:disabled{cursor:default;opacity:1}
-
-.egg.round2Hit{animation:round2Hit .78s ease}
-@keyframes round2Hit{
-0%{transform:translate(0,0) rotate(0) scale(1);filter:brightness(1)}
-12%{transform:translate(-16px,5px) rotate(-5deg) scale(1.04);filter:brightness(1.35)}
-24%{transform:translate(20px,-5px) rotate(6deg) scale(1.08);filter:brightness(1.7)}
-38%{transform:translate(-24px,3px) rotate(-7deg) scale(1.06);filter:brightness(1.25)}
-52%{transform:translate(25px,-3px) rotate(7deg) scale(1.1);filter:brightness(1.8)}
-68%{transform:translate(-18px,2px) rotate(-5deg) scale(1.05);filter:brightness(1.35)}
-84%{transform:translate(12px,-1px) rotate(4deg) scale(1.03);filter:brightness(1.15)}
-100%{transform:translate(0,0) rotate(0) scale(1);filter:brightness(1)}
-}
-
-.crackEffect{position:absolute;inset:8%;pointer-events:none;opacity:0;z-index:3}
-.crackEffect.show{animation:crackFlash .78s ease forwards}
-.crackEffect::before,.crackEffect::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:72%;border-radius:8px;background:linear-gradient(to bottom,transparent 0%,#fff 12%,#ffd34d 45%,#fff 78%,transparent 100%);box-shadow:0 0 10px #ffd34d;transform-origin:center}
-.crackEffect::before{transform:translate(-50%,-50%) rotate(27deg)}
-.crackEffect::after{transform:translate(-50%,-50%) rotate(-27deg)}
-@keyframes crackFlash{0%{opacity:0;transform:scale(.55)}18%{opacity:.95;transform:scale(1)}65%{opacity:.75}100%{opacity:0;transform:scale(1.08)}}
-
+.topActions{display:flex;justify-content:flex-end;gap:7px}
 .iconBtn{border:1px solid var(--line);background:rgba(0,0,0,.4);color:#fff;border-radius:10px;padding:8px 11px}
+.endRoundBtn{border-color:#ff6676;background:linear-gradient(135deg,#d9344c,#8f182b);box-shadow:0 3px 0 #5f101d;font-weight:bold;color:#fff;min-width:120px}
+.endRoundBtn:hover{background:linear-gradient(135deg,#f04b60,#a51d32)}
+.endRoundBtn:active{transform:translateY(2px);box-shadow:0 1px 0 #5f101d}
 .questionBar{display:none}
 .teamQuestions{display:grid;gap:8px;min-height:72px}
 .teamQuestions.two{grid-template-columns:repeat(2,1fr)}
@@ -128,170 +84,23 @@ to{filter:brightness(1.18);transform:scale(1.018)}
 .questionContent{max-width:100%;overflow:hidden}
 .questionContent img{object-fit:contain;max-width:100%;height:auto}
 .questionText{font-size:clamp(20px,2.8vw,34px);font-weight:bold}
-
-/* =========================================================
-MONSTER ARENA
-========================================================= */
-
-.arena{
-position:relative;
-min-height:0;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden;
-}
-
-/*
-ROUND 1 LARGE MONSTER
-
-The wrapper now uses most of the available arena height.
-Because the arena itself is located between the questions
-and the team panels, the monster can grow upward without
-covering the question boxes.
-*/
-.eggWrap{
-position:relative;
-width:min(52vw,560px);
-height:100%;
-max-height:100%;
-display:flex;
-align-items:center;
-justify-content:center;
-padding-top:4px;
-padding-bottom:4px;
-}
-
-/*
-Round 1 image fills the enlarged wrapper.
-object-fit:contain keeps the original proportions.
-*/
-.egg{
-width:100%;
-height:100%;
-max-width:100%;
-max-height:100%;
-object-fit:contain;
-filter:drop-shadow(0 14px 22px rgba(0,0,0,.58));
-animation:eggFloat 2.4s ease-in-out infinite;
-}
-
-/*
-ROUND 2
-
-Round 2 is slightly wider and has a stronger glow.
-It still remains inside the arena.
-*/
-.eggWrap.round2Mode{
-width:min(62vw,680px);
-height:100%;
-max-height:100%;
-padding-top:2px;
-padding-bottom:2px;
-}
-
-.egg.round2Size{
-width:100%;
-height:100%;
-max-width:100%;
-max-height:100%;
-object-fit:contain;
-filter:
-drop-shadow(0 0 14px rgba(255,50,50,.95))
-drop-shadow(0 14px 28px rgba(0,0,0,.85));
-}
-
-@keyframes eggFloat{
-0%,100%{
-transform:translateY(0) rotate(0deg);
-}
-50%{
-transform:translateY(-13px) rotate(1deg);
-}
-}
-
+.arena{position:relative;min-height:0;display:flex;align-items:center;justify-content:center}
+.eggWrap{position:relative;width:min(52vw,540px);height:min(52vw,540px);display:flex;align-items:center;justify-content:center}.egg{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.5));animation:eggFloat 2.4s ease-in-out infinite}.eggWrap.round2Mode{width:min(60vw,660px);height:min(60vw,660px)}.egg.round2Size{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 0 14px rgba(255,50,50,.95)) drop-shadow(0 14px 28px rgba(0,0,0,.85))}
+@keyframes eggFloat{50%{transform:translateY(-13px) rotate(1deg)}}
 .egg.hit{animation:eggHit .55s ease}
-
-@keyframes eggHit{
-20%{transform:translateX(-18px) rotate(-5deg)}
-40%{transform:translateX(18px) rotate(5deg)}
-60%{transform:translateX(-12px)}
-80%{transform:translateX(10px)}
-100%{transform:none}
-}
-
+.egg.round2Hit{animation:round2Hit .72s ease}
+@keyframes round2Hit{0%{transform:scale(1) rotate(0)}18%{transform:scale(1.08) translateX(-18px) rotate(-4deg)}36%{transform:scale(1.1) translateX(20px) rotate(5deg)}54%{transform:scale(1.08) translateX(-14px) rotate(-3deg)}72%{transform:scale(1.05) translateX(10px) rotate(2deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes eggHit{20%{transform:translateX(-18px) rotate(-5deg)}40%{transform:translateX(18px) rotate(5deg)}60%{transform:translateX(-12px)}80%{transform:translateX(10px)}100%{transform:none}}
 .egg.explode{animation:eggOut .9s forwards}
-
-@keyframes eggOut{
-50%{
-transform:scale(1.35) rotate(8deg);
-filter:brightness(2);
-}
-100%{
-transform:scale(0);
-opacity:0;
-}
-}
-
-@keyframes finalEggShake{
-0%,100%{transform:translate(0,0) rotate(0) scale(1)}
-25%{transform:translate(-10px,3px) rotate(-2deg) scale(1.02)}
-50%{transform:translate(12px,-2px) rotate(2deg) scale(1.03)}
-75%{transform:translate(-8px,2px) rotate(-1deg) scale(1.02)}
-}
-
-@keyframes finalEggCrack{
-0%,100%{
-transform:translate(0,0) rotate(0) scale(1);
-filter:brightness(1);
-}
-20%{
-transform:translate(-15px,4px) rotate(-4deg) scale(1.04);
-filter:brightness(1.3);
-}
-40%{
-transform:translate(17px,-3px) rotate(4deg) scale(1.08);
-filter:brightness(1.6);
-}
-60%{
-transform:translate(-13px,2px) rotate(-3deg) scale(1.06);
-filter:brightness(2);
-}
-80%{
-transform:translate(12px,-2px) rotate(3deg) scale(1.12);
-filter:brightness(2.2);
-}
-}
-
-.impact{
-position:absolute;
-width:80px;
-height:80px;
-border-radius:50%;
-background:radial-gradient(
-circle,
-#fff 0,
-#ffd34d 22%,
-#ff7b00 45%,
-transparent 70%
-);
-opacity:0;
-pointer-events:none;
-}
-
+@keyframes eggOut{50%{transform:scale(1.35) rotate(8deg);filter:brightness(2)}100%{transform:scale(0);opacity:0}}
+@keyframes finalEggShake{0%,100%{transform:translate(0,0) rotate(0) scale(1)}25%{transform:translate(-10px,3px) rotate(-2deg) scale(1.02)}50%{transform:translate(12px,-2px) rotate(2deg) scale(1.03)}75%{transform:translate(-8px,2px) rotate(-1deg) scale(1.02)}}
+@keyframes finalEggCrack{0%,100%{transform:translate(0,0) rotate(0) scale(1);filter:brightness(1)}20%{transform:translate(-15px,4px) rotate(-4deg) scale(1.04);filter:brightness(1.3)}40%{transform:translate(17px,-3px) rotate(4deg) scale(1.08);filter:brightness(1.6)}60%{transform:translate(-13px,2px) rotate(-3deg) scale(1.06);filter:brightness(2)}80%{transform:translate(12px,-2px) rotate(3deg) scale(1.12);filter:brightness(2.2)}}
+.impact{position:absolute;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,#fff 0,#ffd34d 22%,#ff7b00 45%,transparent 70%);opacity:0;pointer-events:none}
 .impact.show{animation:impact .55s ease}
-
-@keyframes impact{
-0%{
-opacity:1;
-transform:scale(.3);
-}
-100%{
-opacity:0;
-transform:scale(2.2);
-}
-}
-
+@keyframes impact{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(2.2)}}
+@keyframes magicBombBurst{0%{opacity:1;transform:translate(-50%,-50%) scale(.2) rotate(0)}35%{opacity:1;transform:translate(-50%,-50%) scale(2.1) rotate(180deg)}100%{opacity:0;transform:translate(-50%,-50%) scale(4.8) rotate(360deg)}}
+@keyframes magicRing{0%{opacity:1;transform:translate(-50%,-50%) scale(.2)}100%{opacity:0;transform:translate(-50%,-50%) scale(5)}}
+@keyframes magicSpark{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(calc(-50% + var(--sx)),calc(-50% + var(--sy))) scale(.15)}}
 .teamArea{display:grid;gap:8px;min-height:145px}
 .teamArea.two{grid-template-columns:repeat(2,1fr)}
 .teamArea.three{grid-template-columns:repeat(3,1fr)}
@@ -303,22 +112,21 @@ transform:scale(2.2);
 .moneyIcon{width:32px;height:32px;object-fit:contain;vertical-align:middle}
 .answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
 .answer{
-min-height:55px;border:2px solid rgba(255,255,255,.18);background:linear-gradient(145deg,#39205b,#24133e);
-color:#fff;border-radius:12px;padding:7px;font-weight:bold;transition:.15s;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;
+ min-height:55px;touch-action:none;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;border:2px solid rgba(255,255,255,.18);background:linear-gradient(145deg,#39205b,#24133e);
+ color:#fff;border-radius:12px;padding:7px;font-weight:bold;transition:.15s;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;
 }
 .answer:hover:not(:disabled){transform:scale(1.025);border-color:var(--gold);background:#51317a}
 .answer:disabled{cursor:not-allowed;opacity:.62}
 .answer img{max-width:100%;max-height:65px;border-radius:7px;object-fit:contain}
 .answer.correct{background:#157c4c;border-color:#70f0a5}
 .answer.wrong{background:#8f2638;border-color:#ff9aa4}
-.fireball{position:fixed;width:72px;height:72px;object-fit:contain;z-index:50;pointer-events:none;filter:drop-shadow(0 0 10px #ff8a00)}
+.fireball{position:fixed;width:72px;height:72px;object-fit:contain;z-index:50;pointer-events:none;filter:drop-shadow(0 0 10px #ff8a00) drop-shadow(0 0 20px rgba(255,120,0,.8));will-change:transform,left,top}.magicBomb{position:fixed;width:24px;height:24px;border-radius:50%;z-index:75;pointer-events:none;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff 0 12%,#ffd34d 18%,#ff7b00 38%,#d21cff 58%,transparent 72%);filter:drop-shadow(0 0 8px #ffd34d) drop-shadow(0 0 18px #d21cff);animation:magicBombBurst .72s ease-out forwards}.magicBomb::before,.magicBomb::after{content:"";position:absolute;left:50%;top:50%;width:100%;height:100%;border-radius:50%;border:3px solid rgba(255,211,77,.9);transform:translate(-50%,-50%) scale(.3);animation:magicRing .72s ease-out forwards}.magicBomb::after{border-color:rgba(210,28,255,.8);animation-delay:.08s}.magicSpark{position:fixed;width:10px;height:10px;border-radius:50%;z-index:74;pointer-events:none;background:#fff3a8;box-shadow:0 0 8px #ffd34d,0 0 14px #d21cff;transform:translate(-50%,-50%);animation:magicSpark .7s cubic-bezier(.15,.8,.2,1) forwards}
 .coin{position:fixed;width:34px;height:34px;object-fit:contain;z-index:60;pointer-events:none}
 .floatText{position:fixed;z-index:70;font-size:clamp(24px,4vw,44px);font-weight:bold;color:var(--gold);text-shadow:0 3px #6a2c00;pointer-events:none;animation:floatText 1s forwards}
 @keyframes floatText{to{transform:translateY(-65px) scale(1.2);opacity:0}}
 .centerMessage{position:fixed;left:50%;top:45%;transform:translate(-50%,-50%) scale(.7);z-index:80;background:rgba(15,4,28,.9);border:2px solid var(--gold);border-radius:18px;padding:15px 30px;font-size:32px;text-align:center;opacity:0;pointer-events:none}
 .centerMessage.show{animation:msg .9s ease}
 @keyframes msg{15%{opacity:1;transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-60%) scale(1.05)}}
-
 .editorList{display:flex;flex-direction:column;gap:9px;max-height:310px;overflow:auto;margin-top:10px}
 .qitem{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:11px;padding:10px;display:flex;justify-content:space-between;gap:10px;align-items:center}
 .qitemText{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -328,8 +136,11 @@ color:#fff;border-radius:12px;padding:7px;font-weight:bold;transition:.15s;displ
 .previewBox{background:#10071b;border-radius:10px;padding:8px;min-height:55px;text-align:center}
 .previewBox img{max-width:100%;max-height:70px}
 .dropZone{border:2px dashed #765b94;padding:12px;border-radius:10px;text-align:center;margin-top:5px}
-.winnerCard{text-align:center}
-.winnerTitle{font-size:clamp(48px,9vw,100px);color:var(--gold);text-shadow:0 5px #7a3300}
+.winnerCard{text-align:center;position:relative;overflow:hidden}
+.winnerTitle{font-size:clamp(34px,6vw,72px);color:var(--gold);text-shadow:0 5px #7a3300;white-space:nowrap;line-height:1.05}
+.roundWinnerTitle{font-size:clamp(18px,5vw,64px);white-space:nowrap}
+.roundWinnerTrophy{width:115px;height:115px;object-fit:contain;display:block;margin:4px auto 2px;filter:drop-shadow(0 0 14px rgba(255,211,77,.65));animation:winnerFloat 1.9s ease-in-out infinite}
+.roundWinnerHint{color:#ffd34d;font-size:clamp(16px,2.5vw,24px);font-weight:bold;margin:4px 0 10px}
 .winnerAssets{display:flex;justify-content:center;align-items:center;gap:35px;flex-wrap:wrap}
 .winnerAssets img{max-width:170px;max-height:170px;object-fit:contain;animation:winnerFloat 1.9s ease-in-out infinite;filter:drop-shadow(0 10px 12px rgba(0,0,0,.4))}
 .winnerAssets img:nth-child(2){animation-delay:.25s}.winnerAssets img:nth-child(3){animation-delay:.5s}
@@ -346,750 +157,203 @@ color:#fff;border-radius:12px;padding:7px;font-weight:bold;transition:.15s;displ
 .finalRow{display:flex;justify-content:space-between;padding:10px 15px;background:rgba(255,255,255,.08);border-radius:10px;font-size:20px}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#12071e;border:1px solid var(--gold);padding:10px 18px;border-radius:10px;z-index:200;opacity:0;pointer-events:none}
 .toast.show{opacity:1}
-
 @media(max-width:750px){
+ .screen{overflow:auto;overscroll-behavior:contain}
+ .game{overflow:hidden}
 
-.grid{grid-template-columns:1fr}
-.gameUI{grid-template-rows:auto auto 1fr auto}
-.gameTitle{font-size:24px}
-.timer{min-width:105px;font-size:23px;padding:5px}
-.topActions .hideSmall{display:none}
-
-/*
-Mobile Round 1:
-Make the monster use almost the whole
-available arena height.
-*/
-.eggWrap{
-width:min(72vw,360px);
-height:100%;
-max-height:100%;
-padding-top:4px;
-padding-bottom:4px;
+ .grid{grid-template-columns:1fr}
+ .gameUI{grid-template-rows:auto auto 1fr auto}
+ .gameTitle{font-size:24px}.timer{min-width:105px;font-size:23px;padding:5px}
+ .topActions .hideSmall{display:none}
+ .endRoundBtn{min-width:0;padding:8px 9px;font-size:12px}
+ .eggWrap{width:min(68vw,390px);height:min(68vw,390px)}.eggWrap.round2Mode{width:min(84vw,500px);height:min(84vw,500px)}
+ .teamArea{min-height:120px}
+ .answer{min-height:45px;font-size:14px}
+ .moneyIcon{width:25px;height:25px}
 }
-
-/*
-Mobile Round 2:
-Slightly wider than Round 1 for a scarier effect.
-*/
-.eggWrap.round2Mode{
-width:min(82vw,430px);
-height:100%;
-max-height:100%;
-padding-top:2px;
-padding-bottom:2px;
-}
-
-.egg.round2Size{
-width:100%;
-height:100%;
-max-width:100%;
-max-height:100%;
-object-fit:contain;
-}
-
-.teamArea{min-height:120px}
-.answer{min-height:45px;font-size:14px}
-.moneyIcon{width:25px;height:25px}
-} </style>
-
+</style>
 </head>
-
 <body>
 
 <div id="intro" class="screen">
- <div class="introBg"></div>
- <div class="introOverlay"></div>
-
+ <div class="introBg"></div><div class="introOverlay"></div>
  <div class="introContent">
   <div class="introTitle titleFont">HAPPY HALLOWEEN</div>
-
-  <div class="introCreator">
-   <div class="introGameTitle">
-    <span class="titleMonster">🎃 Monster Egg:</span>
-    <span class="titleHalloween">Halloween</span>
-    <span class="titleGold">Gold Rush</span>
-   </div>
-
-   <br>
-   <span>Game created by <b>Teacher Khen</b></span>
-  </div>
-
-  <button class="btn big introEnter" id="introEnter">
-   👻 ENTER THE GAME
-  </button>
+  <div class="introCreator"><div class="introGameTitle"><span class="titleMonster">🎃 Monster Egg:</span> <span class="titleHalloween">Halloween</span> <span class="titleGold">Gold Rush</span></div><span>Game created by <b>Teacher Khen</b></span></div>
+  <button class="btn big introEnter" id="introEnter">👻 ENTER THE GAME</button>
  </div>
 </div>
 
 <div id="setup" class="screen hidden">
-
- <div id="setupBg" class="bg"></div>
- <div class="overlay"></div>
-
- <div class="decor">
-  <span>🎃</span>
-  <span>🦇</span>
-  <span>👻</span>
-  <span>🕷️</span>
- </div>
-
+ <div id="setupBg" class="bg"></div><div class="overlay"></div>
+ <div class="decor"><span>🎃</span><span>🦇</span><span>👻</span><span>🕷️</span></div>
  <div class="screenCenter">
-
   <div class="card">
-
    <div class="logo titleFont">MONSTER EGG</div>
    <div class="subtitle">🎃 HALLOWEEN GOLD RUSH 🎃</div>
-
    <div class="grid">
-
-```
-<div class="section">
-
- <h3>Game Settings</h3>
-
- <label>Number of Teams</label>
-
- <select id="teamCount">
-  <option value="2">2 Teams</option>
-  <option value="3">3 Teams</option>
- </select>
-
- <label>Team 1 Name</label>
- <input id="team1" value="Witches">
-
- <label>Team 2 Name</label>
- <input id="team2" value="Vampires">
-
- <div id="team3Wrap">
-  <label>Team 3 Name</label>
-  <input id="team3" value="Zombies">
- </div>
-
- <label>Game Duration</label>
-
- <select id="duration">
-  <option value="60">1 minute</option>
-  <option value="120">2 minutes</option>
-  <option value="180">3 minutes</option>
-  <option value="300" selected>5 minutes</option>
-  <option value="360">6 minutes</option>
-  <option value="420">7 minutes</option>
-  <option value="480">8 minutes</option>
-  <option value="540">9 minutes</option>
-  <option value="600">10 minutes</option>
-  <option value="custom">Custom</option>
- </select>
-
- <div id="customTimeWrap" class="hidden">
-
-  <label>Custom minutes</label>
-
-  <input
-   id="customTime"
-   type="number"
-   min="1"
-   max="60"
-   value="6"
-   inputmode="numeric"
-  >
-
-  <div class="customTimeChoices" aria-label="Quick custom time choices">
-
-   <button type="button" class="timeChoice" data-minutes="6">
-    6 min
-   </button>
-
-   <button type="button" class="timeChoice" data-minutes="8">
-    8 min
-   </button>
-
-   <button type="button" class="timeChoice" data-minutes="10">
-    10 min
-   </button>
-
-  </div>
-
-  <div class="help">
-   Choose 6, 8, or 10 minutes above, or type any value from 1–60.
-  </div>
-
- </div>
-
- <label>Background</label>
-
- <select id="backgroundSelect">
-  <option value="background1.gif">Background 1</option>
-  <option value="background2.gif">Background 2</option>
- </select>
-
-</div>
-
-<div class="section">
-
- <h3>Audio</h3>
-
- <label>
-  Music Volume
-  <span class="rangeVal" id="musicVal">40%</span>
- </label>
-
- <input
-  id="musicVol"
-  type="range"
-  min="0"
-  max="1"
-  step=".01"
-  value=".4"
- >
-
- <label>
-  Sound Effects
-  <span class="rangeVal" id="sfxVal">70%</span>
- </label>
-
- <input
-  id="sfxVol"
-  type="range"
-  min="0"
-  max="1"
-  step=".01"
-  value=".7"
- >
-
- <div class="row" style="margin-top:12px">
-
-  <button class="btn secondary" id="musicMute">
-   🔇 Music
-  </button>
-
-  <button class="btn secondary" id="sfxMute">
-   🔊 SFX
-  </button>
-
- </div>
-
- <h3 style="margin-top:20px">
-  Game Data
- </h3>
-
- <div class="row">
-
-  <button class="btn secondary" id="editorBtn">
-   📝 Question Editor
-  </button>
-
-  <button class="btn secondary" id="loadBtn">
-   📂 Load JSON
-  </button>
-
-  <button class="btn secondary" id="exportBtn">
-   💾 Export JSON
-  </button>
-
-  <input
-   id="jsonFile"
-   type="file"
-   accept=".json,application/json"
-   class="hidden"
-  >
-
- </div>
-
- <p class="help">
-  Questions and answer images can use filenames or browser-selected local files.
-  Export JSON stores the game data and settings.
- </p>
-
-</div>
-```
-
+    <div class="section">
+     <h3>Game Settings</h3>
+     <label>Number of Teams</label>
+     <select id="teamCount"><option value="2">2 Teams</option><option value="3">3 Teams</option></select>
+     <label>Team 1 Name</label><input id="team1" value="Witches">
+     <label>Team 2 Name</label><input id="team2" value="Vampires">
+     <div id="team3Wrap"><label>Team 3 Name</label><input id="team3" value="Zombies"></div>
+     <label>Number of Rounds</label>
+     <select id="roundCount"><option value="1">1 Round</option><option value="2" selected>2 Rounds</option></select>
+     <label>Round 1 Time</label>
+     <select id="duration"><option value="60">1 minute</option><option value="120">2 minutes</option><option value="180">3 minutes</option><option value="300" selected>5 minutes</option><option value="360">6 minutes</option><option value="420">7 minutes</option><option value="480">8 minutes</option><option value="540">9 minutes</option><option value="600">10 minutes</option><option value="custom">Custom</option></select>
+     <div id="customTimeWrap" class="hidden">
+      <label>Custom Round 1 minutes</label>
+      <input id="customTime" type="number" min="1" max="60" value="5" inputmode="numeric">
+      <div class="customTimeChoices" aria-label="Quick custom time choices">
+       <button type="button" class="timeChoice" data-minutes="5">5 min</button>
+       <button type="button" class="timeChoice" data-minutes="8">8 min</button>
+       <button type="button" class="timeChoice" data-minutes="10">10 min</button>
+      </div>
+      <div class="help">Choose a quick time or type any value from 1–60 minutes.</div>
+     </div>
+     <div id="round2TimeWrap">
+      <label>Round 2 Time</label>
+      <select id="round2Duration"><option value="60">1 minute</option><option value="120">2 minutes</option><option value="180">3 minutes</option><option value="300" selected>5 minutes</option><option value="360">6 minutes</option><option value="420">7 minutes</option><option value="480">8 minutes</option><option value="540">9 minutes</option><option value="600">10 minutes</option></select>
+      <div class="help">Round 1 ends automatically, shows its winner, then Round 2 starts with this timer.</div>
+     </div>
+     <label>Background</label>
+     <select id="backgroundSelect"><option value="background1.gif">Background 1</option><option value="background2.gif">Background 2</option></select>
+    </div>
+    <div class="section">
+     <h3>Audio</h3>
+     <label>Music Volume <span class="rangeVal" id="musicVal">40%</span></label>
+     <input id="musicVol" type="range" min="0" max="1" step=".01" value=".4">
+     <label>Sound Effects <span class="rangeVal" id="sfxVal">70%</span></label>
+     <input id="sfxVol" type="range" min="0" max="1" step=".01" value=".7">
+     <div class="row" style="margin-top:12px">
+      <button class="btn secondary" id="musicMute">🔇 Music</button>
+      <button class="btn secondary" id="sfxMute">🔊 SFX</button>
+     </div>
+     <h3 style="margin-top:20px">Game Data</h3>
+     <div class="row">
+      <button class="btn secondary" id="editorBtn">📝 Question Editor</button>
+      <button class="btn secondary" id="loadBtn">📂 Load JSON</button>
+      <button class="btn secondary" id="exportBtn">💾 Export JSON</button>
+      <input id="jsonFile" type="file" accept=".json,application/json" class="hidden">
+     </div>
+     <p class="help">Questions and answer images can use filenames or browser-selected local files. Export JSON stores the game data and settings.</p>
+    </div>
    </div>
-
    <div style="text-align:center;margin-top:18px">
-
-```
-<button class="btn big" id="startBtn">
- 🎃 START GAME
-</button>
-```
-
+    <button class="btn big" id="startBtn">🎃 START GAME</button>
    </div>
-
   </div>
-
  </div>
-
 </div>
 
 <div id="instructions" class="screen hidden">
-
- <div id="instructionBg" class="bg"></div>
- <div class="overlay"></div>
-
- <div class="decor">
-  <span>🎃</span>
-  <span>🦇</span>
-  <span>👻</span>
-  <span>🕷️</span>
- </div>
-
- <div class="screenCenter">
-
-  <div class="card" style="max-width:850px;text-align:center">
-
-   <div
-    class="logo titleFont"
-    style="font-size:clamp(38px,6vw,68px)"
-   >
-    HOW TO PLAY
-   </div>
-
-   <div
-    style="font-size:clamp(18px,2.5vw,25px);line-height:1.55;text-align:left;max-width:720px;margin:auto"
-   >
-
-```
-<p>
- 🎃 <b>Answer your team's question</b>
- as quickly as you can.
-</p>
-
-<p>
- 🔥 Choose the correct answer to send a magical fireball to the Monster Egg.
-</p>
-
-<p>
- 🪙 The faster you answer correctly,
- the more gold you collect — <b>3 to 10 points!</b>
-</p>
-
-<p>
- 👻 Wrong answers give no points.
- Keep playing until the timer reaches zero.
-</p>
-
-<p>
- 💥 When time is up, the Monster Egg will glow,
- shake, crack, and reveal a Halloween surprise!
-</p>
-```
-
-   </div>
-
-   <div
-    class="row"
-    style="justify-content:center;margin-top:22px"
-   >
-
-```
-<button class="btn big" id="instructionStart">
- 🎃 START GAME
-</button>
-
-<button
- class="btn secondary big"
- id="instructionSettings"
->
- ⚙ SETTINGS
-</button>
-```
-
-   </div>
-
+ <div id="instructionBg" class="bg"></div><div class="overlay"></div>
+ <div class="decor"><span>🎃</span><span>🦇</span><span>👻</span><span>🕷️</span></div>
+ <div class="screenCenter"><div class="card" style="max-width:850px;text-align:center">
+  <div class="logo titleFont" style="font-size:clamp(38px,6vw,68px)">HOW TO PLAY</div>
+  <div style="font-size:clamp(18px,2.5vw,25px);line-height:1.55;text-align:left;max-width:720px;margin:auto">
+   <p>🎃 <b>Answer your team's question</b> as quickly as you can.</p>
+   <p>🔥 Choose the correct answer to send a magical fireball to the Monster Egg.</p>
+   <p>🪙 The faster you answer correctly, the more gold you collect — <b>3 to 10 points!</b></p>
+   <p>👻 Wrong answers give no points. Keep playing until the timer reaches zero.</p>
+   <p>💥 When time is up, the Monster Egg will glow, shake, crack, and reveal a Halloween surprise!</p>
   </div>
-
- </div>
-
+  <div class="row" style="justify-content:center;margin-top:22px"><button class="btn big" id="instructionStart">🎃 START GAME</button><button class="btn secondary big" id="instructionSettings">⚙ SETTINGS</button></div>
+ </div></div>
 </div>
 
 <div id="game" class="screen">
-
- <div id="gameBg" class="bg"></div>
- <div class="overlay"></div>
-
- <div class="decor">
-  <span>🎃</span>
-  <span>🦇</span>
-  <span>👻</span>
-  <span>🕷️</span>
- </div>
-
+ <div id="gameBg" class="bg"></div><div class="overlay"></div>
+ <div class="decor"><span>🎃</span><span>🦇</span><span>👻</span><span>🕷️</span></div>
  <div class="gameUI">
-
   <div class="topbar">
-
-   <div class="gameTitle titleFont">
-    MONSTER EGG
-   </div>
-
-   <div id="timer" class="timer">
-    05:00
-   </div>
-
+   <div class="gameTitle titleFont">MONSTER EGG</div>
+   <div id="timer" class="timer">05:00</div>
    <div class="topActions">
-
-```
-<button
- class="round2Btn"
- id="round2Btn"
- type="button"
->
- 🎃 ROUND 2
-</button>
-
-<button
- class="iconBtn"
- id="fullscreenBtn"
->
- ⛶
-</button>
-
-<button
- class="iconBtn hideSmall"
- id="backBtn"
->
- ⚙
-</button>
-```
-
+    <button class="iconBtn endRoundBtn" id="endRoundBtn">⏹ END ROUND</button><button class="iconBtn" id="fullscreenBtn">⛶</button>
+    <button class="iconBtn hideSmall" id="backBtn">⚙</button>
    </div>
-
   </div>
-
   <div id="questionBar" class="questionBar"></div>
-
-  <div
-   id="teamQuestions"
-   class="teamQuestions two"
-  ></div>
-
+  <div id="teamQuestions" class="teamQuestions two"></div>
   <div class="arena">
-
-   <div
-    class="eggWrap"
-    id="eggWrap"
-   >
-
-```
-<img
- id="egg"
- class="egg"
- src="monsteregg.gif"
- alt="Monster Egg"
->
-
-<div
- id="crackEffect"
- class="crackEffect"
-></div>
-
-<div
- id="impact"
- class="impact"
-></div>
-```
-
+   <div class="eggWrap" id="eggWrap">
+    <img id="egg" class="egg" src="monsteregg.gif" alt="Monster Egg">
+    <div id="impact" class="impact"></div>
    </div>
-
   </div>
-
-  <div
-   id="teamArea"
-   class="teamArea two"
-  ></div>
-
+  <div id="teamArea" class="teamArea two"></div>
  </div>
-
 </div>
 
 <div id="editorModal" class="modal hidden">
-
  <div class="modalCard">
-
-  <div
-   class="row"
-   style="justify-content:space-between"
-  >
-
-   <h2
-    class="titleFont"
-    style="color:var(--gold);margin:0"
-   >
-    QUESTION EDITOR
-   </h2>
-
-<button
-class="iconBtn"
-id="closeEditor"
-
->
-
-```
-✕
-```
-
-   </button>
-
-  </div>
-
+  <div class="row" style="justify-content:space-between"><h2 class="titleFont" style="color:var(--gold);margin:0">QUESTION EDITOR</h2><button class="iconBtn" id="closeEditor">✕</button></div>
   <div class="grid">
-
    <div class="section">
-
-```
-<h3>Question</h3>
-
-<label>Question Text</label>
-
-<textarea
- id="qText"
- placeholder="What animal is this?"
-></textarea>
-
-<label>
- Question Image Filename / Path
-</label>
-
-<input
- id="qImage"
- placeholder="cat.png"
->
-
-<div class="help">
- You can also use a local path such as assets/cat.png.
-</div>
-
-<div
- class="previewBox"
- id="qPreview"
->
- Preview
-</div>
-```
-
+    <h3>Question</h3>
+    <label>Question Text</label><textarea id="qText" placeholder="What animal is this?"></textarea>
+    <label>Question Image Filename / Path</label><input id="qImage" placeholder="cat.png">
+    <div class="help">You can also use a local path such as assets/cat.png.</div>
+    <div class="previewBox" id="qPreview">Preview</div>
    </div>
-
    <div class="section">
-
-```
-<h3>Answers</h3>
-
-<div id="answerEditor"></div>
-
-<button
- class="btn green"
- id="addAnswer"
->
- + Add Answer
-</button>
-```
-
+    <h3>Answers</h3>
+    <div id="answerEditor"></div>
+    <button class="btn green" id="addAnswer">+ Add Answer</button>
    </div>
-
   </div>
-
-  <div
-   class="row"
-   style="justify-content:flex-end;margin-top:14px"
-  >
-
-<button
-class="btn secondary"
-id="newQuestion"
-
->
-
-```
-New
-```
-
-   </button>
-
-<button
-class="btn green"
-id="saveQuestion"
-
->
-
-```
-Save Question
-```
-
-   </button>
-
+  <div class="row" style="justify-content:flex-end;margin-top:14px">
+   <button class="btn secondary" id="newQuestion">New</button>
+   <button class="btn green" id="saveQuestion">Save Question</button>
   </div>
-
-  <h3 style="color:var(--gold)">
-   Question Bank
-   (<span id="qCount">0</span>)
-  </h3>
-
-  <div
-   id="editorList"
-   class="editorList"
-  ></div>
-
+  <h3 style="color:var(--gold)">Question Bank (<span id="qCount">0</span>)</h3>
+  <div id="editorList" class="editorList"></div>
  </div>
-
 </div>
 
 <div id="eggFinalGlow"></div>
-
-<div id="halloweenReveal">
-
-<img
-src="happy halloween.gif"
-alt="Happy Halloween"
-
->
-
-</div>
-
-<div id="winnerModal" class="modal hidden">
-
+<div id="halloweenReveal"><img src="happy halloween.gif" alt="Happy Halloween"></div>
+<div id="roundWinnerModal" class="modal hidden">
  <div class="modalCard winnerCard">
-
-  <div class="winnerTitle titleFont">
-   🏆 WINNER!
-  </div>
-
-  <div
-   id="winnerName"
-   style="font-size:clamp(28px,5vw,55px);font-weight:bold"
-  ></div>
-
-  <div class="winnerAssets">
-
-<img
-src="trophy.gif"
-alt="Trophy"
-
->
-
-<img
-src="chest.gif"
-alt="Treasure Chest"
-
->
-
-<img
-src="money.gif"
-alt="Money"
-
->
-
-  </div>
-
-  <div
-   id="finalScores"
-   class="finalScores"
-  ></div>
-
-  <div
-   id="tieText"
-   style="color:var(--gold);font-size:25px;font-weight:bold"
-  ></div>
-
-  <div
-   class="row"
-   style="justify-content:center;margin-top:15px"
-  >
-
-<button
-class="btn big"
-id="playAgain"
-
->
-
-```
-🔄 Play Again
-```
-
-   </button>
-
-<button
-class="btn secondary big"
-id="winnerSettings"
-
->
-
-```
-⚙ Settings
-```
-
-   </button>
-
-  </div>
-
+  <div id="roundWinnerTitle" class="winnerTitle titleFont roundWinnerTitle">🏆 ROUND 1 COMPLETE</div>
+  <img class="roundWinnerTrophy" src="trophy.gif" alt="Trophy">
+  <div id="roundWinnerName" style="font-size:clamp(24px,4vw,46px);font-weight:bold"></div>
+  <div id="roundWinnerScores" class="finalScores"></div>
+  <div id="roundWinnerNext" class="roundWinnerHint">Round 2 is ready!</div>
+  <button class="btn big" id="nextRoundBtn">🎃 NEXT ROUND</button>
  </div>
-
+</div>
+<div id="winnerModal" class="modal hidden">
+ <div class="modalCard winnerCard">
+  <div class="winnerTitle titleFont">🏆 WINNER!</div>
+  <div id="winnerName" style="font-size:clamp(28px,5vw,55px);font-weight:bold"></div>
+  <div class="winnerAssets">
+   <img src="trophy.gif" alt="Trophy"><img src="chest.gif" alt="Treasure Chest"><img src="money.gif" alt="Money">
+  </div>
+  <div id="finalScores" class="finalScores"></div>
+  <div id="tieText" style="color:var(--gold);font-size:25px;font-weight:bold"></div>
+  <div class="row" style="justify-content:center;margin-top:15px">
+   <button class="btn big" id="playAgain">🔄 Play Again</button>
+   <button class="btn secondary big" id="winnerSettings">⚙ Settings</button>
+  </div>
+ </div>
 </div>
 
 <div id="toast" class="toast"></div>
 
-<audio
-id="music"
-src="background music.mp3"
-loop
-preload="auto"
-
-> </audio>
-
-<audio
-id="sndClick"
-src="click.mp3"
-preload="auto"
-
-> </audio>
-
-<audio
-id="sndCoins"
-src="collect coins.mp3"
-preload="auto"
-
-> </audio>
-
-<audio
-id="sndExplosion"
-src="explosion.mp3"
-preload="auto"
-
-> </audio>
-
-<audio
-id="sndFireball"
-src="fireball.mp3"
-preload="auto"
-
-> </audio>
-
-<audio
-id="sndPoint"
-src="point.mp3"
-preload="auto"
-
-> </audio>
-
-<audio
-id="sndWinner"
-src="winner.mp3"
-preload="auto"
-
-> </audio>
-
-<audio
-id="sndLaugh"
-src="laugh.mp3"
-preload="auto"
-
-> </audio>
-
-<audio
-id="sndRoar"
-src="roar.mp3"
-preload="auto"
-
-> </audio>
+<audio id="titleMusic" src="first.mp3" loop autoplay preload="auto"></audio>
+<audio id="music" src="background music.mp3" loop preload="auto"></audio>
+<audio id="sndClick" src="click.mp3" preload="auto"></audio>
+<audio id="sndCoins" src="collect coins.mp3" preload="auto"></audio>
+<audio id="sndExplosion" src="explosion.mp3" preload="auto"></audio>
+<audio id="sndFireball" src="fireball.mp3" preload="auto"></audio>
+<audio id="sndPoint" src="point.mp3" preload="auto"></audio>
+<audio id="sndWinner" src="winner.mp3" preload="auto"></audio>
+<audio id="sndLaugh" src="laugh.mp3" preload="auto"></audio>
+<audio id="sndRoar" src="roar.mp3" preload="auto"></audio>
 
 <script>
 "use strict";
@@ -1099,2684 +363,686 @@ preload="auto"
    ========================= */
 
 const ASSETS = {
- background1:"background1.gif",
- background2:"background2.gif",
- egg:"monsteregg.gif",
- round2:"round2.gif",
- fireball:"magicball.gif",
- coin:"coin.gif",
- money:"money.gif",
- trophy:"trophy.gif",
- chest:"chest.gif"
+ background1:"background1.gif", background2:"background2.gif",
+ egg:"monsteregg.gif", round2:"round2.gif", fireball:"magicball.gif", coin:"coin.gif",
+ money:"money.gif", trophy:"trophy.gif", chest:"chest.gif"
 };
 
-const DEFAULT_QUESTIONS = [
- {id:"halloween_ghost_1",text:"Which Halloween character is this?",image:"ghost.png",answers:[
-  {text:"ghost",image:"",correct:true},
-  {text:"witch",image:"",correct:false},
-  {text:"vampire",image:"",correct:false},
-  {text:"zombie",image:"",correct:false}
- ]},
-
- {id:"halloween_witch",text:"Which Halloween character is this?",image:"witch.png",answers:[
-  {text:"witch",image:"",correct:true},
-  {text:"mummy",image:"",correct:false},
-  {text:"owl",image:"",correct:false},
-  {text:"pumpkin",image:"",correct:false}
- ]},
-
- {id:"halloween_candy",text:"Which Halloween character is this?",image:"candy.png",answers:[
-  {text:"candy",image:"",correct:true},
-  {text:"spider",image:"",correct:false},
-  {text:"bat",image:"",correct:false},
-  {text:"ghost",image:"",correct:false}
- ]},
-
- {id:"halloween_moon",text:"Which Halloween character is this?",image:"moon.png",answers:[
-  {text:"moon",image:"",correct:true},
-  {text:"witch",image:"",correct:false},
-  {text:"mummy",image:"",correct:false},
-  {text:"vampire",image:"",correct:false}
- ]},
-
- {id:"halloween_vampire",text:"Which Halloween character is this?",image:"vampire.png",answers:[
-  {text:"vampire",image:"",correct:true},
-  {text:"zombie",image:"",correct:false},
-  {text:"owl",image:"",correct:false},
-  {text:"bat",image:"",correct:false}
- ]},
-
- {id:"halloween_mummy",text:"Which Halloween character is this?",image:"mummy.png",answers:[
-  {text:"mummy",image:"",correct:true},
-  {text:"ghost",image:"",correct:false},
-  {text:"pumpkin",image:"",correct:false},
-  {text:"spider",image:"",correct:false}
- ]},
-
- {id:"halloween_ghost_2",text:"Which Halloween character is this?",image:"ghost.png",answers:[
-  {text:"ghost",image:"",correct:true},
-  {text:"candy",image:"",correct:false},
-  {text:"moon",image:"",correct:false},
-  {text:"zombie",image:"",correct:false}
- ]},
-
- {id:"halloween_owl",text:"Which Halloween character is this?",image:"owl.png",answers:[
-  {text:"owl",image:"",correct:true},
-  {text:"bat",image:"",correct:false},
-  {text:"witch",image:"",correct:false},
-  {text:"pumpkin",image:"",correct:false}
- ]},
-
- {id:"halloween_zombie",text:"Which Halloween character is this?",image:"zombie.png",answers:[
-  {text:"zombie",image:"",correct:true},
-  {text:"vampire",image:"",correct:false},
-  {text:"mummy",image:"",correct:false},
-  {text:"ghost",image:"",correct:false}
- ]},
-
- {id:"halloween_pumpkin",text:"Which Halloween character is this?",image:"pumpkin.png",answers:[
-  {text:"pumpkin",image:"",correct:true},
-  {text:"candy",image:"",correct:false},
-  {text:"spider",image:"",correct:false},
-  {text:"moon",image:"",correct:false}
- ]},
-
- {id:"halloween_spider",text:"Which Halloween character is this?",image:"spider.png",answers:[
-  {text:"spider",image:"",correct:true},
-  {text:"owl",image:"",correct:false},
-  {text:"bat",image:"",correct:false},
-  {text:"witch",image:"",correct:false}
- ]},
-
- {id:"halloween_bat",text:"Which Halloween character is this?",image:"bat.png",answers:[
-  {text:"bat",image:"",correct:true},
-  {text:"ghost",image:"",correct:false},
-  {text:"vampire",image:"",correct:false},
-  {text:"zombie",image:"",correct:false}
- ]}
+const HALLOWEEN_CHARACTER_POOL = [
+ "ghost","witch","candy","moon","vampire","mummy","owl","zombie","pumpkin","spider","bat"
 ];
 
-let questions=JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));
+const HALLOWEEN_CHARACTER_IMAGES = [
+ "ghost.png","witch.png","candy.png","moon.png","vampire.png","mummy.png",
+ "ghost.png","owl.png","zombie.png","pumpkin.png","spider.png","bat.png"
+];
 
-let settings={
- teams:2,
- names:["Witches","Vampires","Zombies"],
- duration:300,
- background:"background1.gif",
- music:.4,
- sfx:.7,
- musicMuted:false,
- sfxMuted:false
-};
-
-let game={
- active:false,
- endTime:0,
- interval:null,
- scores:[],
- queues:[],
- current:[],
- busy:[],
- roundStarted:[],
- questionStarted:[],
- answered:[],
- gameDuration:0,
- round:1
-};
-
-const $=id=>document.getElementById(id);
-
-function shuffle(arr){
- const a=[...arr];
-
- for(let i=a.length-1;i>0;i--){
-  const j=Math.floor(Math.random()*(i+1));
-  [a[i],a[j]]=[a[j],a[i]];
- }
-
- return a;
-}
-
-function escapeHTML(s){
- return String(s??"").replace(/[&<>"']/g,c=>({
-  "&":"&amp;",
-  "<":"&lt;",
-  ">":"&gt;",
-  '"':"&quot;",
-  "'":"&#039;"
- }[c]));
-}
-
-function safeSrc(src){
- return src?String(src):"";
-}
-
-function showToast(msg){
- $("toast").textContent=msg;
- $("toast").classList.add("show");
-
- clearTimeout(showToast.t);
-
- showToast.t=setTimeout(
-  ()=>$("toast").classList.remove("show"),
-  1800
- );
-}
-
-function applyBackground(target,src){
- target.style.backgroundImage=
-  `url("${src||ASSETS.background1}")`;
-}
-
-function syncSettingsUI(){
-
- $("teamCount").value=settings.teams;
-
- $("team1").value=settings.names[0];
- $("team2").value=settings.names[1];
- $("team3").value=settings.names[2];
-
- $("duration").value=[
-  60,120,180,300,360,420,480,540,600
- ].includes(settings.duration)
- ?String(settings.duration)
- :"custom";
-
- $("customTime").value=
-  Math.round(settings.duration/60);
-
- $("customTimeWrap").classList.toggle(
-  "hidden",
-  $("duration").value!=="custom"
- );
-
- const customMinutes=
-  Math.round(settings.duration/60);
-
- document.querySelectorAll(".timeChoice")
- .forEach(
-  b=>b.classList.toggle(
-   "active",
-   Number(b.dataset.minutes)===customMinutes
-  )
- );
-
- $("backgroundSelect").value=settings.background;
-
- $("musicVol").value=settings.music;
- $("sfxVol").value=settings.sfx;
-
- $("musicVal").textContent=
-  Math.round(settings.music*100)+"%";
-
- $("sfxVal").textContent=
-  Math.round(settings.sfx*100)+"%";
-
- $("musicMute").textContent=
-  settings.musicMuted?"🔇 Music":"🔊 Music";
-
- $("sfxMute").textContent=
-  settings.sfxMuted?"🔇 SFX":"🔊 SFX";
-
- $("team3Wrap").classList.toggle(
-  "hidden",
-  settings.teams!==3
- );
-
- applyBackground(
-  $("setupBg"),
-  settings.background
- );
-}
-
-function readSettings(){
-
- settings.teams=
-  Number($("teamCount").value);
-
- settings.names=[
-  $("team1").value.trim()||"Team 1",
-  $("team2").value.trim()||"Team 2",
-  $("team3").value.trim()||"Team 3"
- ];
-
- settings.duration=
-  $("duration").value==="custom"
-   ?Math.max(
-      1,
-      Math.min(
-       60,
-       Number($("customTime").value)||5
-      )
-    )*60
-   :Number($("duration").value);
-
- settings.background=
-  $("backgroundSelect").value;
-
- settings.music=
-  Number($("musicVol").value);
-
- settings.sfx=
-  Number($("sfxVol").value);
-}
-
-function audio(id){
-
- const el=$(id);
-
- if(!el)return;
-
- el.volume=
-  settings.sfxMuted?0:settings.sfx;
-
- try{
-
-  el.currentTime=0;
-
-  const p=el.play();
-
-  if(p)p.catch(()=>{});
-
- }catch(e){}
-}
-
-function updateMusic(){
- $("music").volume=
-  settings.musicMuted?0:settings.music;
-}
-
-function startMusic(){
-
- updateMusic();
-
- try{
-
-  const p=$("music").play();
-
-  if(p)p.catch(()=>
-   showToast(
-    "Tap START GAME again if browser blocked music."
-   )
-  );
-
- }catch(e){}
-}
-
-function preloadAssets(){
-
- [
-  ASSETS.egg,
-  ASSETS.round2,
-  ASSETS.fireball,
-  ASSETS.coin,
-  ASSETS.money,
-  ASSETS.trophy,
-  ASSETS.chest
- ].forEach(src=>{
-
-  const i=new Image();
-  i.src=src;
-
+function createPresetHalloweenQuestions(){
+ const seen=new Set();
+ return HALLOWEEN_CHARACTER_IMAGES.map((image,index)=>{
+  const correct=image.replace(/\.png$/i,"").toLowerCase();
+  const distractors=shuffle(HALLOWEEN_CHARACTER_POOL.filter(name=>name!==correct)).slice(0,3);
+  const answers=shuffle([correct,...distractors]).map(name=>({
+   text:name,
+   image:"",
+   correct:name===correct
+  }));
+  return {
+   id:"halloween_"+(index+1),
+   text:"Which Halloween character is this?",
+   image,
+   answers
+  };
  });
 }
 
+const DEFAULT_QUESTIONS = createPresetHalloweenQuestions();
+let questions = JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));
+let settings = {
+ teams:2,names:["Witches","Vampires","Zombies"],duration:300,round2Duration:300,rounds:2,
+ background:"background1.gif",music:.4,sfx:.7,musicMuted:false,sfxMuted:false
+};
+let game = {
+ active:false,endTime:0,interval:null,scores:[],queues:[],current:[],
+ busy:[],roundStarted:[],questionStarted:[],answered:[],gameDuration:0,round:1,roundScores:[],roundTransition:false
+};
+
+const $ = id => document.getElementById(id);
+
+function shuffle(arr){
+ const a=[...arr];
+ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+ return a;
+}
+function escapeHTML(s){
+ return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+}
+function safeSrc(src){
+ return src ? String(src) : "";
+}
+function showToast(msg){
+ $("toast").textContent=msg;$("toast").classList.add("show");
+ clearTimeout(showToast.t);showToast.t=setTimeout(()=>$("toast").classList.remove("show"),1800);
+}
+// Animated GIF backgrounds remain animated when used as CSS background images.
+function applyBackground(target,src){
+ target.style.backgroundImage=`url("${src||ASSETS.background1}")`;
+}
+function syncSettingsUI(){
+ $("roundCount").value=String(settings.rounds||2);
+ $("round2TimeWrap").classList.toggle("hidden",Number(settings.rounds||2)!==2);
+ $("round2Duration").value=String(settings.round2Duration||300);
+ $("teamCount").value=settings.teams;
+ $("team1").value=settings.names[0];$("team2").value=settings.names[1];$("team3").value=settings.names[2];
+ $("duration").value=[60,120,180,300,360,420,480,540,600].includes(settings.duration)?String(settings.duration):"custom";
+ $("customTime").value=Math.round(settings.duration/60);
+ $("customTimeWrap").classList.toggle("hidden",$("duration").value!=="custom");
+ const customMinutes=Math.round(settings.duration/60);document.querySelectorAll(".timeChoice").forEach(b=>b.classList.toggle("active",Number(b.dataset.minutes)===customMinutes));
+ $("backgroundSelect").value=settings.background;
+ $("musicVol").value=settings.music;$("sfxVol").value=settings.sfx;
+ $("musicVal").textContent=Math.round(settings.music*100)+"%";$("sfxVal").textContent=Math.round(settings.sfx*100)+"%";
+ $("musicMute").textContent=settings.musicMuted?"🔇 Music":"🔊 Music";
+ $("sfxMute").textContent=settings.sfxMuted?"🔇 SFX":"🔊 SFX";
+ $("team3Wrap").classList.toggle("hidden",settings.teams!==3);
+ applyBackground($("setupBg"),settings.background);
+}
+function readSettings(){
+ settings.rounds=Number($("roundCount").value)===2?2:1;
+ settings.round2Duration=Math.max(60,Math.min(600,Number($("round2Duration").value)||300));
+ settings.teams=Number($("teamCount").value);
+ settings.names=[$("team1").value.trim()||"Team 1",$("team2").value.trim()||"Team 2",$("team3").value.trim()||"Team 3"];
+ settings.duration=$("duration").value==="custom"
+  ? Math.max(1,Math.min(60,Number($("customTime").value)||5))*60
+  : Number($("duration").value);
+ settings.background=$("backgroundSelect").value;
+ settings.music=Number($("musicVol").value);settings.sfx=Number($("sfxVol").value);
+}
+function audio(id){
+ const el=$(id);
+ if(!el)return;
+ el.volume=settings.sfxMuted?0:settings.sfx;
+ try{el.currentTime=0;const p=el.play();if(p)p.catch(()=>{});}catch(e){}
+}
+function updateMusic(){
+ $("music").volume=settings.musicMuted?0:settings.music;
+ const titleMusic=$("titleMusic");
+ if(titleMusic)titleMusic.volume=settings.musicMuted?0:settings.music;
+}
+function startTitleMusic(){
+ const titleMusic=$("titleMusic");
+ if(!titleMusic)return;
+ titleMusic.volume=settings.musicMuted?0:settings.music;
+ try{const p=titleMusic.play();if(p)p.catch(()=>{});}catch(e){}
+}
+function stopTitleMusic(){
+ const titleMusic=$("titleMusic");
+ if(!titleMusic)return;
+ try{titleMusic.pause();titleMusic.currentTime=0;}catch(e){}
+}
+function startMusic(){
+ updateMusic();
+ try{const p=$("music").play();if(p)p.catch(()=>showToast("Tap START GAME again if browser blocked music."));}catch(e){}
+}
+function preloadAssets(){
+ [ASSETS.egg,ASSETS.round2,ASSETS.fireball,ASSETS.coin,ASSETS.money,ASSETS.trophy,ASSETS.chest,...HALLOWEEN_CHARACTER_IMAGES].forEach(src=>{const i=new Image();i.src=src});
+}
 function formatTime(sec){
-
- sec=Math.max(
-  0,
-  Math.ceil(sec)
- );
-
- return String(
-  Math.floor(sec/60)
- ).padStart(2,"0")
- +":"
- +String(
-  sec%60
- ).padStart(2,"0");
+ sec=Math.max(0,Math.ceil(sec));return String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0");
 }
 
 /* INTRO */
-
 function playIntroSpooky(){
-
  try{
-
-  const AC=
-   window.AudioContext||
-   window.webkitAudioContext;
-
-  if(!AC)return;
-
-  const ctx=
-   window.__introSfxCtx||
-   (window.__introSfxCtx=new AC());
-
-  if(ctx.state==="suspended")
-   ctx.resume();
-
-  const now=ctx.currentTime;
-
-  const master=
-   ctx.createGain();
-
-  master.gain.setValueAtTime(
-   .0001,
-   now
-  );
-
-  master.gain.exponentialRampToValueAtTime(
-   .28,
-   now+.08
-  );
-
-  master.gain.exponentialRampToValueAtTime(
-   .0001,
-   now+1.8
-  );
-
-  master.connect(ctx.destination);
-
-  const osc=
-   ctx.createOscillator();
-
-  osc.type="sawtooth";
-
-  osc.frequency.setValueAtTime(
-   180,
-   now
-  );
-
-  osc.frequency.exponentialRampToValueAtTime(
-   42,
-   now+1.45
-  );
-
-  osc.connect(master);
-
-  osc.start(now);
-  osc.stop(now+1.6);
-
-  const lfo=
-   ctx.createOscillator();
-
-  const lg=
-   ctx.createGain();
-
-  lfo.frequency.value=5;
-  lg.gain.value=28;
-
-  lfo.connect(lg);
-  lg.connect(osc.frequency);
-
-  lfo.start(now);
-  lfo.stop(now+1.5);
-
-  const b=
-   ctx.createBuffer(
-    1,
-    ctx.sampleRate*.7,
-    ctx.sampleRate
-   );
-
-  const d=
-   b.getChannelData(0);
-
-  for(let i=0;i<d.length;i++){
-
-   d[i]=
-    (Math.random()*2-1)*
-    (1-i/d.length);
-
-  }
-
-  const n=
-   ctx.createBufferSource();
-
-  const ng=
-   ctx.createGain();
-
-  n.buffer=b;
-
-  ng.gain.setValueAtTime(
-   .12,
-   now+.05
-  );
-
-  ng.gain.exponentialRampToValueAtTime(
-   .0001,
-   now+.7
-  );
-
-  n.connect(ng);
-  ng.connect(master);
-
-  n.start(now+.05);
-
+  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+  const ctx=window.__introSfxCtx||(window.__introSfxCtx=new AC());if(ctx.state==="suspended")ctx.resume();
+  const now=ctx.currentTime,master=ctx.createGain();master.gain.setValueAtTime(.0001,now);master.gain.exponentialRampToValueAtTime(.28,now+.08);master.gain.exponentialRampToValueAtTime(.0001,now+1.8);master.connect(ctx.destination);
+  const osc=ctx.createOscillator();osc.type="sawtooth";osc.frequency.setValueAtTime(180,now);osc.frequency.exponentialRampToValueAtTime(42,now+1.45);osc.connect(master);osc.start(now);osc.stop(now+1.6);
+  const lfo=ctx.createOscillator(),lg=ctx.createGain();lfo.frequency.value=5;lg.gain.value=28;lfo.connect(lg);lg.connect(osc.frequency);lfo.start(now);lfo.stop(now+1.5);
+  const b=ctx.createBuffer(1,ctx.sampleRate*.7,ctx.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
+  const n=ctx.createBufferSource(),ng=ctx.createGain();n.buffer=b;ng.gain.setValueAtTime(.12,now+.05);ng.gain.exponentialRampToValueAtTime(.0001,now+.7);n.connect(ng);ng.connect(master);n.start(now+.05);
  }catch(e){}
 }
-
-$("introEnter").addEventListener(
- "click",
- ()=>{
-
-  playIntroSpooky();
-
-  $("intro").classList.add("hidden");
-  $("setup").classList.remove("hidden");
-
-  syncSettingsUI();
-
- }
-);
+$("introEnter").addEventListener("click",()=>{startTitleMusic();$("intro").classList.add("hidden");$("setup").classList.remove("hidden");syncSettingsUI();});
 
 /* SETTINGS EVENTS */
-
-$("teamCount").addEventListener(
- "change",
- ()=>{
-
-  settings.teams=
-   Number($("teamCount").value);
-
-  syncSettingsUI();
-
+$("teamCount").addEventListener("change",()=>{settings.teams=Number($("teamCount").value);syncSettingsUI()});
+$("duration").addEventListener("change",()=>{
+ if($("duration").value==="custom"){
+  settings.duration=Math.max(1,Math.min(60,Number($("customTime").value)||6))*60;
+ }else{
+  settings.duration=Number($("duration").value);
  }
-);
-
-$("duration").addEventListener(
- "change",
- ()=>{
-
-  if($("duration").value==="custom"){
-
-   settings.duration=
-    Math.max(
-     1,
-     Math.min(
-      60,
-      Number($("customTime").value)||6
-     )
-    )*60;
-
-  }else{
-
-   settings.duration=
-    Number($("duration").value);
-
-  }
-
-  savePrefs();
-  syncSettingsUI();
-
- }
-);
-
-$("customTime").addEventListener(
- "input",
- ()=>{
-
-  const minutes=
-   Math.max(
-    1,
-    Math.min(
-     60,
-     Number($("customTime").value)||1
-    )
-   );
-
-  $("duration").value="custom";
-
-  $("customTimeWrap").classList.remove(
-   "hidden"
-  );
-
-  settings.duration=
-   minutes*60;
-
-  savePrefs();
-
-  document.querySelectorAll(
-   ".timeChoice"
-  ).forEach(
-   b=>b.classList.toggle(
-    "active",
-    Number(b.dataset.minutes)===minutes
-   )
-  );
-
- }
-);
-
-document.querySelectorAll(
- ".timeChoice"
-).forEach(
- btn=>btn.addEventListener(
-  "click",
-  ()=>{
-
-   const minutes=
-    Number(btn.dataset.minutes);
-
-   $("duration").value="custom";
-   $("customTime").value=minutes;
-
-   settings.duration=
-    minutes*60;
-
-   document.querySelectorAll(
-    ".timeChoice"
-   ).forEach(
-    b=>b.classList.toggle(
-     "active",
-     b===btn
-    )
-   );
-
-   savePrefs();
-
-   $("customTimeWrap")
-    .classList.remove("hidden");
-
-  }
- )
-);
-
-$("musicVol").addEventListener(
- "input",
- ()=>{
-
-  settings.music=
-   Number($("musicVol").value);
-
-  syncSettingsUI();
-  updateMusic();
-
- }
-);
-
-$("sfxVol").addEventListener(
- "input",
- ()=>{
-
-  settings.sfx=
-   Number($("sfxVol").value);
-
-  syncSettingsUI();
-
- }
-);
-
-$("backgroundSelect").addEventListener(
- "change",
- ()=>{
-
-  settings.background=
-   $("backgroundSelect").value;
-
-  applyBackground(
-   $("setupBg"),
-   settings.background
-  );
-
-  applyBackground(
-   $("instructionBg"),
-   settings.background
-  );
-
- }
-);
-
-$("musicMute").addEventListener(
- "click",
- ()=>{
-
-  settings.musicMuted=
-   !settings.musicMuted;
-
-  syncSettingsUI();
-  updateMusic();
-
- }
-);
-
-$("sfxMute").addEventListener(
- "click",
- ()=>{
-
-  settings.sfxMuted=
-   !settings.sfxMuted;
-
-  syncSettingsUI();
-
- }
-);
-
-$("fullscreenBtn").addEventListener(
- "click",
- ()=>{
-
-  if(!document.fullscreenElement)
-   document.documentElement.requestFullscreen?.();
-  else
-   document.exitFullscreen?.();
-
- }
-);
-
-$("backBtn").addEventListener(
- "click",
- ()=>endGameToSettings()
-);
-
-$("startBtn").addEventListener(
- "click",
- ()=>{
-
-  readSettings();
-
-  if(questions.length<1){
-
-   showToast(
-    "Add at least one question."
-   );
-
-   return;
-  }
-
-  showInstructions();
-
- }
-);
-
-$("instructionStart").addEventListener(
- "click",
- ()=>{
-
-  $("instructions").classList.add(
-   "hidden"
-  );
-
-  startGame();
-
- }
-);
-
-$("instructionSettings").addEventListener(
- "click",
- ()=>{
-
-  $("instructions").classList.add(
-   "hidden"
-  );
-
-  $("setup").style.display="block";
-
- }
-);
-
-function showInstructions(){
-
+ savePrefs();
+ syncSettingsUI();
+});
+$("customTime").addEventListener("input",()=>{
+ const minutes=Math.max(1,Math.min(60,Number($("customTime").value)||1));
+ $("duration").value="custom";
+ $("customTimeWrap").classList.remove("hidden");
+ settings.duration=minutes*60; savePrefs();
+ document.querySelectorAll(".timeChoice").forEach(b=>b.classList.toggle("active",Number(b.dataset.minutes)===minutes));
+});
+document.querySelectorAll(".timeChoice").forEach(btn=>btn.addEventListener("click",()=>{
+ const minutes=Number(btn.dataset.minutes);
+ $("duration").value="custom";
+ $("customTime").value=minutes;
+ settings.duration=minutes*60;
+ document.querySelectorAll(".timeChoice").forEach(b=>b.classList.toggle("active",b===btn));
+ savePrefs();
+ $("customTimeWrap").classList.remove("hidden");
+}));
+$("roundCount").addEventListener("change",()=>{settings.rounds=Number($("roundCount").value)===2?2:1;savePrefs();syncSettingsUI();});
+$("round2Duration").addEventListener("change",()=>{settings.round2Duration=Math.max(60,Math.min(600,Number($("round2Duration").value)||300));savePrefs();});
+$("musicVol").addEventListener("input",()=>{settings.music=Number($("musicVol").value);syncSettingsUI();updateMusic()});
+$("sfxVol").addEventListener("input",()=>{settings.sfx=Number($("sfxVol").value);syncSettingsUI()});
+$("backgroundSelect").addEventListener("change",()=>{settings.background=$("backgroundSelect").value;applyBackground($("setupBg"),settings.background);applyBackground($("instructionBg"),settings.background)});
+$("musicMute").addEventListener("click",()=>{settings.musicMuted=!settings.musicMuted;syncSettingsUI();updateMusic()});
+$("sfxMute").addEventListener("click",()=>{settings.sfxMuted=!settings.sfxMuted;syncSettingsUI()});
+$("fullscreenBtn").addEventListener("click",()=>{
+ if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.();
+});
+$("backBtn").addEventListener("click",()=>endGameToSettings());
+$("startBtn").addEventListener("click",()=>{
  readSettings();
-
- $("setup").style.display="none";
-
- applyBackground(
-  $("instructionBg"),
-  settings.background
- );
-
- $("instructions")
-  .classList.remove("hidden");
-
-}
-
-$("loadBtn").addEventListener(
- "click",
- ()=>$("jsonFile").click()
-);
-
-$("jsonFile").addEventListener(
- "change",
- handleJSONLoad
-);
-
-$("exportBtn").addEventListener(
- "click",
- exportJSON
-);
+ if(questions.length<1){showToast("Add at least one question.");return;}
+ showInstructions();
+});
+$("instructionStart").addEventListener("click",()=>{stopTitleMusic();$("instructions").classList.add("hidden");startGame();});
+$("instructionSettings").addEventListener("click",()=>{$("instructions").classList.add("hidden");$("setup").style.display="block";});
+function showInstructions(){readSettings();$("setup").style.display="none";applyBackground($("instructionBg"),settings.background);$("instructions").classList.remove("hidden");}
+$("loadBtn").addEventListener("click",()=>$("jsonFile").click());
+$("jsonFile").addEventListener("change",handleJSONLoad);
+$("exportBtn").addEventListener("click",exportJSON);
 
 /* QUESTION EDITOR */
-
 let editingIndex=-1;
-
-$("editorBtn").addEventListener(
- "click",
- openEditor
-);
-
-$("closeEditor").addEventListener(
- "click",
- closeEditor
-);
-
-$("newQuestion").addEventListener(
- "click",
- clearEditor
-);
-
-$("addAnswer").addEventListener(
- "click",
- ()=>addAnswerEditor()
-);
-
-$("saveQuestion").addEventListener(
- "click",
- saveEditorQuestion
-);
-
-$("qImage").addEventListener(
- "input",
- updateQuestionPreview
-);
+$("editorBtn").addEventListener("click",openEditor);
+$("closeEditor").addEventListener("click",closeEditor);
+$("newQuestion").addEventListener("click",clearEditor);
+$("addAnswer").addEventListener("click",()=>addAnswerEditor());
+$("saveQuestion").addEventListener("click",saveEditorQuestion);
+$("qImage").addEventListener("input",updateQuestionPreview);
 
 function openEditor(){
-
- editingIndex=-1;
-
- clearEditor();
- renderEditorList();
-
- $("editorModal")
-  .classList.remove("hidden");
-
+ editingIndex=-1;clearEditor();renderEditorList();$("editorModal").classList.remove("hidden");
 }
-
-function closeEditor(){
-
- $("editorModal")
-  .classList.add("hidden");
-
-}
-
+function closeEditor(){$("editorModal").classList.add("hidden")}
 function clearEditor(){
-
- editingIndex=-1;
-
- $("qText").value="";
- $("qImage").value="";
- $("answerEditor").innerHTML="";
-
- for(let i=0;i<4;i++)
-  addAnswerEditor(i===0);
-
+ editingIndex=-1;$("qText").value="";$("qImage").value="";$("answerEditor").innerHTML="";
+ for(let i=0;i<4;i++)addAnswerEditor(i===0);
  updateQuestionPreview();
-
 }
-
-function addAnswerEditor(
- correct=false,
- data=null
-){
-
- const wrap=
-  document.createElement("div");
-
- wrap.className="optionRow";
-
+function addAnswerEditor(correct=false,data=null){
+ const wrap=document.createElement("div");wrap.className="optionRow";
  wrap.innerHTML=`
-  <div>
-   <label>Answer</label>
-   <input
-    class="aText"
-    value="${escapeHTML(data?.text||"")}"
-    placeholder="Answer text"
-   >
-  </div>
-
-  <div>
-   <label>Image</label>
-   <input
-    class="aImage"
-    value="${escapeHTML(data?.image||"")}"
-    placeholder="image.png"
-   >
-  </div>
-
-  <div>
-   <label>Correct</label>
-   <input
-    class="aCorrect"
-    type="radio"
-    name="correctAnswer"
-    ${correct||data?.correct?"checked":""}
-   >
-  </div>`;
-
- $("answerEditor")
-  .appendChild(wrap);
-
+  <div><label>Answer</label><input class="aText" value="${escapeHTML(data?.text||"")}" placeholder="Answer text"></div>
+  <div><label>Image</label><input class="aImage" value="${escapeHTML(data?.image||"")}" placeholder="image.png"></div>
+  <div><label>Correct</label><input class="aCorrect" type="radio" name="correctAnswer" ${correct||data?.correct?"checked":""}></div>`;
+ $("answerEditor").appendChild(wrap);
 }
-
 function updateQuestionPreview(){
-
- const img=
-  $("qImage").value.trim();
-
- $("qPreview").innerHTML=
-  img
-   ?`<img
-       src="${escapeHTML(img)}"
-       onerror="this.parentElement.innerHTML='Image not found: '+this.src"
-      >`
-   :"Preview";
-
+ const img=$("qImage").value.trim();
+ $("qPreview").innerHTML=img?`<img src="${escapeHTML(img)}" onerror="this.parentElement.innerHTML='Image not found: '+this.src">`:"Preview";
 }
-
 function saveEditorQuestion(){
-
- const text=
-  $("qText").value.trim();
-
- const image=
-  $("qImage").value.trim();
-
- const rows=[
-  ...document.querySelectorAll(
-   "#answerEditor .optionRow"
-  )
- ];
-
- const answers=
-  rows.map(r=>({
-
-   text:
-    r.querySelector(
-     ".aText"
-    ).value.trim(),
-
-   image:
-    r.querySelector(
-     ".aImage"
-    ).value.trim(),
-
-   correct:
-    r.querySelector(
-     ".aCorrect"
-    ).checked
-
-  })).filter(
-   a=>a.text||a.image
-  );
-
- if(!text&&!image){
-
-  showToast(
-   "Add question text or an image."
-  );
-
-  return;
- }
-
- if(answers.length<2){
-
-  showToast(
-   "Add at least 2 answers."
-  );
-
-  return;
- }
-
- if(!answers.some(a=>a.correct)){
-
-  showToast(
-   "Select the correct answer."
-  );
-
-  return;
- }
-
- const obj={
-
-  id:
-   editingIndex>=0
-    ?questions[editingIndex].id
-    :"q_"+Date.now(),
-
-  text,
-  image,
-  answers
-
- };
-
- if(editingIndex>=0)
-  questions[editingIndex]=obj;
- else
-  questions.push(obj);
-
- renderEditorList();
- clearEditor();
-
- showToast(
-  "Question saved."
- );
-
+ const text=$("qText").value.trim(),image=$("qImage").value.trim();
+ const rows=[...document.querySelectorAll("#answerEditor .optionRow")];
+ const answers=rows.map(r=>({text:r.querySelector(".aText").value.trim(),image:r.querySelector(".aImage").value.trim(),correct:r.querySelector(".aCorrect").checked}))
+   .filter(a=>a.text||a.image);
+ if(!text&&!image){showToast("Add question text or an image.");return}
+ if(answers.length<2){showToast("Add at least 2 answers.");return}
+ if(!answers.some(a=>a.correct)){showToast("Select the correct answer.");return}
+ const obj={id:editingIndex>=0?questions[editingIndex].id:"q_"+Date.now(),text,image,answers};
+ if(editingIndex>=0)questions[editingIndex]=obj;else questions.push(obj);
+ renderEditorList();saveQuestionBank();clearEditor();showToast("Question saved.");
 }
-
 function editQuestion(i){
-
- const q=questions[i];
-
- editingIndex=i;
-
- $("qText").value=
-  q.text||"";
-
- $("qImage").value=
-  q.image||"";
-
- $("answerEditor").innerHTML="";
-
- q.answers.forEach(
-  a=>addAnswerEditor(
-   !!a.correct,
-   a
-  )
- );
-
- updateQuestionPreview();
-
+ const q=questions[i];editingIndex=i;$("qText").value=q.text||"";$("qImage").value=q.image||"";$("answerEditor").innerHTML="";
+ q.answers.forEach(a=>addAnswerEditor(!!a.correct,a));updateQuestionPreview();
 }
-
-function deleteQuestion(i){
-
- if(confirm("Delete this question?")){
-
-  questions.splice(i,1);
-
-  renderEditorList();
-
- }
-
-}
-
-function duplicateQuestion(i){
-
- const q=
-  JSON.parse(
-   JSON.stringify(
-    questions[i]
-   )
-  );
-
- q.id=
-  "q_"+Date.now()+"_"+
-  Math.random()
-   .toString(36)
-   .slice(2,6);
-
- questions.splice(
-  i+1,
-  0,
-  q
- );
-
- renderEditorList();
-
-}
-
+function deleteQuestion(i){if(confirm("Delete this question?")){questions.splice(i,1);saveQuestionBank();renderEditorList()}}
+function duplicateQuestion(i){const q=JSON.parse(JSON.stringify(questions[i]));q.id="q_"+Date.now()+"_"+Math.random().toString(36).slice(2,6);questions.splice(i+1,0,q);saveQuestionBank();renderEditorList()}
 function renderEditorList(){
-
- $("qCount").textContent=
-  questions.length;
-
- $("editorList").innerHTML="";
-
- questions.forEach(
-  (q,i)=>{
-
-   const d=
-    document.createElement("div");
-
-   d.className="qitem";
-
-   d.innerHTML=`
-    <div class="qitemText">
-     <b>${i+1}.</b>
-     ${escapeHTML(
-      q.text||"[Image question]"
-     )}
-     <span class="help">
-      (${q.answers.length} answers)
-     </span>
-    </div>
-
-    <div class="row">
-
-     <button
-      class="btn secondary"
-      onclick="editQuestion(${i})"
-     >
-      Edit
-     </button>
-
-     <button
-      class="btn secondary"
-      onclick="duplicateQuestion(${i})"
-     >
-      Copy
-     </button>
-
-     <button
-      class="btn red"
-      onclick="deleteQuestion(${i})"
-     >
-      Delete
-     </button>
-
-    </div>`;
-
-   $("editorList")
-    .appendChild(d);
-
-  }
- );
-
+ $("qCount").textContent=questions.length;$("editorList").innerHTML="";
+ questions.forEach((q,i)=>{
+  const d=document.createElement("div");d.className="qitem";
+  d.innerHTML=`<div class="qitemText"><b>${i+1}.</b> ${escapeHTML(q.text||"[Image question]")} <span class="help">(${q.answers.length} answers)</span></div>
+  <div class="row"><button class="btn secondary" onclick="editQuestion(${i})">Edit</button><button class="btn secondary" onclick="duplicateQuestion(${i})">Copy</button><button class="btn red" onclick="deleteQuestion(${i})">Delete</button></div>`;
+  $("editorList").appendChild(d);
+ });
 }
-
-window.editQuestion=
- editQuestion;
-
-window.deleteQuestion=
- deleteQuestion;
-
-window.duplicateQuestion=
- duplicateQuestion;
+window.editQuestion=editQuestion;window.deleteQuestion=deleteQuestion;window.duplicateQuestion=duplicateQuestion;
 
 /* JSON */
-
 function exportJSON(){
-
  readSettings();
-
- const data={
-  version:1,
-  app:"Monster Egg: Halloween Gold Rush",
-  settings,
-  questions
- };
-
- const blob=
-  new Blob(
-   [JSON.stringify(
-    data,
-    null,
-    2
-   )],
-   {type:"application/json"}
-  );
-
- const a=
-  document.createElement("a");
-
- a.href=
-  URL.createObjectURL(blob);
-
- a.download=
-  "monster-egg-game.json";
-
- a.click();
-
- setTimeout(
-  ()=>URL.revokeObjectURL(a.href),
-  1000
- );
-
- showToast(
-  "Game data exported."
- );
-
+ const data={version:1,app:"Monster Egg: Halloween Gold Rush",settings,questions};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="monster-egg-game.json";a.click();
+ setTimeout(()=>URL.revokeObjectURL(a.href),1000);showToast("Game data exported.");
 }
-
 function handleJSONLoad(e){
-
- const file=
-  e.target.files?.[0];
-
- if(!file)return;
-
- const reader=
-  new FileReader();
-
+ const file=e.target.files?.[0];if(!file)return;
+ const reader=new FileReader();
  reader.onload=()=>{
-
   try{
-
-   const data=
-    JSON.parse(
-     reader.result
-    );
-
-   if(!Array.isArray(
-    data.questions
-   ))
-    throw new Error(
-     "No questions"
-    );
-
-   questions=
-    data.questions;
-
-   if(data.settings)
-    settings={
-     ...settings,
-     ...data.settings
-    };
-
-   settings.names=
-    Array.isArray(
-     settings.names
-    )
-     ?settings.names
-     :[
-       "Witches",
-       "Vampires",
-       "Zombies"
-      ];
-
-   syncSettingsUI();
-   renderEditorList();
-
-   showToast(
-    `Loaded ${questions.length} questions.`
-   );
-
-  }catch(err){
-
-   alert(
-    "This JSON file is invalid or does not contain a valid question bank."
-   );
-
-  }
-
+   const data=JSON.parse(reader.result);
+   if(!Array.isArray(data.questions))throw new Error("No questions");
+   questions=data.questions;saveQuestionBank();
+   if(data.settings)settings={...settings,...data.settings};
+   settings.names=Array.isArray(settings.names)?settings.names:["Witches","Vampires","Zombies"];
+   syncSettingsUI();renderEditorList();showToast(`Loaded ${questions.length} questions.`);
+  }catch(err){alert("This JSON file is invalid or does not contain a valid question bank.")}
   e.target.value="";
-
  };
-
  reader.readAsText(file);
-
 }
 
 /* GAME */
-
-/* =========================================================
-   ROUND 2
-   ========================================================= */
-
-function switchToRound2(){
-
- if(
-  !game.active||
-  game.round===2
- )return;
-
- game.round=2;
-
- applyBackground(
-  $("gameBg"),
-  ASSETS.background2
- );
-
- $("egg").src=
-  ASSETS.round2;
-
- $("egg").alt=
-  "Round 2";
-
- /*
-   Activate the larger Round 2 wrapper.
- */
- $("eggWrap")
-  .classList.add(
-   "round2Mode"
-  );
-
- $("egg")
-  .classList.add(
-   "round2Size"
-  );
-
- $("round2Btn")
-  .classList.add("active");
-
- $("round2Btn")
-  .disabled=true;
-
- $("round2Btn")
-  .textContent=
-   "👹 ROUND 2";
-
- $("crackEffect")
-  .classList.remove("show");
-
- void $("crackEffect")
-  .offsetWidth;
-
- showToast(
-  "ROUND 2! The monster is awake!"
- );
-
-}
-
-$("round2Btn").addEventListener(
- "click",
- switchToRound2
-);
-
 function startGame(){
-
  readSettings();
-
+ stopTitleMusic();
  game.round=1;
-
- $("round2Btn")
-  .classList.remove("active");
-
- $("round2Btn")
-  .disabled=false;
-
- $("round2Btn")
-  .textContent=
-   "🎃 ROUND 2";
-
- /*
-   Always reset to the enlarged
-   Round 1 monster when starting.
- */
- $("eggWrap")
-  .classList.remove(
-   "round2Mode"
-  );
-
- $("egg")
-  .classList.remove(
-   "round2Size"
-  );
-
- $("egg").src=
-  ASSETS.egg;
-
- $("egg").alt=
-  "Monster Egg";
-
- $("crackEffect")
-  .classList.remove("show");
-
- $("setup").style.display=
-  "none";
-
- $("game").style.display=
-  "block";
-
- applyBackground(
-  $("gameBg"),
-  settings.background
- );
-
- game.active=true;
-
- game.gameDuration=
-  settings.duration;
-
- game.endTime=
-  Date.now()+
-  settings.duration*1000;
-
- game.scores=
-  Array(settings.teams)
-   .fill(0);
-
- game.busy=
-  Array(settings.teams)
-   .fill(false);
-
- game.current=
-  Array(settings.teams)
-   .fill(null);
-
- game.questionStarted=
-  Array(settings.teams)
-   .fill(Date.now());
-
- game.queues=
-  Array(settings.teams)
-   .fill(0)
-   .map(
-    (_,team)=>makeQueue(team)
-   );
-
- renderTeams();
-
- nextQuestionForAll();
-
- updateTimer();
-
- clearInterval(
-  game.interval
- );
-
- game.interval=
-  setInterval(
-   updateTimer,
-   250
-  );
-
+ $("eggWrap").classList.remove("round2Mode");
+ $("egg").classList.remove("round2Size");
+ $("egg").src=ASSETS.egg;
+ $("egg").alt="Monster Egg";
+ $("setup").style.display="none";$("game").style.display="block";
+ applyBackground($("gameBg"),settings.background);
+ game.active=true;game.gameDuration=settings.duration;game.endTime=Date.now()+settings.duration*1000;game.roundScores=Array(settings.teams).fill(0);game.roundTransition=false;
+ game.scores=Array(settings.teams).fill(0);game.busy=Array(settings.teams).fill(false);
+ game.current=Array(settings.teams).fill(null);game.questionStarted=Array(settings.teams).fill(Date.now());
+ game.queues=Array(settings.teams).fill(0).map((_,team)=>makeQueue(team));
+ renderTeams();nextQuestionForAll();updateTimer();clearInterval(game.interval);game.interval=setInterval(updateTimer,250);
  startMusic();
-
 }
-
 function makeQueue(team){
-
- let q=
-  shuffle(questions);
-
+ // Give each team a differently shuffled queue. Rotate each subsequent queue to reduce simultaneous duplicates.
+ let q=shuffle(questions);
  if(questions.length>1){
-
-  for(
-   let tries=0;
-   tries<8;
-   tries++
-  ){
-
-   const first=
-    q[0]?.id;
-
-   const others=
-    game.queues
-     ?.filter(Boolean)
-     .map(
-      x=>x[0]?.id
-     );
-
-   if(
-    !others?.includes(first)
-   )
-    break;
-
-   q=
-    shuffle(questions);
+  for(let tries=0;tries<8;tries++){
+   const first=q[0]?.id, others=game.queues?.filter(Boolean).map(x=>x[0]?.id);
+   if(!others?.includes(first))break;q=shuffle(questions);
   }
  }
-
  return q;
 }
-
 function nextQuestionForAll(){
-
- for(
-  let t=0;
-  t<settings.teams;
-  t++
- )
-  nextQuestion(t);
-
+ for(let t=0;t<settings.teams;t++)nextQuestion(t);
 }
-
+function cloneQuestionForTeam(source){
+ if(!source)return null;
+ // Each team gets its own question object and its own answer array.
+ // This prevents one team's answer shuffling or state changes from affecting another team.
+ const copy={...source};
+ copy.answers=(source.answers||[]).map(a=>({...a}));
+ copy.answers=shuffle(copy.answers);
+ return copy;
+}
 function nextQuestion(team){
-
- if(
-  !game.active||
-  game.busy[team]
- )return;
-
- let queue=
-  game.queues[team];
-
- if(
-  !queue||
-  !queue.length
- ){
-
-  queue=
-   makeQueue(team);
-
-  game.queues[team]=
-   queue;
-
+ if(!game.active||game.busy[team])return;
+ let queue=game.queues[team];
+ if(!queue||!queue.length){
+  queue=makeQueue(team);game.queues[team]=queue;
  }
-
+ // Try not to show another team's current question simultaneously when enough questions exist.
  let idx=0;
-
  if(queue.length>1){
-
-  const otherIds=
-   game.current
-    .filter(
-     (q,i)=>
-      i!==team&&q
-    )
-    .map(
-     q=>q.id
-    );
-
-  while(
-   idx<queue.length-1&&
-   otherIds.includes(
-    queue[idx].id
-   )
-  )
-   idx++;
-
+  const otherIds=game.current.filter((q,i)=>i!==team&&q).map(q=>q.id);
+  while(idx<queue.length-1&&otherIds.includes(queue[idx].id))idx++;
  }
-
- const q=
-  queue.splice(
-   idx,
-   1
-  )[0];
-
- game.current[team]={
-  ...q,
-  answers:
-   shuffle(q.answers)
- };
-
- game.questionStarted[team]=
-  performance.now();
-
- renderTeams();
- renderQuestion();
-
+ const baseQuestion=queue.splice(idx,1)[0];
+ game.current[team]=cloneQuestionForTeam(baseQuestion);
+ game.questionStarted[team]=performance.now();
+ renderTeamPanel(team);
+ renderQuestionForTeam(team);
 }
-
+function buildQuestionCard(team){
+ const q=game.current[team];
+ const card=document.createElement("div");
+ card.className="teamQuestion";
+ card.dataset.teamQuestion=team;
+ card.innerHTML=`<div class="questionContent"><div class="questionLabel">🎃 ${escapeHTML(settings.names[team])}'S QUESTION</div>${q?.image?`<img src="${escapeHTML(q.image)}" alt="">`:""}${q?.text?`<span class="questionText">${escapeHTML(q.text)}</span>`:""}</div>`;
+ return card;
+}
 function renderQuestion(){
-
- const box=
-  $("teamQuestions");
-
- box.className=
-  "teamQuestions "+
-  (
-   settings.teams===2
-    ?"two"
-    :"three"
-  );
-
+ const box=$("teamQuestions");
+ box.className="teamQuestions "+(settings.teams===2?"two":"three");
  box.innerHTML="";
-
- game.current.forEach(
-  (q,i)=>{
-
-   const card=
-    document.createElement(
-     "div"
-    );
-
-   card.className=
-    "teamQuestion";
-
-   card.innerHTML=`
-    <div class="questionContent">
-
-     <div class="questionLabel">
-      🎃 ${escapeHTML(
-       settings.names[i]
-      )}'S QUESTION
-     </div>
-
-     ${
-      q?.image
-       ?`<img
-          src="${escapeHTML(
-           q.image
-          )}"
-          alt=""
-         >`
-       :""
-     }
-
-     ${
-      q?.text
-       ?`<span class="questionText">
-          ${escapeHTML(q.text)}
-        </span>`
-       :""
-     }
-
-    </div>`;
-
-   box.appendChild(card);
-
-  }
- );
-
+ for(let i=0;i<settings.teams;i++)box.appendChild(buildQuestionCard(i));
 }
-
-function renderTeams(){
-
- $("teamArea").className=
-  "teamArea "+
-  (
-   settings.teams===2
-    ?"two"
-    :"three"
-  );
-
- $("teamArea").innerHTML="";
-
- for(
-  let t=0;
-  t<settings.teams;
-  t++
- ){
-
-  const q=
-   game.current[t];
-
-  const panel=
-   document.createElement(
-    "div"
-   );
-
-  panel.className=
-   "teamPanel";
-
-  panel.id=
-   `teamPanel${t}`;
-
-  panel.innerHTML=`
-   <div class="teamHead">
-
-    <div class="teamName">
-     🎃 ${escapeHTML(
-      settings.names[t]
-     )}
-    </div>
-
-    <div class="score">
-
-     <img
-      class="moneyIcon"
-      src="${ASSETS.money}"
-     >
-
-     <span id="score${t}">
-      ${game.scores[t]||0}
-     </span>
-
-    </div>
-
-   </div>
-
-   <div
-    class="answers"
-    id="answers${t}"
-   ></div>`;
-
-  $("teamArea")
-   .appendChild(panel);
-
-  const box=
-   panel.querySelector(
-    ".answers"
-   );
-
-  if(q){
-
-   q.answers.forEach(
-    (a,i)=>{
-
-     const b=
-      document.createElement(
-       "button"
-      );
-
-     b.className=
-      "answer";
-
-     b.dataset.team=t;
-     b.dataset.answer=i;
-
-     b.innerHTML=
-      (
-       a.image
-        ?`<img
-           src="${escapeHTML(
-            a.image
-           )}"
-           alt=""
-          >`
-        :""
-      )+
-      (
-       a.text
-        ?`<div>
-           ${escapeHTML(a.text)}
-         </div>`
-        :""
-      );
-
-     b.addEventListener(
-      "click",
-      ()=>answer(
-       t,
-       i,
-       b
-      )
-     );
-
-     box.appendChild(b);
-
-    }
-   );
-
-  }
-
- }
-
+function renderQuestionForTeam(team){
+ const box=$("teamQuestions");
+ if(!box)return;
+ box.className="teamQuestions "+(settings.teams===2?"two":"three");
+ let old=box.querySelector(`[data-team-question="${team}"]`);
+ const card=buildQuestionCard(team);
+ if(old)old.replaceWith(card);else box.appendChild(card);
 }
-
-function disableTeam(team){
-
- document
-  .querySelectorAll(
-   `#answers${team} .answer`
-  )
-  .forEach(
-   b=>b.disabled=true
-  );
-
-}
-
-function answer(
- team,
- index,
- button
-){
-
- if(
-  !game.active||
-  game.busy[team]||
-  Date.now()>=game.endTime
- )
-  return;
-
- const q=
-  game.current[team];
-
- if(!q)return;
-
- game.busy[team]=true;
-
- disableTeam(team);
-
- audio("sndClick");
-
- const correct=
-  !!q.answers[index]?.correct;
-
- if(correct){
-
-  button.classList.add(
-   "correct"
-  );
-
-  const elapsed=
-   (
-    performance.now()-
-    game.questionStarted[team]
-   )/1000;
-
-  const remaining=
-   Math.max(
-    0,
-    Math.min(
-     1,
-     1-elapsed/20
-    )
-   );
-
-  const points=
-   Math.max(
-    3,
-    Math.min(
-     10,
-     Math.round(
-      3+7*remaining
-     )
-    )
-   );
-
-  game.scores[team]+=
-   points;
-
-  updateScore(
-   team,
-   points
-  );
-
-  launchFireball(
-   team,
-   points
-  ).then(()=>{
-
-   game.busy[team]=
-    false;
-
-   if(game.active)
-    nextQuestion(team);
-
-  });
-
- }else{
-
-  button.classList.add(
-   "wrong"
-  );
-
-  setTimeout(
-   ()=>{
-
-    game.busy[team]=
-     false;
-
-    if(game.active)
-     nextQuestion(team);
-
-   },
-   280
-  );
-
- }
-
-}
-
-function updateScore(
- team,
- points
-){
-
- const el=
-  $(`score${team}`);
-
- if(el)
-  el.textContent=
-   game.scores[team];
-
- const p=
-  document.createElement(
-   "div"
-  );
-
- p.className=
-  "floatText";
-
- p.textContent=
-  `+${points} GOLD!`;
-
- const panel=
-  $(`teamPanel${team}`);
-
- const r=
-  panel.getBoundingClientRect();
-
- p.style.left=
-  (
-   r.left+
-   r.width/2-
-   50
-  )+"px";
-
- p.style.top=
-  (r.top-8)+"px";
-
- document.body
-  .appendChild(p);
-
- setTimeout(
-  ()=>p.remove(),
-  1000
- );
-
- audio("sndPoint");
-
-}
-
-function getTeamOrigin(team){
-
- const panel=
-  $(`teamPanel${team}`);
-
- const r=
-  panel.getBoundingClientRect();
-
- return{
-  x:r.left+r.width/2,
-  y:r.top+r.height/2
- };
-
-}
-
-function getEggCenter(){
-
- const r=
-  $("eggWrap")
-   .getBoundingClientRect();
-
- return{
-  x:r.left+r.width/2,
-  y:r.top+r.height/2
- };
-
-}
-
-function launchFireball(
- team,
- points
-){
-
- return new Promise(
-  resolve=>{
-
-   const start=
-    getTeamOrigin(team);
-
-   const end=
-    getEggCenter();
-
-   const f=
-    document.createElement(
-     "img"
-    );
-
-   f.src=
-    ASSETS.fireball;
-
-   f.className=
-    "fireball";
-
-   document.body
-    .appendChild(f);
-
-   f.style.left=
-    (start.x-36)+"px";
-
-   f.style.top=
-    (start.y-36)+"px";
-
-   audio("sndFireball");
-
-   const dx=
-    end.x-start.x;
-
-   const dy=
-    end.y-start.y;
-
-   const duration=650;
-
-   f.animate(
-    [
-     {
-      transform:
-       "translate(0,0) scale(.65) rotate(0deg)"
-     },
-     {
-      transform:
-       `translate(${dx}px,${dy}px) scale(1.15) rotate(720deg)`
-     }
-    ],
-    {
-     duration,
-     easing:
-      "cubic-bezier(.2,.8,.2,1)"
-    }
-   )
-   .finished
-   .catch(()=>{})
-   .then(()=>{
-
-    f.remove();
-
-    eggHit();
-
-    setTimeout(
-     ()=>coinSplash(
-      team,
-      points,
-      resolve
-     ),
-     250
-    );
-
+function renderTeamPanel(team){
+ const old=$("teamPanel"+team);
+ const panel=document.createElement("div");
+ panel.className="teamPanel";
+ panel.id=`teamPanel${team}`;
+ const q=game.current[team];
+ panel.innerHTML=`
+  <div class="teamHead">
+   <div class="teamName">🎃 ${escapeHTML(settings.names[team])}</div>
+   <div class="score"><img class="moneyIcon" src="${ASSETS.money}"> <span id="score${team}">${game.scores[team]||0}</span></div>
+  </div>
+  <div class="answers" id="answers${team}"></div>`;
+ if(old)old.replaceWith(panel);else $("teamArea").appendChild(panel);
+ const box=panel.querySelector(".answers");
+ if(q){
+  q.answers.forEach((a,i)=>{
+   const b=document.createElement("button");
+   b.className="answer";
+   b.dataset.team=team;
+   b.dataset.answer=i;
+   b.innerHTML=(a.image?`<img src="${escapeHTML(a.image)}" alt="">`:"")+(a.text?`<div>${escapeHTML(a.text)}</div>`:"");
+   // Pointer Events let mouse, phone touch, tablet touch, and smart-board
+   // touches use the same path. Each answer button can receive its own
+   // pointer, so different teams can answer at the same time.
+   b.addEventListener("pointerdown",e=>{
+    if(e.pointerType!=="mouse")e.preventDefault();
+    if(b.disabled||b.dataset.pointerHandled==="1")return;
+    b.dataset.pointerHandled="1";
+    answer(team,i,b);
+   },{passive:false});
+   b.addEventListener("click",()=>{
+    // Mouse/keyboard fallback. Touch/pointer taps have already been handled.
+    if(b.dataset.pointerHandled==="1"){b.dataset.pointerHandled="0";return;}
+    answer(team,i,b);
    });
-
-  }
- );
-
+   b.addEventListener("pointercancel",()=>{b.dataset.pointerHandled="0"});
+   box.appendChild(b);
+  });
+ }
 }
+function renderTeams(){
+ $("teamArea").className="teamArea "+(settings.teams===2?"two":"three");
+ $("teamArea").innerHTML="";
+ for(let t=0;t<settings.teams;t++)renderTeamPanel(t);
+}
+function disableTeam(team){document.querySelectorAll(`#answers${team} .answer`).forEach(b=>b.disabled=true)}
+function answer(team,index,button){
+ if(!game.active||game.busy[team]||Date.now()>=game.endTime)return;
+ const q=game.current[team];if(!q)return;
+ game.busy[team]=true;disableTeam(team);audio("sndClick");
+ const correct=!!q.answers[index]?.correct;
+ if(correct){
+  button.classList.add("correct");
+  const elapsed=(performance.now()-game.questionStarted[team])/1000;
+  const remaining=Math.max(0,Math.min(1,1-elapsed/20));
+  const points=Math.max(3,Math.min(10,Math.round(3+7*remaining)));
+  game.scores[team]+=points;game.roundScores[team]+=points;updateScore(team,points);
+  launchFireball(team,points).then(()=>{
+   game.busy[team]=false;
+   if(game.active)nextQuestion(team);
+  });
+ }else{
+  button.classList.add("wrong");
+  setTimeout(()=>{
+   game.busy[team]=false;
+   if(game.active)nextQuestion(team);
+  },280);
+ }
+}
+function updateScore(team,points){
+ const el=$(`score${team}`);if(el)el.textContent=game.scores[team];
+ const p=document.createElement("div");p.className="floatText";p.textContent=`+${points} GOLD!`;
+ const panel=$(`teamPanel${team}`);const r=panel.getBoundingClientRect();p.style.left=(r.left+r.width/2-50)+"px";p.style.top=(r.top-8)+"px";document.body.appendChild(p);
+ setTimeout(()=>p.remove(),1000);audio("sndPoint");
+}
+function getTeamOrigin(team){
+ const panel=$(`teamPanel${team}`);const r=panel.getBoundingClientRect();
+ return {x:r.left+r.width/2,y:r.top+r.height/2};
+}
+function getEggCenter(){const r=$("eggWrap").getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2}}
+function createMagicBomb(x,y){
+ const bomb=document.createElement("div");bomb.className="magicBomb";bomb.style.left=x+"px";bomb.style.top=y+"px";document.body.appendChild(bomb);
+ const angles=[0,45,90,135,180,225,270,315];
+ angles.forEach((deg,i)=>{
+  const spark=document.createElement("div");spark.className="magicSpark";spark.style.left=x+"px";spark.style.top=y+"px";
+  const rad=deg*Math.PI/180,dist=70+Math.random()*55;
+  spark.style.setProperty("--sx",Math.cos(rad)*dist+"px");spark.style.setProperty("--sy",Math.sin(rad)*dist+"px");
+  spark.style.animationDelay=(i*0.018)+"s";document.body.appendChild(spark);
+  setTimeout(()=>spark.remove(),850);
+ });
+ setTimeout(()=>bomb.remove(),850);
+}
+function launchFireball(team,points){
+ return new Promise(resolve=>{
+  const start=getTeamOrigin(team),end=getEggCenter(),f=document.createElement("img");
+  f.src=ASSETS.fireball;f.className="fireball";document.body.appendChild(f);
+  f.style.left=(start.x-36)+"px";f.style.top=(start.y-36)+"px";audio("sndFireball");
+  const dx=end.x-start.x,dy=end.y-start.y,duration=760;
+  f.animate([
+   {transform:"translate(0,0) scale(.42) rotate(0deg)"},
+   {transform:`translate(${dx*.58}px,${dy*.58}px) scale(1.05) rotate(420deg)`,offset:.58},
+   {transform:`translate(${dx*.86}px,${dy*.86}px) scale(1.72) rotate(650deg)`,offset:.86},
+   {transform:`translate(${dx}px,${dy}px) scale(2.25) rotate(900deg)`}
+  ],{duration,easing:"cubic-bezier(.18,.72,.16,1)"})
+   .finished.catch(()=>{}).then(()=>{
+    f.remove();
+    createMagicBomb(end.x,end.y);
+    eggHit();
+    setTimeout(()=>coinSplash(team,points,resolve),300);
+   });
+ });
+}
+function switchToRound2(){
+ if(!game.active||game.round===2)return;
+ game.round=2;
+ game.roundScores=Array(settings.teams).fill(0);
+ game.gameDuration=settings.round2Duration||settings.duration;
+ game.endTime=Date.now()+game.gameDuration*1000;
+ applyBackground($("gameBg"),ASSETS.background2);
+ $("egg").src=ASSETS.round2;
+ $("egg").alt="Round 2 Monster";
+ $("eggWrap").classList.add("round2Mode");
+ $("egg").classList.add("round2Size");
+ $("egg").classList.remove("hit","round2Hit");
+ showToast("ROUND 2! The monster is awake!");
+}
+$("endRoundBtn").addEventListener("click",()=>{
+ if(!game.active||game.roundTransition)return;
+ endRound();
+});
+$("nextRoundBtn").addEventListener("click",startNextRound);
 
 function eggHit(){
-
- const egg=
-  $("egg");
-
- egg.classList.remove(
-  "hit",
-  "round2Hit"
- );
-
- $("crackEffect")
-  .classList.remove(
-   "show"
-  );
-
- void egg.offsetWidth;
-
- void $("crackEffect")
-  .offsetWidth;
-
  if(game.round===2){
-
-  egg.classList.add(
-   "round2Hit"
-  );
-
-  $("crackEffect")
-   .classList.add(
-    "show"
-   );
-
-  audio(
-   "sndRoar"
-  );
-
+  $("egg").classList.remove("round2Hit");void $("egg").offsetWidth;$("egg").classList.add("round2Hit");
+  audio("sndRoar");
  }else{
-
-  egg.classList.add(
-   "hit"
-  );
-
-  audio(
-   "sndExplosion"
-  );
-
+  $("egg").classList.remove("hit");void $("egg").offsetWidth;$("egg").classList.add("hit");
+  audio("sndExplosion");
  }
-
- $("impact")
-  .classList.remove(
-   "show"
-  );
-
- void $("impact")
-  .offsetWidth;
-
- $("impact")
-  .classList.add(
-   "show"
-  );
-
+ $("impact").classList.remove("show");void $("impact").offsetWidth;$("impact").classList.add("show");
 }
-
-function coinSplash(
- team,
- points,
- resolve
-){
-
- const center=
-  getEggCenter();
-
- const target=
-  getTeamOrigin(team);
-
- const count=
-  Math.min(
-   12,
-   4+
-   Math.ceil(
-    points/2
-   )
-  );
-
+function coinSplash(team,points,resolve){
+ const center=getEggCenter(),target=getTeamOrigin(team),count=Math.min(12,4+Math.ceil(points/2));
  const coins=[];
-
- for(
-  let i=0;
-  i<count;
-  i++
- ){
-
-  const c=
-   document.createElement(
-    "img"
-   );
-
-  c.src=
-   ASSETS.coin;
-
-  c.className=
-   "coin";
-
-  document.body
-   .appendChild(c);
-
-  c.style.left=
-   (center.x-17)+"px";
-
-  c.style.top=
-   (center.y-17)+"px";
-
-  coins.push(c);
-
-  const angle=
-   Math.random()*
-   Math.PI*2;
-
-  const dist=
-   50+
-   Math.random()*100;
-
-  c.animate(
-   [
-    {
-     transform:
-      "translate(0,0) rotate(0) scale(.5)",
-     opacity:0
-    },
-    {
-     transform:
-      `translate(
-       ${Math.cos(angle)*dist}px,
-       ${Math.sin(angle)*dist}px
-      )
-      rotate(
-       ${Math.random()*240-120}deg
-      )
-      scale(1)`,
-     opacity:1
-    },
-    {
-     transform:
-      `translate(
-       ${target.x-center.x}px,
-       ${target.y-center.y}px
-      )
-      rotate(
-       ${Math.random()*600}deg
-      )
-      scale(.6)`,
-     opacity:.9
-    }
-   ],
-   {
-    duration:
-     850+
-     Math.random()*350,
-    easing:
-     "cubic-bezier(.2,.7,.2,1)",
-    delay:i*18
-   }
-  );
-
+ for(let i=0;i<count;i++){
+  const c=document.createElement("img");c.src=ASSETS.coin;c.className="coin";
+  document.body.appendChild(c);c.style.left=(center.x-17)+"px";c.style.top=(center.y-17)+"px";coins.push(c);
+  const angle=Math.random()*Math.PI*2,dist=50+Math.random()*100;
+  c.animate([{transform:"translate(0,0) rotate(0) scale(.5)",opacity:0},
+   {transform:`translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px) rotate(${Math.random()*240-120}deg) scale(1)`,opacity:1},
+   {transform:`translate(${target.x-center.x}px,${target.y-center.y}px) rotate(${Math.random()*600}deg) scale(.6)`,opacity:.9}],
+   {duration:850+Math.random()*350,easing:"cubic-bezier(.2,.7,.2,1)",delay:i*18});
  }
-
- setTimeout(
-  ()=>{
-
-   audio(
-    "sndCoins"
-   );
-
-   coins.forEach(
-    c=>c.remove()
-   );
-
-   resolve();
-
-  },
-  1150
- );
-
+ setTimeout(()=>{
+  audio("sndCoins");coins.forEach(c=>c.remove());resolve();
+ },1150);
 }
-
 function updateTimer(){
-
  if(!game.active)return;
-
- const remain=
-  (
-   game.endTime-
-   Date.now()
-  )/1000;
-
- $("timer").textContent=
-  formatTime(remain);
-
- $("timer").classList.toggle(
-  "warning",
-  remain<=10
- );
-
- if(remain<=0)
-  endGame();
-
+ const remain=(game.endTime-Date.now())/1000;
+ $("timer").textContent=formatTime(remain);
+ $("timer").classList.toggle("warning",remain<=10);
+ if(remain<=0)endRound();
 }
-
 function playEggBreakSfx(){
-
+ // Short procedural crack/break effect; no extra audio file is required.
  try{
-
-  const AC=
-   window.AudioContext||
-   window.webkitAudioContext;
-
-  if(!AC)return;
-
-  const ctx=
-   window.__eggSfxCtx||
-   (window.__eggSfxCtx=new AC());
-
-  if(ctx.state==="suspended")
-   ctx.resume();
-
-  const now=
-   ctx.currentTime;
-
-  const g=
-   ctx.createGain();
-
-  g.gain.setValueAtTime(
-   .0001,
-   now
-  );
-
-  g.gain.exponentialRampToValueAtTime(
-   .45,
-   now+.015
-  );
-
-  g.gain.exponentialRampToValueAtTime(
-   .0001,
-   now+.28
-  );
-
-  g.connect(
-   ctx.destination
-  );
-
-  const o=
-   ctx.createOscillator();
-
-  o.type="square";
-
-  o.frequency.setValueAtTime(
-   150,
-   now
-  );
-
-  o.frequency.exponentialRampToValueAtTime(
-   55,
-   now+.22
-  );
-
-  o.connect(g);
-
-  o.start(now);
-  o.stop(now+.3);
-
-  const b=
-   ctx.createBuffer(
-    1,
-    ctx.sampleRate*.16,
-    ctx.sampleRate
-   );
-
-  const d=
-   b.getChannelData(0);
-
-  for(
-   let i=0;
-   i<d.length;
-   i++
-  ){
-
-   d[i]=
-    (Math.random()*2-1)*
-    (1-i/d.length);
-
-  }
-
-  const n=
-   ctx.createBufferSource();
-
-  n.buffer=b;
-
-  const ng=
-   ctx.createGain();
-
-  ng.gain.setValueAtTime(
-   .28,
-   now
-  );
-
-  ng.gain.exponentialRampToValueAtTime(
-   .0001,
-   now+.16
-  );
-
-  n.connect(ng);
-  ng.connect(
-   ctx.destination
-  );
-
-  n.start(now);
-
+  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+  const ctx=window.__eggSfxCtx||(window.__eggSfxCtx=new AC());if(ctx.state==="suspended")ctx.resume();
+  const now=ctx.currentTime,g=ctx.createGain();g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(.45,now+.015);g.gain.exponentialRampToValueAtTime(.0001,now+.28);g.connect(ctx.destination);
+  const o=ctx.createOscillator();o.type="square";o.frequency.setValueAtTime(150,now);o.frequency.exponentialRampToValueAtTime(55,now+.22);o.connect(g);o.start(now);o.stop(now+.3);
+  const b=ctx.createBuffer(1,ctx.sampleRate*.16,ctx.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
+  const n=ctx.createBufferSource();n.buffer=b;const ng=ctx.createGain();ng.gain.setValueAtTime(.28,now);ng.gain.exponentialRampToValueAtTime(.0001,now+.16);n.connect(ng);ng.connect(ctx.destination);n.start(now);
  }catch(e){}
-
 }
-
+function resetEggForRound(round){
+ if(round===2){
+  $("egg").src=ASSETS.round2;
+  $("egg").alt="Round 2 Monster";
+  $("eggWrap").classList.add("round2Mode");
+  $("egg").classList.add("round2Size");
+ }else{
+  $("egg").src=ASSETS.egg;
+  $("egg").alt="Monster Egg";
+  $("eggWrap").classList.remove("round2Mode");
+  $("egg").classList.remove("round2Size");
+ }
+ $("egg").classList.remove("hit","round2Hit","explode");
+ $("egg").style.animation="";
+ $("eggFinalGlow").classList.remove("show");
+ $("halloweenReveal").classList.remove("show");
+}
+function playRoundEndReveal(callback){
+ const r=$("eggWrap").getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+ $("eggFinalGlow").style.left=cx+"px";$("eggFinalGlow").style.top=cy+"px";
+ $("eggFinalGlow").classList.remove("show");void $("eggFinalGlow").offsetWidth;$("eggFinalGlow").classList.add("show");
+ $("egg").classList.remove("hit","round2Hit","explode");
+ $("egg").style.animation="finalEggShake .18s ease-in-out infinite";
+ setTimeout(()=>$("egg").style.animation="finalEggCrack .75s ease-in-out infinite",900);
+ setTimeout(()=>{
+  playEggBreakSfx();audio("sndExplosion");
+  $("egg").style.animation="";$("egg").classList.add("explode");
+  setTimeout(()=>{
+   $("halloweenReveal").classList.remove("show");void $("halloweenReveal").offsetWidth;
+   $("halloweenReveal").classList.add("show");audio("sndLaugh");
+  },180);
+ },2200);
+ setTimeout(()=>{
+  $("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");
+  if(typeof callback==='function')callback();
+ },7200);
+}
+function endRound(){
+ if(!game.active||game.roundTransition)return;
+ game.roundTransition=true;
+ game.active=false;
+ clearInterval(game.interval);
+ $("timer").textContent="00:00";
+ document.querySelectorAll(".answer").forEach(b=>b.disabled=true);
+ if(game.round===1 && Number(settings.rounds||2)===2){
+  showRoundWinner();
+  playRoundEndReveal(()=>{
+   $("roundWinnerModal").classList.remove("hidden");
+  });
+  return;
+ }
+ showFinalWinnerAfterReveal();
+}
+function showFinalWinnerAfterReveal(){
+ playRoundEndReveal(()=>{
+  game.roundTransition=false;
+  showWinner();
+ });
+}
+function startNextRound(){
+ if(!game.roundTransition||game.round!==1)return;
+ $("roundWinnerModal").classList.add("hidden");
+ game.roundTransition=false;
+ game.active=true;
+ switchToRound2();
+ resetEggForRound(2);
+ nextQuestionForAll();
+ updateTimer();
+ clearInterval(game.interval);
+ game.interval=setInterval(updateTimer,250);
+}
 function endGame(){
-
+ // Kept as a compatibility wrapper for any existing callers.
  if(!game.active)return;
-
- game.active=false;
-
- clearInterval(
-  game.interval
- );
-
- $("timer").textContent=
-  "00:00";
-
- document
-  .querySelectorAll(
-   ".answer"
-  )
-  .forEach(
-   b=>b.disabled=true
-  );
-
- const r=
-  $("eggWrap")
-   .getBoundingClientRect();
-
- const cx=
-  r.left+
-  r.width/2;
-
- const cy=
-  r.top+
-  r.height/2;
-
- $("eggFinalGlow").style.left=
-  cx+"px";
-
- $("eggFinalGlow").style.top=
-  cy+"px";
-
- $("eggFinalGlow")
-  .classList.remove(
-   "show"
-  );
-
- void $("eggFinalGlow")
-  .offsetWidth;
-
- $("eggFinalGlow")
-  .classList.add(
-   "show"
-  );
-
- $("egg")
-  .classList.remove(
-   "hit",
-   "round2Hit",
-   "explode"
-  );
-
- $("crackEffect")
-  .classList.remove(
-   "show"
-  );
-
- $("egg").style.animation=
-  "finalEggShake .18s ease-in-out infinite";
-
- setTimeout(
-  ()=>
-   $("egg").style.animation=
-    "finalEggCrack .75s ease-in-out infinite",
-  1000
- );
-
- setTimeout(
-  ()=>{
-
-   playEggBreakSfx();
-
-   audio(
-    "sndExplosion"
-   );
-
-   $("egg").style.animation="";
-
-   $("egg")
-    .classList.add(
-     "explode"
-    );
-
-   setTimeout(
-    ()=>{
-
-     $("halloweenReveal")
-      .classList.remove(
-       "show"
-      );
-
-     void $("halloweenReveal")
-      .offsetWidth;
-
-     $("halloweenReveal")
-      .classList.add(
-       "show"
-      );
-
-     audio(
-      "sndLaugh"
-     );
-
-    },
-    180
-   );
-
-  },
-  3000
- );
-
- setTimeout(
-  ()=>{
-
-   $("halloweenReveal")
-    .classList.remove(
-     "show"
-    );
-
-   $("eggFinalGlow")
-    .classList.remove(
-     "show"
-    );
-
-   showWinner();
-
-  },
-  10000
- );
-
+ game.active=false;game.roundTransition=true;clearInterval(game.interval);
+ document.querySelectorAll(".answer").forEach(b=>b.disabled=true);
+ showFinalWinnerAfterReveal();
 }
-
+function showRoundWinner(){
+ audio("sndWinner");
+ const scores=game.roundScores||Array(settings.teams).fill(0);
+ const max=Math.max(...scores);
+ const winners=settings.names.map((n,i)=>({n,score:scores[i],i})).filter(x=>x.score===max);
+ $("roundWinnerTitle").textContent=`🏆 ROUND ${game.round} COMPLETE`;
+ $("roundWinnerName").textContent=winners.length>1?`TIE: ${winners.map(x=>x.n).join(" & ")}`:`WINNER: ${winners[0].n}`;
+ $("roundWinnerScores").innerHTML=settings.names.map((n,i)=>({name:n,score:scores[i]})).sort((a,b)=>b.score-a.score).map((x,i)=>`<div class="finalRow"><span>${i+1}. ${escapeHTML(x.name)}</span><b>🪙 ${x.score} GOLD</b></div>`).join("");
+ $("roundWinnerNext").textContent="Ready for the next round?";
+ $("nextRoundBtn").style.display="block";
+}
 function showWinner(){
-
- audio(
-  "sndWinner"
- );
-
- const max=
-  Math.max(
-   ...game.scores
-  );
-
- const winners=
-  settings.names
-   .map(
-    (n,i)=>({
-     n,
-     score:
-      game.scores[i],
-     i
-    })
-   )
-   .filter(
-    x=>x.score===max
-   );
-
- $("winnerName").textContent=
-  winners.length>1
-   ?""
-   :winners[0].n;
-
- $("tieText").textContent=
-  winners.length>1
-   ?`IT'S A TIE! ${
-      winners.map(
-       x=>x.n
-      ).join(" & ")
-     }`
-   :"";
-
- const rows=
-  game.scores
-   .map(
-    (s,i)=>({
-     name:
-      settings.names[i],
-     score:s
-    })
-   )
-   .sort(
-    (a,b)=>b.score-a.score
-   )
-   .map(
-    (x,i)=>
-     `<div class="finalRow">
-       <span>
-        ${i+1}. ${escapeHTML(x.name)}
-       </span>
-       <b>
-        🪙 ${x.score} GOLD
-       </b>
-      </div>`
-   )
-   .join("");
-
- $("finalScores").innerHTML=
-  rows;
-
- $("winnerModal")
-  .classList.remove(
-   "hidden"
-  );
-
+ audio("sndWinner");
+ const max=Math.max(...game.scores), winners=settings.names.map((n,i)=>({n,score:game.scores[i],i})).filter(x=>x.score===max);
+ $("winnerName").textContent=winners.length>1?"":winners[0].n;
+ $("tieText").textContent=winners.length>1?`IT'S A TIE! ${winners.map(x=>x.n).join(" & ")}`:"";
+ const rows=game.scores.map((s,i)=>({name:settings.names[i],score:s}))
+  .sort((a,b)=>b.score-a.score)
+  .map((x,i)=>`<div class="finalRow"><span>${i+1}. ${escapeHTML(x.name)}</span><b>🪙 ${x.score} GOLD</b></div>`).join("");
+ $("finalScores").innerHTML=rows;
+ $("winnerModal").classList.remove("hidden");
 }
-
 function endGameToSettings(){
-
- game.active=false;
-
- clearInterval(
-  game.interval
- );
-
- $("music").pause();
-
- $("halloweenReveal")
-  .classList.remove(
-   "show"
-  );
-
- $("eggFinalGlow")
-  .classList.remove(
-   "show"
-  );
-
- $("winnerModal")
-  .classList.add(
-   "hidden"
-  );
-
- $("instructions")
-  .classList.add(
-   "hidden"
-  );
-
- $("game").style.display=
-  "none";
-
- $("setup").style.display=
-  "block";
-
- $("setup")
-  .classList.remove(
-   "hidden"
-  );
-
- syncSettingsUI();
-
+ game.active=false;clearInterval(game.interval);$("music").pause();stopTitleMusic();$("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");$("winnerModal").classList.add("hidden");$("instructions").classList.add("hidden");$("game").style.display="none";$("setup").style.display="block";$("setup").classList.remove("hidden");syncSettingsUI();startTitleMusic();
 }
+$("playAgain").addEventListener("click",()=>{$("winnerModal").classList.add("hidden");$("roundWinnerModal").classList.add("hidden");$("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");$("egg").classList.remove("explode","round2Hit","round2Size");$("egg").style.animation="";startGame()});
+$("winnerSettings").addEventListener("click",()=>{$("winnerModal").classList.add("hidden");endGameToSettings()});
 
-$("playAgain").addEventListener(
- "click",
- ()=>{
-
-  $("winnerModal")
-   .classList.add(
-    "hidden"
-   );
-
-  $("halloweenReveal")
-   .classList.remove(
-    "show"
-   );
-
-  $("eggFinalGlow")
-   .classList.remove(
-    "show"
-   );
-
-  $("egg")
-   .classList.remove(
-    "explode",
-    "round2Hit",
-    "hit"
-   );
-
-  $("eggWrap")
-   .classList.remove(
-    "round2Mode"
-   );
-
-  $("egg")
-   .classList.remove(
-    "round2Size"
-   );
-
-  $("crackEffect")
-   .classList.remove(
-    "show"
-   );
-
-  $("egg").style.animation="";
-
-  startGame();
-
- }
-);
-
-$("winnerSettings").addEventListener(
- "click",
- ()=>{
-
-  $("winnerModal")
-   .classList.add(
-    "hidden"
-   );
-
-  endGameToSettings();
-
- }
-);
-
-/* Save settings locally */
-
+/* Save settings locally, but never overwrite question bank unexpectedly. */
 function savePrefs(){
-
- try{
-
-  localStorage.setItem(
-   "monsterEggPrefs",
-   JSON.stringify(
-    settings
-   )
-  );
-
- }catch(e){}
-
+ try{localStorage.setItem("monsterEggPrefs",JSON.stringify(settings))}catch(e){}
 }
-
 function loadPrefs(){
-
- try{
-
-  const x=
-   JSON.parse(
-    localStorage.getItem(
-     "monsterEggPrefs"
-    )
-   );
-
-  if(x)
-   settings={
-    ...settings,
-    ...x
-   };
-
- }catch(e){}
-
+ try{const x=JSON.parse(localStorage.getItem("monsterEggPrefs"));if(x)settings={...settings,...x}}catch(e){}
 }
-
-["change","input"].forEach(
- evt=>{
-
-  document.addEventListener(
-   evt,
-   e=>{
-
-    if([
-     "team1",
-     "team2",
-     "team3",
-     "customTime",
-     "duration",
-     "backgroundSelect",
-     "teamCount",
-     "musicVol",
-     "sfxVol"
-    ].includes(
-     e.target.id
-    )){
-
-     readSettings();
-     savePrefs();
-
-    }
-
-   }
-  );
-
- }
-);
+function saveQuestionBank(){
+ try{localStorage.setItem("monsterEggQuestions",JSON.stringify(questions))}catch(e){}
+}
+function loadQuestionBank(){
+ try{
+  const saved=JSON.parse(localStorage.getItem("monsterEggQuestions"));
+  if(Array.isArray(saved)&&saved.length)questions=saved;
+ }catch(e){}
+}
+["change","input"].forEach(evt=>{
+ document.addEventListener(evt,e=>{
+  if(["team1","team2","team3","customTime","duration","backgroundSelect","teamCount","musicVol","sfxVol"].includes(e.target.id)){
+   readSettings();savePrefs();
+  }
+ });
+});
 
 loadPrefs();
+loadQuestionBank();
 syncSettingsUI();
 preloadAssets();
 renderEditorList();
 
-window.addEventListener(
- "beforeunload",
- savePrefs
-);
+// Start the title music immediately when the app opens. Browsers may block
+// unmuted autoplay, so the first user interaction retries it automatically.
+startTitleMusic();
+const unlockTitleMusic=()=>{
+ startTitleMusic();
+ document.removeEventListener("pointerdown",unlockTitleMusic);
+ document.removeEventListener("keydown",unlockTitleMusic);
+};
+document.addEventListener("pointerdown",unlockTitleMusic,{once:true});
+document.addEventListener("keydown",unlockTitleMusic,{once:true});
 
+window.addEventListener("beforeunload",savePrefs);
 </script>
-
 </body>
 </html>
