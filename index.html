@@ -57,7 +57,23 @@ textarea{min-height:75px;resize:vertical}
 .introOverlay{position:absolute;inset:0;background:radial-gradient(circle at center,rgba(15,3,30,.12),rgba(10,2,20,.68));z-index:1}
 .introContent{position:relative;z-index:2;padding:24px;max-width:900px;width:94vw;text-shadow:0 4px 12px #000}
 .introTitle{font-size:clamp(55px,10vw,120px);line-height:.9;color:#ffb52e;text-shadow:0 5px 0 #6d2100,0 0 30px #ff6b00,0 0 60px #9b27ff;animation:introPulse 2s ease-in-out infinite}
-.introCreator{font-size:clamp(18px,3vw,30px);font-weight:bold;margin:24px 0 28px;color:#fff}.introCreator span{font-size:.8em;color:#ffd34d}
+.introGameTitle{
+   display:inline-block;
+   font-family:"Creepster","Luckiest Guy",Impact,cursive;
+   font-size:clamp(30px,5vw,58px);
+   line-height:1;
+   letter-spacing:2px;
+   color:#ffd34d;
+   text-shadow:0 3px 0 #6d2100,0 0 10px #ff8a00,0 0 24px #ff6b00,0 0 42px rgba(155,39,255,.9);
+   animation:gameTitleGlow 2s ease-in-out infinite alternate;
+   margin:4px 0 8px;
+  }
+  .introCreator{font-size:clamp(18px,3vw,30px);font-weight:bold;margin:24px 0 28px;color:#fff}
+  .introCreator span{font-size:.8em;color:#ffd34d}
+  @keyframes gameTitleGlow{
+   from{filter:brightness(1);transform:scale(1)}
+   to{filter:brightness(1.18);transform:scale(1.018)}
+  }
 .introEnter{animation:introButton 1.4s ease-in-out infinite alternate}
 @keyframes introPulse{50%{transform:scale(1.035);filter:brightness(1.12)}}
 @keyframes introButton{to{transform:translateY(-4px) scale(1.025)}}
@@ -68,7 +84,29 @@ textarea{min-height:75px;resize:vertical}
 .timer{font-size:clamp(24px,4vw,44px);font-weight:bold;background:rgba(0,0,0,.48);padding:5px 18px;border:2px solid var(--gold);border-radius:16px;text-align:center;min-width:150px}
 .timer.warning{animation:pulse .7s infinite;color:#ff6877;border-color:#ff6877}
 @keyframes pulse{50%{transform:scale(1.06)}}
-.topActions{display:flex;justify-content:flex-end;gap:7px}
+.topActions{display:flex;justify-content:flex-end;gap:7px;align-items:center}
+.round2Btn{border:2px solid #d8a7ff;background:linear-gradient(135deg,rgba(91,42,140,.95),rgba(40,17,72,.95));color:#fff;border-radius:12px;padding:8px 13px;font-family:"Creepster","Luckiest Guy",cursive;font-size:clamp(16px,2vw,22px);text-shadow:0 2px 4px rgba(0,0,0,.7);box-shadow:0 0 12px rgba(216,167,255,.35);transition:.2s}
+.round2Btn:hover{transform:translateY(-1px);box-shadow:0 0 18px rgba(216,167,255,.6)}
+.round2Btn.active{border-color:#ffd34d;background:linear-gradient(135deg,#7b2cbf,#d97706);box-shadow:0 0 20px rgba(255,211,77,.7);color:#fff3b0}
+.round2Btn:disabled{cursor:default;opacity:1}
+.egg.round2Hit{animation:round2Hit .78s ease}
+@keyframes round2Hit{
+  0%{transform:translate(0,0) rotate(0) scale(1);filter:brightness(1)}
+  12%{transform:translate(-16px,5px) rotate(-5deg) scale(1.04);filter:brightness(1.35)}
+  24%{transform:translate(20px,-5px) rotate(6deg) scale(1.08);filter:brightness(1.7)}
+  38%{transform:translate(-24px,3px) rotate(-7deg) scale(1.06);filter:brightness(1.25)}
+  52%{transform:translate(25px,-3px) rotate(7deg) scale(1.1);filter:brightness(1.8)}
+  68%{transform:translate(-18px,2px) rotate(-5deg) scale(1.05);filter:brightness(1.35)}
+  84%{transform:translate(12px,-1px) rotate(4deg) scale(1.03);filter:brightness(1.15)}
+  100%{transform:translate(0,0) rotate(0) scale(1);filter:brightness(1)}
+}
+.crackEffect{position:absolute;inset:8%;pointer-events:none;opacity:0;z-index:3}
+.crackEffect.show{animation:crackFlash .78s ease forwards}
+.crackEffect::before,.crackEffect::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:72%;border-radius:8px;background:linear-gradient(to bottom,transparent 0%,#fff 12%,#ffd34d 45%,#fff 78%,transparent 100%);box-shadow:0 0 10px #ffd34d;transform-origin:center}
+.crackEffect::before{transform:translate(-50%,-50%) rotate(27deg)}
+.crackEffect::after{transform:translate(-50%,-50%) rotate(-27deg)}
+@keyframes crackFlash{0%{opacity:0;transform:scale(.55)}18%{opacity:.95;transform:scale(1)}65%{opacity:.75}100%{opacity:0;transform:scale(1.08)}}
+
 .iconBtn{border:1px solid var(--line);background:rgba(0,0,0,.4);color:#fff;border-radius:10px;padding:8px 11px}
 .questionBar{display:none}
 .teamQuestions{display:grid;gap:8px;min-height:72px}
@@ -165,7 +203,10 @@ textarea{min-height:75px;resize:vertical}
  <div class="introBg"></div><div class="introOverlay"></div>
  <div class="introContent">
   <div class="introTitle titleFont">HAPPY HALLOWEEN</div>
-  <div class="introCreator">🎃 Monster Egg: Halloween Gold Rush<br><span>Game created by <b>Teacher Khen</b></span></div>
+  <div class="introCreator">
+   <div class="introGameTitle"><span class="titleMonster">🎃 Monster Egg:</span> <span class="titleHalloween">Halloween</span> <span class="titleGold">Gold Rush</span></div>
+   <br><span>Game created by <b>Teacher Khen</b></span>
+  </div>
   <button class="btn big introEnter" id="introEnter">👻 ENTER THE GAME</button>
  </div>
 </div>
@@ -251,6 +292,7 @@ textarea{min-height:75px;resize:vertical}
    <div class="gameTitle titleFont">MONSTER EGG</div>
    <div id="timer" class="timer">05:00</div>
    <div class="topActions">
+    <button class="round2Btn" id="round2Btn" type="button">🎃 ROUND 2</button>
     <button class="iconBtn" id="fullscreenBtn">⛶</button>
     <button class="iconBtn hideSmall" id="backBtn">⚙</button>
    </div>
@@ -260,6 +302,7 @@ textarea{min-height:75px;resize:vertical}
   <div class="arena">
    <div class="eggWrap" id="eggWrap">
     <img id="egg" class="egg" src="monsteregg.gif" alt="Monster Egg">
+    <div id="crackEffect" class="crackEffect"></div>
     <div id="impact" class="impact"></div>
    </div>
   </div>
@@ -321,6 +364,7 @@ textarea{min-height:75px;resize:vertical}
 <audio id="sndPoint" src="point.mp3" preload="auto"></audio>
 <audio id="sndWinner" src="winner.mp3" preload="auto"></audio>
 <audio id="sndLaugh" src="laugh.mp3" preload="auto"></audio>
+<audio id="sndRoar" src="roar.mp3" preload="auto"></audio>
 
 <script>
 "use strict";
@@ -331,23 +375,47 @@ textarea{min-height:75px;resize:vertical}
 
 const ASSETS = {
  background1:"background1.gif", background2:"background2.gif",
- egg:"monsteregg.gif", fireball:"magicball.gif", coin:"coin.gif",
+ egg:"monsteregg.gif", round2:"round2.gif", fireball:"magicball.gif", coin:"coin.gif",
  money:"money.gif", trophy:"trophy.gif", chest:"chest.gif"
 };
 
 const DEFAULT_QUESTIONS = [
- {id:"q1",text:"Which animal says meow?",image:"",answers:[
-  {text:"Cat",image:"",correct:true},{text:"Dog",image:"",correct:false},
-  {text:"Fish",image:"",correct:false},{text:"Bird",image:"",correct:false}]},
- {id:"q2",text:"What color is a pumpkin?",image:"",answers:[
-  {text:"Orange",image:"",correct:true},{text:"Blue",image:"",correct:false},
-  {text:"Purple",image:"",correct:false},{text:"Green",image:"",correct:false}]},
- {id:"q3",text:"Which one is a fruit?",image:"",answers:[
-  {text:"Apple",image:"",correct:true},{text:"Chair",image:"",correct:false},
-  {text:"Book",image:"",correct:false},{text:"Shoe",image:"",correct:false}]},
- {id:"q4",text:"Choose the correct word: 🐶",image:"",answers:[
-  {text:"Dog",image:"",correct:true},{text:"Cat",image:"",correct:false},
-  {text:"Duck",image:"",correct:false},{text:"Fox",image:"",correct:false}]}
+ {id:"halloween_ghost_1",text:"Which Halloween character is this?",image:"ghost.png",answers:[
+  {text:"ghost",image:"",correct:true},{text:"witch",image:"",correct:false},
+  {text:"vampire",image:"",correct:false},{text:"zombie",image:"",correct:false}]},
+ {id:"halloween_witch",text:"Which Halloween character is this?",image:"witch.png",answers:[
+  {text:"witch",image:"",correct:true},{text:"mummy",image:"",correct:false},
+  {text:"owl",image:"",correct:false},{text:"pumpkin",image:"",correct:false}]},
+ {id:"halloween_candy",text:"Which Halloween character is this?",image:"candy.png",answers:[
+  {text:"candy",image:"",correct:true},{text:"spider",image:"",correct:false},
+  {text:"bat",image:"",correct:false},{text:"ghost",image:"",correct:false}]},
+ {id:"halloween_moon",text:"Which Halloween character is this?",image:"moon.png",answers:[
+  {text:"moon",image:"",correct:true},{text:"witch",image:"",correct:false},
+  {text:"mummy",image:"",correct:false},{text:"vampire",image:"",correct:false}]},
+ {id:"halloween_vampire",text:"Which Halloween character is this?",image:"vampire.png",answers:[
+  {text:"vampire",image:"",correct:true},{text:"zombie",image:"",correct:false},
+  {text:"owl",image:"",correct:false},{text:"bat",image:"",correct:false}]},
+ {id:"halloween_mummy",text:"Which Halloween character is this?",image:"mummy.png",answers:[
+  {text:"mummy",image:"",correct:true},{text:"ghost",image:"",correct:false},
+  {text:"pumpkin",image:"",correct:false},{text:"spider",image:"",correct:false}]},
+ {id:"halloween_ghost_2",text:"Which Halloween character is this?",image:"ghost.png",answers:[
+  {text:"ghost",image:"",correct:true},{text:"candy",image:"",correct:false},
+  {text:"moon",image:"",correct:false},{text:"zombie",image:"",correct:false}]},
+ {id:"halloween_owl",text:"Which Halloween character is this?",image:"owl.png",answers:[
+  {text:"owl",image:"",correct:true},{text:"bat",image:"",correct:false},
+  {text:"witch",image:"",correct:false},{text:"pumpkin",image:"",correct:false}]},
+ {id:"halloween_zombie",text:"Which Halloween character is this?",image:"zombie.png",answers:[
+  {text:"zombie",image:"",correct:true},{text:"vampire",image:"",correct:false},
+  {text:"mummy",image:"",correct:false},{text:"ghost",image:"",correct:false}]},
+ {id:"halloween_pumpkin",text:"Which Halloween character is this?",image:"pumpkin.png",answers:[
+  {text:"pumpkin",image:"",correct:true},{text:"candy",image:"",correct:false},
+  {text:"spider",image:"",correct:false},{text:"moon",image:"",correct:false}]},
+ {id:"halloween_spider",text:"Which Halloween character is this?",image:"spider.png",answers:[
+  {text:"spider",image:"",correct:true},{text:"owl",image:"",correct:false},
+  {text:"bat",image:"",correct:false},{text:"witch",image:"",correct:false}]},
+ {id:"halloween_bat",text:"Which Halloween character is this?",image:"bat.png",answers:[
+  {text:"bat",image:"",correct:true},{text:"ghost",image:"",correct:false},
+  {text:"vampire",image:"",correct:false},{text:"zombie",image:"",correct:false}]}
 ];
 
 let questions = JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));
@@ -419,7 +487,7 @@ function startMusic(){
  try{const p=$("music").play();if(p)p.catch(()=>showToast("Tap START GAME again if browser blocked music."));}catch(e){}
 }
 function preloadAssets(){
- [ASSETS.egg,ASSETS.fireball,ASSETS.coin,ASSETS.money,ASSETS.trophy,ASSETS.chest].forEach(src=>{const i=new Image();i.src=src});
+ [ASSETS.egg,ASSETS.round2,ASSETS.fireball,ASSETS.coin,ASSETS.money,ASSETS.trophy,ASSETS.chest].forEach(src=>{const i=new Image();i.src=src});
 }
 function formatTime(sec){
  sec=Math.max(0,Math.ceil(sec));return String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0");
@@ -572,8 +640,30 @@ function handleJSONLoad(e){
 }
 
 /* GAME */
+function switchToRound2(){
+ if(!game.active||game.round===2)return;
+ game.round=2;
+ applyBackground($("gameBg"),ASSETS.background2);
+ $("egg").src=ASSETS.round2;
+ $("egg").alt="Round 2";
+ $("round2Btn").classList.add("active");
+ $("round2Btn").disabled=true;
+ $("round2Btn").textContent="👹 ROUND 2";
+ $("crackEffect").classList.remove("show");
+ void $("crackEffect").offsetWidth;
+ showToast("ROUND 2! The monster is awake!");
+}
+$("round2Btn").addEventListener("click",switchToRound2);
+
 function startGame(){
  readSettings();
+ game.round=1;
+ $("round2Btn").classList.remove("active");
+ $("round2Btn").disabled=false;
+ $("round2Btn").textContent="🎃 ROUND 2";
+ $("egg").src=ASSETS.egg;
+ $("egg").alt="Monster Egg";
+ $("crackEffect").classList.remove("show");
  $("setup").style.display="none";$("game").style.display="block";
  applyBackground($("gameBg"),settings.background);
  game.active=true;game.gameDuration=settings.duration;game.endTime=Date.now()+settings.duration*1000;
@@ -610,7 +700,12 @@ function nextQuestion(team){
   while(idx<queue.length-1&&otherIds.includes(queue[idx].id))idx++;
  }
  const q=queue.splice(idx,1)[0];
- game.current[team]=q;game.questionStarted[team]=performance.now();
+// Randomize answer positions separately for each team/question.
+ game.current[team]={
+  ...q,
+  answers:shuffle(q.answers)
+ };
+ game.questionStarted[team]=performance.now();
  renderTeams();renderQuestion();
 }
 function renderQuestion(){
@@ -694,8 +789,22 @@ function launchFireball(team,points){
  });
 }
 function eggHit(){
- $("egg").classList.remove("hit");void $("egg").offsetWidth;$("egg").classList.add("hit");
- $("impact").classList.remove("show");void $("impact").offsetWidth;$("impact").classList.add("show");audio("sndExplosion");
+ const egg=$("egg");
+ egg.classList.remove("hit","round2Hit");
+ $("crackEffect").classList.remove("show");
+ void egg.offsetWidth;
+ void $("crackEffect").offsetWidth;
+ if(game.round===2){
+  egg.classList.add("round2Hit");
+  $("crackEffect").classList.add("show");
+  audio("sndRoar");
+ }else{
+  egg.classList.add("hit");
+  audio("sndExplosion");
+ }
+ $("impact").classList.remove("show");
+ void $("impact").offsetWidth;
+ $("impact").classList.add("show");
 }
 function coinSplash(team,points,resolve){
  const center=getEggCenter(),target=getTeamOrigin(team),count=Math.min(12,4+Math.ceil(points/2));
@@ -737,7 +846,7 @@ function endGame(){
  const r=$("eggWrap").getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
  $("eggFinalGlow").style.left=cx+"px";$("eggFinalGlow").style.top=cy+"px";
  $("eggFinalGlow").classList.remove("show");void $("eggFinalGlow").offsetWidth;$("eggFinalGlow").classList.add("show");
- $("egg").classList.remove("hit","explode");$("egg").style.animation="finalEggShake .18s ease-in-out infinite";
+ $("egg").classList.remove("hit","round2Hit","explode");$("crackEffect").classList.remove("show");$("egg").style.animation="finalEggShake .18s ease-in-out infinite";
  setTimeout(()=>$("egg").style.animation="finalEggCrack .75s ease-in-out infinite",1000);
  // Wait exactly 3 seconds after time-up, then crack and break the egg.
  setTimeout(()=>{
@@ -761,7 +870,7 @@ function showWinner(){
 function endGameToSettings(){
  game.active=false;clearInterval(game.interval);$("music").pause();$("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");$("winnerModal").classList.add("hidden");$("instructions").classList.add("hidden");$("game").style.display="none";$("setup").style.display="block";$("setup").classList.remove("hidden");syncSettingsUI();
 }
-$("playAgain").addEventListener("click",()=>{$("winnerModal").classList.add("hidden");$("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");$("egg").classList.remove("explode");$("egg").style.animation="";startGame()});
+$("playAgain").addEventListener("click",()=>{$("winnerModal").classList.add("hidden");$("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");$("egg").classList.remove("explode","round2Hit","hit");$("crackEffect").classList.remove("show");$("egg").style.animation="";startGame()});
 $("winnerSettings").addEventListener("click",()=>{$("winnerModal").classList.add("hidden");endGameToSettings()});
 
 /* Save settings locally, but never overwrite question bank unexpectedly. */
