@@ -85,7 +85,7 @@ textarea{min-height:75px;resize:vertical}
 .questionContent img{object-fit:contain;max-width:100%;height:auto}
 .questionText{font-size:clamp(20px,2.8vw,34px);font-weight:bold}
 .arena{position:relative;min-height:0;display:flex;align-items:center;justify-content:center}
-.eggWrap{position:relative;width:min(52vw,540px);height:min(52vw,540px);display:flex;align-items:center;justify-content:center}.egg{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.5));animation:eggFloat 2.4s ease-in-out infinite}.eggWrap.round2Mode{width:min(60vw,660px);height:min(60vw,660px)}.egg.round2Size{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 0 14px rgba(255,50,50,.95)) drop-shadow(0 14px 28px rgba(0,0,0,.85))}
+.eggWrap{position:relative;width:min(100vw,90vh,1200px);height:min(100vw,90vh,1200px);display:flex;align-items:center;justify-content:center}.egg{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.5));animation:eggFloat 2.4s ease-in-out infinite}.eggWrap.round2Mode{width:min(100vw,94vh,1260px);height:min(100vw,94vh,1260px)}.egg.round2Size{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 0 14px rgba(255,50,50,.95)) drop-shadow(0 14px 28px rgba(0,0,0,.85))}
 @keyframes eggFloat{50%{transform:translateY(-13px) rotate(1deg)}}
 .egg.hit{animation:eggHit .55s ease}
 .egg.round2Hit{animation:round2Hit .72s ease}
@@ -155,6 +155,7 @@ textarea{min-height:75px;resize:vertical}
 @keyframes finalGlow{0%{opacity:0;transform:translate(-50%,-50%) scale(.25)}20%{opacity:.85;transform:translate(-50%,-50%) scale(.75)}55%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}82%{opacity:.95;transform:translate(-50%,-50%) scale(1.45)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.4)}}
 .finalScores{display:flex;flex-direction:column;gap:8px;margin:16px auto;width:min(600px,95%)}
 .finalRow{display:flex;justify-content:space-between;padding:10px 15px;background:rgba(255,255,255,.08);border-radius:10px;font-size:20px}
+.howToContent{font-size:clamp(16px,2vw,20px);line-height:1.45;text-align:left;max-width:720px;margin:0 auto}.howToItem{display:grid;grid-template-columns:34px 1fr;gap:8px;align-items:start;margin:10px 0;padding:8px 10px;background:rgba(255,255,255,.055);border-radius:10px}.howToIcon{font-size:22px;text-align:center;line-height:1.2}.howToItem b{color:#ffd34d}.championTitle{font-size:clamp(38px,7vw,78px);color:var(--gold);text-shadow:0 5px #7a3300,0 0 25px #ff7b00;animation:championFlash 1s ease-in-out infinite alternate;line-height:1.05}.championSub{font-size:clamp(18px,3vw,28px);font-weight:bold;color:#fff;margin:4px 0 12px}.scoreTable{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:clamp(15px,2vw,22px)}.scoreTable th{color:#ffd34d;padding:6px}.scoreTable td{background:rgba(255,255,255,.08);padding:9px 8px;text-align:center}.scoreTable td:first-child{text-align:left;border-radius:9px 0 0 9px;font-weight:bold}.scoreTable td:last-child{border-radius:0 9px 9px 0;color:#ffd34d;font-weight:bold}.scoreTable tbody tr{animation:scoreFlash .9s ease-in-out both}.scoreTable tbody tr:nth-child(2){animation-delay:.15s}.scoreTable tbody tr:nth-child(3){animation-delay:.3s}@keyframes scoreFlash{0%{opacity:.2;transform:scale(.96)}55%{opacity:1;transform:scale(1.025)}100%{opacity:1;transform:scale(1)}}@keyframes championFlash{from{transform:scale(1);filter:brightness(1)}to{transform:scale(1.045);filter:brightness(1.3)}}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#12071e;border:1px solid var(--gold);padding:10px 18px;border-radius:10px;z-index:200;opacity:0;pointer-events:none}
 .toast.show{opacity:1}
 @media(max-width:750px){
@@ -166,10 +167,36 @@ textarea{min-height:75px;resize:vertical}
  .gameTitle{font-size:24px}.timer{min-width:105px;font-size:23px;padding:5px}
  .topActions .hideSmall{display:none}
  .endRoundBtn{min-width:0;padding:8px 9px;font-size:12px}
- .eggWrap{width:min(68vw,390px);height:min(68vw,390px)}.eggWrap.round2Mode{width:min(84vw,500px);height:min(84vw,500px)}
+ .eggWrap{width:min(100vw,64vh,760px);height:min(100vw,64vh,760px)}.eggWrap.round2Mode{width:min(100vw,70vh,840px);height:min(100vw,70vh,840px)}
  .teamArea{min-height:120px}
- .answer{min-height:45px;font-size:14px}
+ .answer{min-height:45px;font-size:clamp(24px,2.4vw,32px)}
  .moneyIcon{width:25px;height:25px}
+}
+
+/* EXTRA-LARGE MONSTER / ANSWER TEXT UPDATE */
+.eggWrap{width:min(100vw,90vh,1200px);height:min(100vw,90vh,1200px)}
+.eggWrap.round2Mode{width:min(100vw,94vh,1260px);height:min(100vw,94vh,1260px)}
+.answer{font-size:clamp(24px,2.4vw,32px);line-height:1.08}
+@media (max-width:900px){
+  .eggWrap{width:min(100vw,70vh,900px);height:min(100vw,70vh,900px)}
+  .eggWrap.round2Mode{width:min(100vw,76vh,980px);height:min(100vw,76vh,980px)}
+  .answer{font-size:clamp(20px,4.4vw,26px)}
+}
+@media (max-width:600px){
+  .eggWrap{width:min(100vw,64vh,760px);height:min(100vw,64vh,760px)}
+  .eggWrap.round2Mode{width:min(100vw,70vh,840px);height:min(100vw,70vh,840px)}
+  .answer{font-size:clamp(20px,4.4vw,26px)}
+}
+/* BALANCED MONSTER SIZE - FIT JUST ABOVE THE QUESTION BOXES */
+.eggWrap{width:min(78vw,52vh,620px);height:min(78vw,52vh,620px)}
+.eggWrap.round2Mode{width:min(82vw,56vh,680px);height:min(82vw,56vh,680px)}
+@media (max-width:900px){
+  .eggWrap{width:min(82vw,48vh,560px);height:min(82vw,48vh,560px)}
+  .eggWrap.round2Mode{width:min(86vw,52vh,620px);height:min(86vw,52vh,620px)}
+}
+@media (max-width:600px){
+  .eggWrap{width:min(88vw,40vh,500px);height:min(88vw,40vh,500px)}
+  .eggWrap.round2Mode{width:min(92vw,44vh,540px);height:min(92vw,44vh,540px)}
 }
 </style>
 </head>
@@ -253,12 +280,13 @@ textarea{min-height:75px;resize:vertical}
  <div class="decor"><span>🎃</span><span>🦇</span><span>👻</span><span>🕷️</span></div>
  <div class="screenCenter"><div class="card" style="max-width:850px;text-align:center">
   <div class="logo titleFont" style="font-size:clamp(38px,6vw,68px)">HOW TO PLAY</div>
-  <div style="font-size:clamp(18px,2.5vw,25px);line-height:1.55;text-align:left;max-width:720px;margin:auto">
-   <p>🎃 <b>Answer your team's question</b> as quickly as you can.</p>
-   <p>🔥 Choose the correct answer to send a magical fireball to the Monster Egg.</p>
-   <p>🪙 The faster you answer correctly, the more gold you collect — <b>3 to 10 points!</b></p>
-   <p>👻 Wrong answers give no points. Keep playing until the timer reaches zero.</p>
-   <p>💥 When time is up, the Monster Egg will glow, shake, crack, and reveal a Halloween surprise!</p>
+  <div class="howToContent">
+   <div class="howToItem"><span class="howToIcon">🎃</span><div><b>1. Look at your question.</b><br>Read the question in your team's box.</div></div>
+   <div class="howToItem"><span class="howToIcon">🔥</span><div><b>2. Choose an answer.</b><br>Tap the correct answer as quickly as you can.</div></div>
+   <div class="howToItem"><span class="howToIcon">🪙</span><div><b>3. Collect gold!</b><br>A correct and fast answer gives <b>3–10 points</b>.</div></div>
+   <div class="howToItem"><span class="howToIcon">👻</span><div><b>4. Keep playing.</b><br>A wrong answer gives no points. Try again with the next question.</div></div>
+   <div class="howToItem"><span class="howToIcon">💥</span><div><b>5. Finish the round.</b><br>When time is over, the Monster Egg will shake, crack, and reveal a Halloween surprise.</div></div>
+   <div class="howToItem"><span class="howToIcon">🏆</span><div><b>6. Become the Champion!</b><br>After Round 1 and Round 2, the team with the most total points wins.</div></div>
   </div>
   <div class="row" style="justify-content:center;margin-top:22px"><button class="btn big" id="instructionStart">🎃 START GAME</button><button class="btn secondary big" id="instructionSettings">⚙ SETTINGS</button></div>
  </div></div>
@@ -328,16 +356,17 @@ textarea{min-height:75px;resize:vertical}
 </div>
 <div id="winnerModal" class="modal hidden">
  <div class="modalCard winnerCard">
-  <div class="winnerTitle titleFont">🏆 WINNER!</div>
-  <div id="winnerName" style="font-size:clamp(28px,5vw,55px);font-weight:bold"></div>
+  <div class="championTitle titleFont">🏆 THE CHAMPION! 🏆</div>
+  <div id="winnerName" class="championSub"></div>
   <div class="winnerAssets">
    <img src="trophy.gif" alt="Trophy"><img src="chest.gif" alt="Treasure Chest"><img src="money.gif" alt="Money">
   </div>
+  <div class="championSub">FINAL SCOREBOARD</div>
   <div id="finalScores" class="finalScores"></div>
-  <div id="tieText" style="color:var(--gold);font-size:25px;font-weight:bold"></div>
+  <div id="tieText" style="color:var(--gold);font-size:22px;font-weight:bold"></div>
   <div class="row" style="justify-content:center;margin-top:15px">
    <button class="btn big" id="playAgain">🔄 Play Again</button>
-   <button class="btn secondary big" id="winnerSettings">⚙ Settings</button>
+   <button class="btn secondary big" id="winnerSettings">⚙ SETTINGS</button>
   </div>
  </div>
 </div>
@@ -404,7 +433,7 @@ let settings = {
 };
 let game = {
  active:false,endTime:0,interval:null,scores:[],queues:[],current:[],
- busy:[],roundStarted:[],questionStarted:[],answered:[],gameDuration:0,round:1,roundScores:[],roundTransition:false
+ busy:[],roundStarted:[],questionStarted:[],answered:[],gameDuration:0,round:1,roundScores:[],round1Scores:[],round2Scores:[],roundTransition:false
 };
 
 const $ = id => document.getElementById(id);
@@ -468,18 +497,7 @@ function updateMusic(){
  const titleMusic=$("titleMusic");
  if(titleMusic)titleMusic.volume=settings.musicMuted?0:settings.music;
 }
-function startTitleMusic(){
- const titleMusic=$("titleMusic");
- if(!titleMusic)return;
- titleMusic.volume=settings.musicMuted?0:settings.music;
- try{const p=titleMusic.play();if(p)p.catch(()=>{});}catch(e){}
-}
-function stopTitleMusic(){
- const titleMusic=$("titleMusic");
- if(!titleMusic)return;
- try{titleMusic.pause();titleMusic.currentTime=0;}catch(e){}
-}
-function startMusic(){
+let titleMusicAllowed=true; function startTitleMusic(){ const titleMusic=$("titleMusic"); if(!titleMusic || !titleMusicAllowed)return; titleMusic.volume=settings.musicMuted?0:settings.music; try{const p=titleMusic.play();if(p)p.catch(()=>{});}catch(e){} } function stopTitleMusic(){ titleMusicAllowed=false; const titleMusic=$("titleMusic"); if(!titleMusic)return; try{titleMusic.pause();titleMusic.currentTime=0;}catch(e){} } function startMusic(){
  updateMusic();
  try{const p=$("music").play();if(p)p.catch(()=>showToast("Tap START GAME again if browser blocked music."));}catch(e){}
 }
@@ -547,8 +565,8 @@ $("startBtn").addEventListener("click",()=>{
  if(questions.length<1){showToast("Add at least one question.");return;}
  showInstructions();
 });
-$("instructionStart").addEventListener("click",()=>{stopTitleMusic();$("instructions").classList.add("hidden");startGame();});
-$("instructionSettings").addEventListener("click",()=>{$("instructions").classList.add("hidden");$("setup").style.display="block";});
+$("instructionStart").addEventListener("click",()=>{$("instructions").classList.add("hidden");startGame();});
+$("instructionSettings").addEventListener("click",()=>{titleMusicAllowed=true;startTitleMusic();$("instructions").classList.add("hidden");$("setup").style.display="block";});
 function showInstructions(){readSettings();$("setup").style.display="none";applyBackground($("instructionBg"),settings.background);$("instructions").classList.remove("hidden");}
 $("loadBtn").addEventListener("click",()=>$("jsonFile").click());
 $("jsonFile").addEventListener("change",handleJSONLoad);
@@ -649,7 +667,7 @@ function startGame(){
  $("egg").alt="Monster Egg";
  $("setup").style.display="none";$("game").style.display="block";
  applyBackground($("gameBg"),settings.background);
- game.active=true;game.gameDuration=settings.duration;game.endTime=Date.now()+settings.duration*1000;game.roundScores=Array(settings.teams).fill(0);game.roundTransition=false;
+ game.active=true;game.gameDuration=settings.duration;game.endTime=Date.now()+settings.duration*1000;game.roundScores=Array(settings.teams).fill(0);game.round1Scores=Array(settings.teams).fill(0);game.round2Scores=Array(settings.teams).fill(0);game.roundTransition=false;
  game.scores=Array(settings.teams).fill(0);game.busy=Array(settings.teams).fill(false);
  game.current=Array(settings.teams).fill(null);game.questionStarted=Array(settings.teams).fill(Date.now());
  game.queues=Array(settings.teams).fill(0).map((_,team)=>makeQueue(team));
@@ -833,6 +851,7 @@ function launchFireball(team,points){
 }
 function switchToRound2(){
  if(!game.active||game.round===2)return;
+ game.round1Scores=[...game.roundScores];
  game.round=2;
  game.roundScores=Array(settings.teams).fill(0);
  game.gameDuration=settings.round2Duration||settings.duration;
@@ -940,12 +959,15 @@ function endRound(){
  $("timer").textContent="00:00";
  document.querySelectorAll(".answer").forEach(b=>b.disabled=true);
  if(game.round===1 && Number(settings.rounds||2)===2){
+  game.round1Scores=[...game.roundScores];
   showRoundWinner();
   playRoundEndReveal(()=>{
    $("roundWinnerModal").classList.remove("hidden");
   });
   return;
  }
+ game.round1Scores=[...game.roundScores];
+ game.round2Scores=[...game.roundScores];
  showFinalWinnerAfterReveal();
 }
 function showFinalWinnerAfterReveal(){
@@ -986,17 +1008,19 @@ function showRoundWinner(){
 }
 function showWinner(){
  audio("sndWinner");
- const max=Math.max(...game.scores), winners=settings.names.map((n,i)=>({n,score:game.scores[i],i})).filter(x=>x.score===max);
- $("winnerName").textContent=winners.length>1?"":winners[0].n;
- $("tieText").textContent=winners.length>1?`IT'S A TIE! ${winners.map(x=>x.n).join(" & ")}`:"";
- const rows=game.scores.map((s,i)=>({name:settings.names[i],score:s}))
-  .sort((a,b)=>b.score-a.score)
-  .map((x,i)=>`<div class="finalRow"><span>${i+1}. ${escapeHTML(x.name)}</span><b>🪙 ${x.score} GOLD</b></div>`).join("");
- $("finalScores").innerHTML=rows;
+ const round1=game.round1Scores?.length?game.round1Scores:Array(settings.teams).fill(0);
+ const round2=game.round2Scores?.length?game.round2Scores:Array(settings.teams).fill(0);
+ const totals=settings.names.map((n,i)=>({n,round1:round1[i]||0,round2:round2[i]||0,total:(round1[i]||0)+(round2[i]||0),i}));
+ const max=Math.max(...totals.map(x=>x.total));
+ const winners=totals.filter(x=>x.total===max);
+ $("winnerName").textContent=winners.length>1?`TIE: ${winners.map(x=>x.n).join(" & ")} — ${max} GOLD`:`${winners[0].n} — ${max} GOLD`;
+ $("tieText").textContent=winners.length>1?"IT'S A TIE! Everyone played well!":"Congratulations! You are the Halloween Gold Rush Champion!";
+ const rows=[...totals].sort((a,b)=>b.total-a.total).map((x,i)=>`<tr><td>${i+1}. ${escapeHTML(x.n)}</td><td>🪙 ${x.round1}</td><td>🪙 ${x.round2}</td><td>🏆 ${x.total}</td></tr>`).join("");
+ $("finalScores").innerHTML=`<table class="scoreTable"><thead><tr><th>TEAM</th><th>ROUND 1</th><th>ROUND 2</th><th>TOTAL</th></tr></thead><tbody>${rows}</tbody></table>`;
  $("winnerModal").classList.remove("hidden");
 }
 function endGameToSettings(){
- game.active=false;clearInterval(game.interval);$("music").pause();stopTitleMusic();$("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");$("winnerModal").classList.add("hidden");$("instructions").classList.add("hidden");$("game").style.display="none";$("setup").style.display="block";$("setup").classList.remove("hidden");syncSettingsUI();startTitleMusic();
+ game.active=false;clearInterval(game.interval);$("music").pause();stopTitleMusic();titleMusicAllowed=true;startTitleMusic();$("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");$("winnerModal").classList.add("hidden");$("instructions").classList.add("hidden");$("game").style.display="none";$("setup").style.display="block";$("setup").classList.remove("hidden");syncSettingsUI();startTitleMusic();
 }
 $("playAgain").addEventListener("click",()=>{$("winnerModal").classList.add("hidden");$("roundWinnerModal").classList.add("hidden");$("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");$("egg").classList.remove("explode","round2Hit","round2Size");$("egg").style.animation="";startGame()});
 $("winnerSettings").addEventListener("click",()=>{$("winnerModal").classList.add("hidden");endGameToSettings()});
@@ -1031,16 +1055,17 @@ syncSettingsUI();
 preloadAssets();
 renderEditorList();
 
-// Start the title music immediately when the app opens. Browsers may block
-// unmuted autoplay, so the first user interaction retries it automatically.
+// Start first.mp3 as soon as the Halloween intro page opens. Keep it playing
+// through the title/settings/how-to-play screens. Browsers may block unmuted
+// autoplay, so every early user interaction retries the same audio.
 startTitleMusic();
-const unlockTitleMusic=()=>{
- startTitleMusic();
- document.removeEventListener("pointerdown",unlockTitleMusic);
- document.removeEventListener("keydown",unlockTitleMusic);
-};
-document.addEventListener("pointerdown",unlockTitleMusic,{once:true});
-document.addEventListener("keydown",unlockTitleMusic,{once:true});
+window.addEventListener("load",startTitleMusic,{once:true});
+document.addEventListener("DOMContentLoaded",startTitleMusic,{once:true});
+const unlockTitleMusic=()=>{startTitleMusic();};
+document.addEventListener("pointerdown",unlockTitleMusic,{passive:true});
+document.addEventListener("keydown",unlockTitleMusic,{passive:true});
+document.addEventListener("touchstart",unlockTitleMusic,{passive:true});
+document.addEventListener("visibilitychange",()=>{if(!document.hidden && !$('game').style.display)startTitleMusic();});
 
 window.addEventListener("beforeunload",savePrefs);
 </script>
