@@ -90,6 +90,9 @@ textarea{min-height:75px;resize:vertical}
 .egg.hit{animation:eggHit .55s ease}
 .egg.round2Hit{animation:round2Hit .72s ease}
 @keyframes round2Hit{0%{transform:scale(1) rotate(0)}18%{transform:scale(1.08) translateX(-18px) rotate(-4deg)}36%{transform:scale(1.1) translateX(20px) rotate(5deg)}54%{transform:scale(1.08) translateX(-14px) rotate(-3deg)}72%{transform:scale(1.05) translateX(10px) rotate(2deg)}100%{transform:scale(1) rotate(0)}}
+/* Round 2 depth movement: the monster slowly comes forward (bigger) and moves back (normal size). */
+.egg.round2Size{animation:round2Advance 2.8s ease-in-out infinite;transform-origin:center center;will-change:transform}
+@keyframes round2Advance{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.22) translateY(-3px)}}
 @keyframes eggHit{20%{transform:translateX(-18px) rotate(-5deg)}40%{transform:translateX(18px) rotate(5deg)}60%{transform:translateX(-12px)}80%{transform:translateX(10px)}100%{transform:none}}
 .egg.explode{animation:eggOut .9s forwards}
 @keyframes eggOut{50%{transform:scale(1.35) rotate(8deg);filter:brightness(2)}100%{transform:scale(0);opacity:0}}
@@ -874,6 +877,7 @@ function eggHit(){
  if(game.round===2){
   $("egg").classList.remove("round2Hit");void $("egg").offsetWidth;$("egg").classList.add("round2Hit");
   audio("sndRoar");
+  setTimeout(()=>$("egg").classList.remove("round2Hit"),760);
  }else{
   $("egg").classList.remove("hit");void $("egg").offsetWidth;$("egg").classList.add("hit");
   audio("sndExplosion");
@@ -997,20 +1001,24 @@ function endGame(){
 }
 function showRoundWinner(){
  audio("sndWinner");
- const scores=game.roundScores||Array(settings.teams).fill(0);
+ const teamCount=Math.max(1,Number(settings.teams)||2);
+ const scores=(game.roundScores||[]).slice(0,teamCount);
+ const names=settings.names.slice(0,teamCount);
  const max=Math.max(...scores);
- const winners=settings.names.map((n,i)=>({n,score:scores[i],i})).filter(x=>x.score===max);
+ const winners=names.map((n,i)=>({n,score:scores[i]||0,i})).filter(x=>x.score===max);
  $("roundWinnerTitle").textContent=`🏆 ROUND ${game.round} COMPLETE`;
  $("roundWinnerName").textContent=winners.length>1?`TIE: ${winners.map(x=>x.n).join(" & ")}`:`WINNER: ${winners[0].n}`;
- $("roundWinnerScores").innerHTML=settings.names.map((n,i)=>({name:n,score:scores[i]})).sort((a,b)=>b.score-a.score).map((x,i)=>`<div class="finalRow"><span>${i+1}. ${escapeHTML(x.name)}</span><b>🪙 ${x.score} GOLD</b></div>`).join("");
+ $("roundWinnerScores").innerHTML=names.map((n,i)=>({name:n,score:scores[i]||0})).sort((a,b)=>b.score-a.score).map((x,i)=>`<div class="finalRow"><span>${i+1}. ${escapeHTML(x.name)}</span><b>🪙 ${x.score} GOLD</b></div>`).join("");
  $("roundWinnerNext").textContent="Ready for the next round?";
  $("nextRoundBtn").style.display="block";
 }
 function showWinner(){
  audio("sndWinner");
- const round1=game.round1Scores?.length?game.round1Scores:Array(settings.teams).fill(0);
- const round2=game.round2Scores?.length?game.round2Scores:Array(settings.teams).fill(0);
- const totals=settings.names.map((n,i)=>({n,round1:round1[i]||0,round2:round2[i]||0,total:(round1[i]||0)+(round2[i]||0),i}));
+ const teamCount=Math.max(1,Number(settings.teams)||2);
+ const round1=(game.round1Scores||[]).slice(0,teamCount);
+ const round2=(game.round2Scores||[]).slice(0,teamCount);
+ const names=settings.names.slice(0,teamCount);
+ const totals=names.map((n,i)=>({n,round1:round1[i]||0,round2:round2[i]||0,total:(round1[i]||0)+(round2[i]||0),i}));
  const max=Math.max(...totals.map(x=>x.total));
  const winners=totals.filter(x=>x.total===max);
  $("winnerName").textContent=winners.length>1?`TIE: ${winners.map(x=>x.n).join(" & ")} — ${max} GOLD`:`${winners[0].n} — ${max} GOLD`;
