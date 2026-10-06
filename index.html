@@ -201,6 +201,35 @@ textarea{min-height:75px;resize:vertical}
   .eggWrap{width:min(88vw,40vh,500px);height:min(88vw,40vh,500px)}
   .eggWrap.round2Mode{width:min(92vw,44vh,540px);height:min(92vw,44vh,540px)}
 }
+
+/* =========================
+   HALLOWEEN CHARACTER HUB
+   ========================= */
+.characterToolBtn{min-width:46px;font-size:22px;padding:7px 10px}
+.characterHubModal{z-index:120;background:rgba(7,2,16,.82);backdrop-filter:blur(4px)}
+.characterHubCard{width:min(1080px,97vw);max-height:95vh;padding:16px 18px 20px;background:linear-gradient(145deg,#170724,#28103d 55%,#14051f);border:2px solid rgba(255,180,45,.5);box-shadow:0 0 35px rgba(255,123,0,.22),inset 0 0 30px rgba(112,35,168,.18)}
+.characterHubHeader{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:10px}
+.characterHubTitle{font-size:clamp(25px,4vw,44px);color:var(--gold);text-shadow:0 3px #6b2b00;line-height:1}
+.characterHubSubtitle{margin-top:5px;color:#f1ddff;font-size:clamp(13px,1.7vw,17px)}
+.characterHubTabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.hubTab{border:2px solid rgba(255,255,255,.14);background:linear-gradient(145deg,#321653,#211034);color:#fff;border-radius:12px;padding:9px 15px;font-weight:bold;font-size:clamp(14px,1.8vw,18px);cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.22);transition:.15s}
+.hubTab:hover,.hubTab.active{border-color:var(--gold);color:#fff4b0;background:linear-gradient(145deg,#5b267f,#321653);transform:translateY(-1px)}
+.hubPanel{display:none;animation:hubFade .2s ease}.hubPanel.active{display:block}@keyframes hubFade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.hubSectionTitle{text-align:center;color:#ffd34d;font-size:clamp(20px,2.7vw,30px);font-weight:bold;margin:3px 0 8px;text-shadow:0 2px #5c2500}
+.presentationStage{display:grid;grid-template-columns:58px minmax(0,1fr) 58px;gap:10px;align-items:center;justify-items:center;min-height:360px}
+.hubNavBtn{width:52px;height:52px;border-radius:50%;border:2px solid var(--gold);background:radial-gradient(circle,#6c318e,#2b123f);color:#fff4b0;font-size:22px;font-weight:bold;cursor:pointer;box-shadow:0 0 14px rgba(255,211,77,.2);transition:.15s}.hubNavBtn:hover{transform:scale(1.08);background:#63307e}
+.characterSingleCard{width:min(430px,72vw);background:linear-gradient(145deg,rgba(62,24,83,.92),rgba(18,6,31,.96));border:2px solid rgba(255,211,77,.5);border-radius:22px;padding:12px 18px 16px;text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.35),0 0 20px rgba(210,28,255,.12);position:relative;overflow:hidden}
+.characterSingleCard:before{content:"🕸️";position:absolute;left:8px;top:5px;font-size:24px;opacity:.55}.characterSingleCard:after{content:"🦇";position:absolute;right:8px;bottom:5px;font-size:24px;opacity:.55}
+.characterCounter{font-weight:bold;color:#f6d87a;font-size:14px;margin-bottom:3px}.characterImageFrame{height:245px;display:flex;align-items:center;justify-content:center}.characterImageFrame img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 12px rgba(0,0,0,.45));animation:characterFloat 2.2s ease-in-out infinite}@keyframes characterFloat{50%{transform:translateY(-7px) rotate(1deg) scale(1.03)}}
+.characterPresentName{font-size:clamp(28px,4vw,46px);font-weight:900;color:#fff;text-shadow:0 3px #7a3300;letter-spacing:1px}.characterPresentCaption{font-size:15px;color:#e8d9f3;margin-top:2px}
+.presentationControls{display:flex;justify-content:center;margin-top:4px}.allCharactersGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin-top:12px;max-height:45vh;overflow:auto;padding:4px}.allCharacterCard{background:rgba(255,255,255,.055);border:1px solid rgba(255,211,77,.28);border-radius:14px;padding:8px;text-align:center;cursor:pointer;transition:.15s}.allCharacterCard:hover{transform:translateY(-3px) scale(1.02);border-color:var(--gold);background:rgba(255,123,0,.12)}.allCharacterCard img{width:100%;height:100px;object-fit:contain;filter:drop-shadow(0 5px 8px rgba(0,0,0,.4))}.allCharacterCard b{display:block;color:#ffd34d;margin-top:2px;font-size:16px}.allCharacterCard span{display:block;color:#d9c9e5;font-size:12px}
+.spellingInstructions,.matchingInstructions{text-align:center;color:#e9dbf5;font-size:14px;margin-bottom:8px}.spellingScoreLine,.matchingTopLine{display:flex;justify-content:space-between;gap:10px;color:#ffd34d;font-weight:bold;max-width:720px;margin:0 auto 7px}.spellingCharacterFrame{width:min(230px,58vw);margin:0 auto 8px;text-align:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,211,77,.25);border-radius:16px;padding:6px}.spellingCharacterFrame img{width:100%;height:125px;object-fit:contain;filter:drop-shadow(0 5px 8px rgba(0,0,0,.45))}.spellingCharacterFrame div{font-weight:bold;color:#fff3b0;font-size:14px}
+.spellingWordArea{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;min-height:58px;margin:7px auto}.spellingSlot{width:44px;height:50px;border:2px dashed #9b71b8;border-radius:10px;background:rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;color:#fff;font-size:25px;font-weight:900;cursor:pointer;transition:.15s}.spellingSlot.over{border-color:var(--gold);background:rgba(255,211,77,.12);transform:scale(1.04)}.spellingSlot.filled{border-style:solid;border-color:#7c51a0;background:linear-gradient(145deg,#43205d,#241238)}
+.spellingLetters{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;min-height:58px;max-width:800px;margin:0 auto;padding:4px}.spellLetter{width:46px;height:46px;border:2px solid rgba(255,255,255,.18);border-radius:10px;background:linear-gradient(145deg,#6b2d83,#32154d);color:#fff;font-size:24px;font-weight:900;cursor:grab;touch-action:none;user-select:none;box-shadow:0 4px 0 rgba(0,0,0,.22);transition:.12s}.spellLetter:hover{border-color:var(--gold);transform:translateY(-2px)}.spellLetter.used{opacity:.22;transform:scale(.9);cursor:default}.spellLetter.dragging{opacity:.4}.spellLetter.selected{border-color:var(--gold);box-shadow:0 0 12px rgba(255,211,77,.4)}
+.spellingMessage{min-height:24px;text-align:center;font-weight:bold;color:#ffd34d;margin:4px 0}.spellingActions{justify-content:center;flex-wrap:wrap;margin-top:4px}
+.matchingGrid{display:grid;grid-template-columns:repeat(4,minmax(75px,1fr));gap:9px;max-width:720px;margin:7px auto}.matchCard{aspect-ratio:1/1;border:2px solid rgba(255,255,255,.13);border-radius:13px;background:linear-gradient(145deg,#32164b,#180a29);position:relative;cursor:pointer;transform-style:preserve-3d;transition:transform .25s,border-color .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;padding:6px;overflow:hidden}.matchCard:hover{border-color:var(--gold);box-shadow:0 0 12px rgba(255,211,77,.16)}.matchCard.flipped,.matchCard.matched{background:linear-gradient(145deg,#57216c,#2d103d);border-color:var(--gold)}.matchCard img{width:88%;height:78%;object-fit:contain}.matchCard .matchName{font-size:clamp(13px,1.7vw,18px);font-weight:900;color:#fff3b0;text-transform:none}.matchCard .matchBack{font-size:clamp(26px,4vw,42px);filter:drop-shadow(0 3px 5px rgba(255,123,0,.25))}.matchCard.matched{border-color:#72efad;box-shadow:0 0 14px rgba(114,239,173,.2);cursor:default}.matchCard.matched:after{content:"✓";position:absolute;right:5px;top:2px;color:#72efad;font-size:22px;font-weight:900}
+@media(max-width:700px){.characterHubCard{padding:12px}.presentationStage{grid-template-columns:42px minmax(0,1fr) 42px;min-height:300px}.hubNavBtn{width:40px;height:40px;font-size:17px}.characterImageFrame{height:190px}.characterSingleCard{padding:10px 12px}.matchingGrid{grid-template-columns:repeat(3,minmax(70px,1fr));gap:7px}.spellingSlot{width:38px;height:44px}.spellLetter{width:40px;height:40px;font-size:21px}}
+@media(max-width:450px){.characterHubTabs{gap:5px}.hubTab{padding:8px 9px;font-size:13px}.characterPresentName{font-size:29px}.characterPresentCaption{font-size:12px}.matchingGrid{grid-template-columns:repeat(3,1fr)}.matchCard .matchName{font-size:12px}.spellingInstructions,.matchingInstructions{font-size:12px}}
 </style>
 </head>
 <body>
@@ -303,7 +332,7 @@ textarea{min-height:75px;resize:vertical}
    <div class="gameTitle titleFont">MONSTER EGG</div>
    <div id="timer" class="timer">05:00</div>
    <div class="topActions">
-    <button class="iconBtn endRoundBtn" id="endRoundBtn">⏹ END ROUND</button><button class="iconBtn" id="fullscreenBtn">⛶</button>
+    <button class="iconBtn endRoundBtn" id="endRoundBtn">⏹ END ROUND</button><button class="iconBtn characterToolBtn" id="characterToolBtn" title="Halloween Character Hub" aria-label="Halloween Character Hub">👻</button><button class="iconBtn" id="fullscreenBtn">⛶</button>
     <button class="iconBtn hideSmall" id="backBtn">⚙</button>
    </div>
   </div>
@@ -316,6 +345,66 @@ textarea{min-height:75px;resize:vertical}
    </div>
   </div>
   <div id="teamArea" class="teamArea two"></div>
+ </div>
+</div>
+
+
+<div id="characterHubModal" class="modal hidden characterHubModal">
+ <div class="modalCard characterHubCard">
+  <div class="characterHubHeader">
+   <div>
+    <div class="characterHubTitle titleFont">👻 HALLOWEEN CHARACTER HUB 🎃</div>
+    <div class="characterHubSubtitle">Meet the characters, practice spelling, and play a matching game!</div>
+   </div>
+   <button class="iconBtn" id="closeCharacterHub" aria-label="Close Halloween Character Hub">✕</button>
+  </div>
+  <div class="characterHubTabs" role="tablist" aria-label="Character Hub activities">
+   <button class="hubTab active" data-hubtab="presentation" role="tab">👻 Characters</button>
+   <button class="hubTab" data-hubtab="spelling" role="tab">🔤 Spell It</button>
+   <button class="hubTab" data-hubtab="matching" role="tab">🃏 Matching</button>
+  </div>
+
+  <section class="hubPanel active" id="hubPresentation" data-hubpanel="presentation">
+   <div class="hubSectionTitle">🎃 Character Presentation</div>
+   <div class="presentationStage">
+    <button class="hubNavBtn" id="characterPrev" aria-label="Previous character">◀</button>
+    <div class="characterSingleCard">
+     <div class="characterCounter" id="characterCounter">1 / 11</div>
+     <div class="characterImageFrame"><img id="characterPresentImage" src="ghost.png" alt="Ghost"></div>
+     <div class="characterPresentName" id="characterPresentName">GHOST</div>
+     <div class="characterPresentCaption" id="characterPresentCaption">A spooky friend who says BOO!</div>
+    </div>
+    <button class="hubNavBtn" id="characterNext" aria-label="Next character">▶</button>
+   </div>
+   <div class="presentationControls">
+    <button class="btn secondary" id="characterAllBtn">👻 SHOW ALL CHARACTERS</button>
+   </div>
+   <div class="allCharactersGrid hidden" id="allCharactersGrid"></div>
+  </section>
+
+  <section class="hubPanel" id="hubSpelling" data-hubpanel="spelling">
+   <div class="hubSectionTitle">🔤 Halloween Spelling Challenge</div>
+   <div class="spellingInstructions">Drag the letters into the boxes to spell the character. You can also tap a letter, then tap an empty box.</div>
+   <div class="spellingScoreLine"><span id="spellingRoundText">Round 1</span><span id="spellingScoreText">⭐ 0</span></div>
+   <div class="spellingCharacterFrame"><img id="spellingImage" src="ghost.png" alt="Ghost"><div id="spellingClue">What character is this?</div></div>
+   <div class="spellingWordArea" id="spellingWordArea"></div>
+   <div class="spellingLetters" id="spellingLetters"></div>
+   <div class="spellingMessage" id="spellingMessage">Drag the letters into the boxes!</div>
+   <div class="row spellingActions">
+    <button class="btn secondary" id="spellingResetBtn">🔄 Reset Letters</button>
+    <button class="btn" id="spellingCheckBtn">✨ CHECK SPELLING</button>
+    <button class="btn green" id="spellingNextBtn">➡️ NEXT WORD</button>
+   </div>
+  </section>
+
+  <section class="hubPanel" id="hubMatching" data-hubpanel="matching">
+   <div class="hubSectionTitle">🃏 Halloween Matching Game</div>
+   <div class="matchingInstructions">Match each Halloween picture with its name. Click two cards to turn them over.</div>
+   <div class="matchingTopLine"><span id="matchingMoves">Moves: 0</span><span id="matchingPairs">Pairs: 0 / 6</span></div>
+   <div class="matchingGrid" id="matchingGrid"></div>
+   <div class="spellingMessage" id="matchingMessage">Find all the pairs!</div>
+   <div class="row" style="justify-content:center;margin-top:12px"><button class="btn" id="matchingNewBtn">🎃 NEW MATCHING GAME</button></div>
+  </section>
  </div>
 </div>
 
@@ -1076,6 +1165,220 @@ document.addEventListener("touchstart",unlockTitleMusic,{passive:true});
 document.addEventListener("visibilitychange",()=>{if(!document.hidden && !$('game').style.display)startTitleMusic();});
 
 window.addEventListener("beforeunload",savePrefs);
+
+/* =========================
+   HALLOWEEN CHARACTER HUB
+   ========================= */
+const CHARACTER_HUB_DATA = [
+ {name:"ghost",image:"ghost.png",caption:"A spooky friend who says BOO!"},
+ {name:"witch",image:"witch.png",caption:"A magical Halloween character with a broom."},
+ {name:"candy",image:"candy.png",caption:"A sweet Halloween treat!"},
+ {name:"moon",image:"moon.png",caption:"The bright moon in the Halloween night sky."},
+ {name:"vampire",image:"vampire.png",caption:"A mysterious creature of the night."},
+ {name:"mummy",image:"mummy.png",caption:"An ancient character wrapped in bandages."},
+ {name:"owl",image:"owl.png",caption:"A wise night bird that flies in the dark."},
+ {name:"zombie",image:"zombie.png",caption:"A spooky monster walking around at night."},
+ {name:"pumpkin",image:"pumpkin.png",caption:"A classic Halloween pumpkin!"},
+ {name:"spider",image:"spider.png",caption:"A little creepy crawler with eight legs."},
+ {name:"bat",image:"bat.png",caption:"A flying night animal seen at Halloween."}
+];
+let characterHubIndex=0;
+let characterHubOpen=false;
+let utilityPausedAt=0;
+let spellingState={index:0,score:0,round:1,target:"",letters:[],slots:[],selected:null};
+let matchingState={cards:[],flipped:[],moves:0,pairs:0,locked:false};
+
+function openCharacterHub(){
+ if(characterHubOpen)return;
+ if(!game.active){showToast("Open the Character Hub while the game is running.");return;}
+ characterHubOpen=true;
+ utilityPausedAt=Date.now();
+ clearInterval(game.interval);
+ game.active=false;
+ $("characterHubModal").classList.remove("hidden");
+ switchHubTab("presentation");
+ renderCharacterPresentation();
+}
+function closeCharacterHub(){
+ if(!characterHubOpen)return;
+ characterHubOpen=false;
+ $("characterHubModal").classList.add("hidden");
+ if(game.roundTransition)return;
+ if(utilityPausedAt){
+  const pausedMs=Date.now()-utilityPausedAt;
+  game.endTime+=pausedMs;
+  game.questionStarted=game.questionStarted.map(t=>t? t+pausedMs:t);
+ }
+ utilityPausedAt=0;
+ game.active=true;
+ updateTimer();
+ clearInterval(game.interval);game.interval=setInterval(updateTimer,250);
+}
+function switchHubTab(tab){
+ document.querySelectorAll(".hubTab").forEach(b=>b.classList.toggle("active",b.dataset.hubtab===tab));
+ document.querySelectorAll(".hubPanel").forEach(p=>p.classList.toggle("active",p.dataset.hubpanel===tab));
+ if(tab==="presentation")renderCharacterPresentation();
+ if(tab==="spelling")initSpellingGame();
+ if(tab==="matching")newMatchingGame();
+}
+function renderCharacterPresentation(){
+ const c=CHARACTER_HUB_DATA[characterHubIndex];
+ $("characterCounter").textContent=`${characterHubIndex+1} / ${CHARACTER_HUB_DATA.length}`;
+ $("characterPresentImage").src=c.image;
+ $("characterPresentImage").alt=c.name;
+ $("characterPresentName").textContent=c.name;
+ $("characterPresentCaption").textContent=c.caption;
+ $("characterPrev").disabled=characterHubIndex===0;
+ $("characterNext").disabled=characterHubIndex===CHARACTER_HUB_DATA.length-1;
+ renderAllCharacters();
+}
+function renderAllCharacters(){
+ const grid=$("allCharactersGrid");
+ grid.innerHTML=CHARACTER_HUB_DATA.map((c,i)=>`<button class="allCharacterCard" type="button" data-character-index="${i}"><img src="${escapeHTML(c.image)}" alt="${escapeHTML(c.name)}"><b>${escapeHTML(c.name)}</b><span>Character ${i+1}</span></button>`).join("");
+ grid.querySelectorAll("[data-character-index]").forEach(b=>b.addEventListener("click",()=>{
+  characterHubIndex=Number(b.dataset.characterIndex);renderCharacterPresentation();grid.classList.add("hidden");
+  $("characterAllBtn").textContent="👻 SHOW ALL CHARACTERS";
+ }));
+}
+function toggleAllCharacters(){
+ const grid=$("allCharactersGrid"),btn=$("characterAllBtn");
+ const show=grid.classList.contains("hidden");
+ grid.classList.toggle("hidden",!show);
+ btn.textContent=show?"⬆️ HIDE ALL CHARACTERS":"👻 SHOW ALL CHARACTERS";
+ if(show)grid.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+function initSpellingGame(){
+ spellingState.index=Math.floor(Math.random()*CHARACTER_HUB_DATA.length);
+ spellingState.target=CHARACTER_HUB_DATA[spellingState.index].name.toLowerCase();
+ spellingState.letters=shuffle(spellingState.target.split(""));
+ spellingState.slots=Array(spellingState.target.length).fill(null);
+ spellingState.selected=null;
+ const c=CHARACTER_HUB_DATA[spellingState.index];
+ $("spellingImage").src=c.image;$("spellingImage").alt=c.name;
+ $("spellingRoundText").textContent=`Round ${spellingState.round}`;
+ $("spellingScoreText").textContent=`⭐ ${spellingState.score}`;
+ $("spellingMessage").textContent="Drag the letters into the boxes!";
+ renderSpellingFromIndices();
+}
+function renderSpelling(){
+ const word=$("spellingWordArea"),letters=$("spellingLetters");
+ word.innerHTML="";
+ spellingState.slots.forEach((letter,i)=>{
+  const slot=document.createElement("button");slot.type="button";slot.className="spellingSlot"+(letter?" filled":"");slot.dataset.slot=i;slot.textContent=(letter||"_").toLowerCase();
+  slot.addEventListener("pointerover",()=>slot.classList.add("over"));slot.addEventListener("pointerout",()=>slot.classList.remove("over"));
+  slot.addEventListener("dragover",e=>{e.preventDefault();slot.classList.add("over")});slot.addEventListener("dragleave",()=>slot.classList.remove("over"));
+  slot.addEventListener("drop",e=>{e.preventDefault();slot.classList.remove("over");placeSpellingLetter(Number(e.dataTransfer.getData("text/plain")),i)});
+  slot.addEventListener("click",()=>{
+   if(spellingState.selected!==null){placeSpellingLetter(spellingState.selected,i);spellingState.selected=null;renderSpelling();}
+  });
+  word.appendChild(slot);
+ });
+ letters.innerHTML="";
+ spellingState.letters.forEach((letter,i)=>{
+  const b=document.createElement("button");b.type="button";b.className="spellLetter"+(spellingState.slots.includes(i)?" used":"")+(spellingState.selected===i?" selected":"");b.textContent=letter.toLowerCase();b.draggable=true;b.dataset.letterIndex=i;
+  b.addEventListener("dragstart",e=>{if(spellingState.slots.includes(i)){e.preventDefault();return}e.dataTransfer.setData("text/plain",String(i));b.classList.add("dragging")});
+  b.addEventListener("dragend",()=>b.classList.remove("dragging"));
+  b.addEventListener("click",()=>{if(spellingState.slots.includes(i))return;spellingState.selected=spellingState.selected===i?null:i;renderSpelling()});
+  letters.appendChild(b);
+ });
+}
+function placeSpellingLetter(letterIndex,slotIndex){
+ if(!Number.isInteger(letterIndex)||!Number.isInteger(slotIndex))return;
+ if(spellingState.slots.includes(letterIndex))return;
+ if(spellingState.slots[slotIndex]!==null){
+  const oldLetter=spellingState.slots[slotIndex];
+  const oldIdx=spellingState.slots.indexOf(oldLetter);
+  if(oldIdx>=0){} // The old tile becomes available again automatically.
+ }
+ // If the chosen letter is already elsewhere, do not duplicate it.
+ spellingState.slots=spellingState.slots.map((v,i)=>i===slotIndex?null:v);
+ const firstEmpty=spellingState.slots.findIndex(v=>v===letterIndex);
+ if(firstEmpty>=0)spellingState.slots[firstEmpty]=null;
+ spellingState.slots[slotIndex]=letterIndex;
+ // Store the index, not the character, so duplicate letters work correctly.
+ renderSpellingFromIndices();
+}
+function renderSpellingFromIndices(){
+ const word=$("spellingWordArea"),letters=$("spellingLetters");word.innerHTML="";
+ spellingState.slots.forEach((letterIndex,i)=>{
+  const slot=document.createElement("button");slot.type="button";slot.className="spellingSlot"+(letterIndex!==null?" filled":"");slot.dataset.slot=i;slot.textContent=letterIndex===null?"_":spellingState.letters[letterIndex].toLowerCase();
+  slot.addEventListener("dragover",e=>{e.preventDefault();slot.classList.add("over")});slot.addEventListener("dragleave",()=>slot.classList.remove("over"));slot.addEventListener("drop",e=>{e.preventDefault();slot.classList.remove("over");placeSpellingLetter(Number(e.dataTransfer.getData("text/plain")),i)});
+  slot.addEventListener("click",()=>{if(letterIndex!==null){spellingState.slots[i]=null;renderSpellingFromIndices() } else if(spellingState.selected!==null){placeSpellingLetter(spellingState.selected,i);spellingState.selected=null;}});
+  word.appendChild(slot);
+ });
+ letters.innerHTML="";
+ spellingState.letters.forEach((letter,i)=>{
+  const b=document.createElement("button");b.type="button";b.className="spellLetter"+(spellingState.slots.includes(i)?" used":"")+(spellingState.selected===i?" selected":"");b.textContent=letter.toLowerCase();b.draggable=true;b.dataset.letterIndex=i;
+  b.addEventListener("dragstart",e=>{if(spellingState.slots.includes(i)){e.preventDefault();return}e.dataTransfer.setData("text/plain",String(i));b.classList.add("dragging")});b.addEventListener("dragend",()=>b.classList.remove("dragging"));
+  b.addEventListener("click",()=>{if(spellingState.slots.includes(i))return;spellingState.selected=spellingState.selected===i?null:i;renderSpellingFromIndices()});
+  letters.appendChild(b);
+ });
+}
+function resetSpelling(){
+ spellingState.slots=Array(spellingState.target.length).fill(null);spellingState.selected=null;$("spellingMessage").textContent="Drag the letters into the boxes!";renderSpellingFromIndices();
+}
+function checkSpelling(){
+ const built=spellingState.slots.map(i=>i===null?"":spellingState.letters[i]).join("");
+ if(spellingState.slots.includes(null)){ $("spellingMessage").textContent="🕷️ Fill every box first!";audio("sndClick");return; }
+ if(built===spellingState.target){
+  spellingState.score+=10;$("spellingScoreText").textContent=`⭐ ${spellingState.score}`;$("spellingMessage").textContent=`🎃 CORRECT! ${spellingState.target} +10 points!`;audio("sndWinner");
+ }else{$("spellingMessage").textContent=`👻 Almost! Try again. The word has ${spellingState.target.length} letters.`;audio("sndClick")}
+}
+function nextSpellingWord(){spellingState.round++;initSpellingGame()}
+
+function newMatchingGame(){
+ const chosen=shuffle(CHARACTER_HUB_DATA).slice(0,6);
+ matchingState.cards=shuffle(chosen.flatMap((c,i)=>[
+  {id:`${i}-img`,pair:i,type:"image",image:c.image,name:c.name},
+  {id:`${i}-name`,pair:i,type:"name",image:c.image,name:c.name}
+ ]));
+ matchingState.flipped=[];matchingState.moves=0;matchingState.pairs=0;matchingState.locked=false;
+ renderMatching();
+}
+function renderMatching(){
+ $("matchingMoves").textContent=`Moves: ${matchingState.moves}`;$("matchingPairs").textContent=`Pairs: ${matchingState.pairs} / 6`;
+ const grid=$("matchingGrid");grid.innerHTML="";
+ matchingState.cards.forEach((card,i)=>{
+  const b=document.createElement("button");b.type="button";b.className="matchCard";b.dataset.index=i;
+  b.innerHTML=`<span class="matchBack">🎃</span>`;
+  b.addEventListener("click",()=>flipMatchingCard(i));grid.appendChild(b);
+ });
+ $("matchingMessage").textContent="Find all the pairs!";
+}
+function flipMatchingCard(index){
+ if(matchingState.locked||matchingState.flipped.includes(index))return;
+ const el=$("matchingGrid").querySelector(`[data-index="${index}"]`);if(!el||el.classList.contains("matched"))return;
+ const card=matchingState.cards[index];el.classList.add("flipped");el.innerHTML=card.type==="image"?`<img src="${escapeHTML(card.image)}" alt="${escapeHTML(card.name)}">`:`<span class="matchName">${escapeHTML(card.name)}</span>`;
+ matchingState.flipped.push(index);
+ if(matchingState.flipped.length<2)return;
+ matchingState.moves++;$("matchingMoves").textContent=`Moves: ${matchingState.moves}`;matchingState.locked=true;
+ const [a,b]=matchingState.flipped,ca=matchingState.cards[a],cb=matchingState.cards[b];
+ if(ca.pair===cb.pair){
+  setTimeout(()=>{
+   [a,b].forEach(i=>$("matchingGrid").querySelector(`[data-index="${i}"]`)?.classList.add("matched"));
+   matchingState.pairs++;matchingState.flipped=[];matchingState.locked=false;$("matchingPairs").textContent=`Pairs: ${matchingState.pairs} / 6`;
+   if(matchingState.pairs===6){$("matchingMessage").textContent="🏆 AMAZING! You found all the Halloween pairs!";audio("sndWinner")}else{$("matchingMessage").textContent="✨ Great match! Find the next pair.";audio("sndPoint")}
+  },450);
+ }else{
+  setTimeout(()=>{
+   [a,b].forEach(i=>{const e=$("matchingGrid").querySelector(`[data-index="${i}"]`);if(e){e.classList.remove("flipped");e.innerHTML=`<span class="matchBack">🎃</span>`}});
+   matchingState.flipped=[];matchingState.locked=false;$("matchingMessage").textContent="👻 Not a match. Try again!";audio("sndClick");
+  },700);
+ }
+}
+
+$("characterToolBtn").addEventListener("click",openCharacterHub);
+$("closeCharacterHub").addEventListener("click",closeCharacterHub);
+$("characterHubModal").addEventListener("click",e=>{if(e.target===$("characterHubModal"))closeCharacterHub()});
+document.querySelectorAll(".hubTab").forEach(b=>b.addEventListener("click",()=>switchHubTab(b.dataset.hubtab)));
+$("characterPrev").addEventListener("click",()=>{if(characterHubIndex>0){characterHubIndex--;renderCharacterPresentation()}});
+$("characterNext").addEventListener("click",()=>{if(characterHubIndex<CHARACTER_HUB_DATA.length-1){characterHubIndex++;renderCharacterPresentation()}});
+$("characterAllBtn").addEventListener("click",toggleAllCharacters);
+$("spellingResetBtn").addEventListener("click",resetSpelling);
+$("spellingCheckBtn").addEventListener("click",checkSpelling);
+$("spellingNextBtn").addEventListener("click",nextSpellingWord);
+$("matchingNewBtn").addEventListener("click",newMatchingGame);
 </script>
 </body>
 </html>
