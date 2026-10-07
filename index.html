@@ -225,6 +225,7 @@ textarea{min-height:75px;resize:vertical}
 .presentationControls{display:flex;justify-content:center;margin-top:4px}.allCharactersGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin-top:12px;max-height:45vh;overflow:auto;padding:4px}.allCharacterCard{background:rgba(255,255,255,.055);border:1px solid rgba(255,211,77,.28);border-radius:14px;padding:8px;text-align:center;cursor:pointer;transition:.15s}.allCharacterCard:hover{transform:translateY(-3px) scale(1.02);border-color:var(--gold);background:rgba(255,123,0,.12)}.allCharacterCard img{width:100%;height:100px;object-fit:contain;filter:drop-shadow(0 5px 8px rgba(0,0,0,.4))}.allCharacterCard b{display:block;color:#ffd34d;margin-top:2px;font-size:16px}.allCharacterCard span{display:block;color:#d9c9e5;font-size:12px}
 .spellingInstructions,.matchingInstructions{text-align:center;color:#e9dbf5;font-size:14px;margin-bottom:8px}.spellingScoreLine,.matchingTopLine{display:flex;justify-content:space-between;gap:10px;color:#ffd34d;font-weight:bold;max-width:720px;margin:0 auto 7px}.spellingCharacterFrame{width:min(230px,58vw);margin:0 auto 8px;text-align:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,211,77,.25);border-radius:16px;padding:6px}.spellingCharacterFrame img{width:100%;height:125px;object-fit:contain;filter:drop-shadow(0 5px 8px rgba(0,0,0,.45))}.spellingCharacterFrame div{font-weight:bold;color:#fff3b0;font-size:14px}
 .spellingWordArea{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;min-height:58px;margin:7px auto}.spellingSlot{width:44px;height:50px;border:2px dashed #9b71b8;border-radius:10px;background:rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;color:#fff;font-size:25px;font-weight:900;cursor:pointer;transition:.15s}.spellingSlot.over{border-color:var(--gold);background:rgba(255,211,77,.12);transform:scale(1.04)}.spellingSlot.filled{border-style:solid;border-color:#7c51a0;background:linear-gradient(145deg,#43205d,#241238)}
+.spellingFlyClone{position:fixed;z-index:250;pointer-events:none;margin:0;transition:transform .22s cubic-bezier(.2,.8,.2,1),opacity .22s ease;will-change:transform,opacity}
 .spellingLetters{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;min-height:58px;max-width:800px;margin:0 auto;padding:4px}.spellLetter{width:46px;height:46px;border:2px solid rgba(255,255,255,.18);border-radius:10px;background:linear-gradient(145deg,#6b2d83,#32154d);color:#fff;font-size:24px;font-weight:900;cursor:grab;touch-action:none;user-select:none;box-shadow:0 4px 0 rgba(0,0,0,.22);transition:.12s}.spellLetter:hover{border-color:var(--gold);transform:translateY(-2px)}.spellLetter.used{opacity:.22;transform:scale(.9);cursor:default}.spellLetter.dragging{opacity:.4}.spellLetter.selected{border-color:var(--gold);box-shadow:0 0 12px rgba(255,211,77,.4)}
 .spellingMessage{min-height:24px;text-align:center;font-weight:bold;color:#ffd34d;margin:4px 0}.spellingActions{justify-content:center;flex-wrap:wrap;margin-top:4px}
 .matchingGrid{display:grid;grid-template-columns:repeat(4,minmax(75px,1fr));gap:9px;max-width:720px;margin:7px auto}.matchCard{aspect-ratio:1/1;border:2px solid rgba(255,255,255,.13);border-radius:13px;background:linear-gradient(145deg,#32164b,#180a29);position:relative;cursor:pointer;transform-style:preserve-3d;transition:transform .25s,border-color .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;padding:6px;overflow:hidden}.matchCard:hover{border-color:var(--gold);box-shadow:0 0 12px rgba(255,211,77,.16)}.matchCard.flipped,.matchCard.matched{background:linear-gradient(145deg,#57216c,#2d103d);border-color:var(--gold)}.matchCard img{width:88%;height:78%;object-fit:contain}.matchCard .matchName{font-size:clamp(13px,1.7vw,18px);font-weight:900;color:#fff3b0;text-transform:none}.matchCard .matchBack{font-size:clamp(26px,4vw,42px);filter:drop-shadow(0 3px 5px rgba(255,123,0,.25))}.matchCard.matched{border-color:#72efad;box-shadow:0 0 14px rgba(114,239,173,.2);cursor:default}.matchCard.matched:after{content:"✓";position:absolute;right:5px;top:2px;color:#72efad;font-size:22px;font-weight:900}
@@ -384,7 +385,7 @@ textarea{min-height:75px;resize:vertical}
 
   <section class="hubPanel" id="hubSpelling" data-hubpanel="spelling">
    <div class="hubSectionTitle">🔤 Halloween Spelling Challenge</div>
-   <div class="spellingInstructions">Drag the letters into the boxes to spell the character. You can also tap a letter, then tap an empty box.</div>
+   <div class="spellingInstructions">Drag the letters into the boxes, or simply tap a letter and it will fly into the next empty box.</div>
    <div class="spellingScoreLine"><span id="spellingRoundText">Round 1</span><span id="spellingScoreText">⭐ 0</span></div>
    <div class="spellingCharacterFrame"><img id="spellingImage" src="ghost.png" alt="Ghost"><div id="spellingClue">What character is this?</div></div>
    <div class="spellingWordArea" id="spellingWordArea"></div>
@@ -615,7 +616,7 @@ function playIntroSpooky(){
 $("introEnter").addEventListener("click",()=>{startTitleMusic();$("intro").classList.add("hidden");$("setup").classList.remove("hidden");syncSettingsUI();});
 
 /* SETTINGS EVENTS */
-$("teamCount").addEventListener("change",()=>{settings.teams=Number($("teamCount").value);syncSettingsUI()});
+$("teamCount").addEventListener("change",()=>{settings.teams=Number($("teamCount").value);syncSettingsUI();savePrefs();if(game.active)refreshRunningGameLayout()});
 $("duration").addEventListener("change",()=>{
  if($("duration").value==="custom"){
   settings.duration=Math.max(1,Math.min(60,Number($("customTime").value)||6))*60;
@@ -763,7 +764,11 @@ function startGame(){
  game.scores=Array(settings.teams).fill(0);game.busy=Array(settings.teams).fill(false);
  game.current=Array(settings.teams).fill(null);game.questionStarted=Array(settings.teams).fill(Date.now());
  game.queues=Array(settings.teams).fill(0).map((_,team)=>makeQueue(team));
- renderTeams();nextQuestionForAll();updateTimer();clearInterval(game.interval);game.interval=setInterval(updateTimer,250);
+ renderTeams();
+ $("teamQuestions").innerHTML="";
+ renderQuestion();
+ nextQuestionForAll();
+ updateTimer();clearInterval(game.interval);game.interval=setInterval(updateTimer,250);
  startMusic();
 }
 function makeQueue(team){
@@ -1122,6 +1127,25 @@ function endGameToSettings(){
 $("playAgain").addEventListener("click",()=>{$("winnerModal").classList.add("hidden");$("roundWinnerModal").classList.add("hidden");$("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");$("egg").classList.remove("explode","round2Hit","round2Size");$("egg").style.animation="";startGame()});
 $("winnerSettings").addEventListener("click",()=>{$("winnerModal").classList.add("hidden");endGameToSettings()});
 
+/* Rebuild the live game immediately when structural settings change. */
+function refreshRunningGameLayout(){
+ if(!game.active||characterHubOpen||game.roundTransition)return;
+ game.busy=Array(settings.teams).fill(false);
+ game.scores=Array.from({length:settings.teams},(_,i)=>game.scores?.[i]||0);
+ game.roundScores=Array.from({length:settings.teams},(_,i)=>game.roundScores?.[i]||0);
+ game.round1Scores=Array.from({length:settings.teams},(_,i)=>game.round1Scores?.[i]||0);
+ game.round2Scores=Array.from({length:settings.teams},(_,i)=>game.round2Scores?.[i]||0);
+ game.current=Array(settings.teams).fill(null);
+ game.questionStarted=Array(settings.teams).fill(performance.now());
+ game.queues=Array(settings.teams).fill(0).map((_,team)=>makeQueue(team));
+ renderTeams();
+ $("teamQuestions").innerHTML="";
+ renderQuestion();
+ nextQuestionForAll();
+ applyBackground($("gameBg"),settings.background);
+ updateMusic();
+}
+
 /* Save settings locally, but never overwrite question bank unexpectedly. */
 function savePrefs(){
  try{localStorage.setItem("monsterEggPrefs",JSON.stringify(settings))}catch(e){}
@@ -1142,6 +1166,7 @@ function loadQuestionBank(){
  document.addEventListener(evt,e=>{
   if(["team1","team2","team3","customTime","duration","backgroundSelect","teamCount","musicVol","sfxVol"].includes(e.target.id)){
    readSettings();savePrefs();
+   if(game.active && ["team1","team2","team3","teamCount","backgroundSelect"].includes(e.target.id))refreshRunningGameLayout();
   }
  });
 });
@@ -1258,7 +1283,7 @@ function initSpellingGame(){
  $("spellingImage").src=c.image;$("spellingImage").alt=c.name;
  $("spellingRoundText").textContent=`Round ${spellingState.round}`;
  $("spellingScoreText").textContent=`⭐ ${spellingState.score}`;
- $("spellingMessage").textContent="Drag the letters into the boxes!";
+ $("spellingMessage").textContent="Tap a letter or drag it into a box!";
  renderSpellingFromIndices();
 }
 function renderSpelling(){
@@ -1299,19 +1324,48 @@ function placeSpellingLetter(letterIndex,slotIndex){
  // Store the index, not the character, so duplicate letters work correctly.
  renderSpellingFromIndices();
 }
+function animateSpellingLetterToSlot(letterIndex,slotIndex){
+ if(!Number.isInteger(letterIndex)||!Number.isInteger(slotIndex))return;
+ if(spellingState.slots.includes(letterIndex))return;
+ const letterEl=document.querySelector(`.spellLetter[data-letter-index="${letterIndex}"]`);
+ const slotEl=document.querySelector(`.spellingSlot[data-slot="${slotIndex}"]`);
+ if(!letterEl||!slotEl){placeSpellingLetter(letterIndex,slotIndex);return;}
+ const from=letterEl.getBoundingClientRect(),to=slotEl.getBoundingClientRect();
+ const clone=letterEl.cloneNode(true);clone.classList.remove("used","selected");clone.classList.add("spellingFlyClone");
+ clone.style.left=from.left+"px";clone.style.top=from.top+"px";clone.style.width=from.width+"px";clone.style.height=from.height+"px";
+ document.body.appendChild(clone);
+ const dx=to.left+to.width/2-(from.left+from.width/2),dy=to.top+to.height/2-(from.top+from.height/2);
+ requestAnimationFrame(()=>{clone.style.transform=`translate(${dx}px,${dy}px) scale(.78)`;clone.style.opacity=".15"});
+ setTimeout(()=>{clone.remove();placeSpellingLetter(letterIndex,slotIndex)},220);
+}
+function getFirstEmptySpellingSlot(){return spellingState.slots.findIndex(v=>v===null)}
 function renderSpellingFromIndices(){
  const word=$("spellingWordArea"),letters=$("spellingLetters");word.innerHTML="";
  spellingState.slots.forEach((letterIndex,i)=>{
-  const slot=document.createElement("button");slot.type="button";slot.className="spellingSlot"+(letterIndex!==null?" filled":"");slot.dataset.slot=i;slot.textContent=letterIndex===null?"_":spellingState.letters[letterIndex].toLowerCase();
-  slot.addEventListener("dragover",e=>{e.preventDefault();slot.classList.add("over")});slot.addEventListener("dragleave",()=>slot.classList.remove("over"));slot.addEventListener("drop",e=>{e.preventDefault();slot.classList.remove("over");placeSpellingLetter(Number(e.dataTransfer.getData("text/plain")),i)});
-  slot.addEventListener("click",()=>{if(letterIndex!==null){spellingState.slots[i]=null;renderSpellingFromIndices() } else if(spellingState.selected!==null){placeSpellingLetter(spellingState.selected,i);spellingState.selected=null;}});
+  const slot=document.createElement("button");slot.type="button";slot.className="spellingSlot"+(letterIndex!==null?" filled":"");slot.dataset.slot=i;
+  slot.textContent=letterIndex===null?"_":spellingState.letters[letterIndex].toLowerCase();
+  slot.addEventListener("dragover",e=>{e.preventDefault();slot.classList.add("over")});slot.addEventListener("dragleave",()=>slot.classList.remove("over"));
+  slot.addEventListener("drop",e=>{e.preventDefault();slot.classList.remove("over");placeSpellingLetter(Number(e.dataTransfer.getData("text/plain")),i)});
+  slot.addEventListener("click",()=>{if(letterIndex!==null){spellingState.slots[i]=null;renderSpellingFromIndices()}else if(spellingState.selected!==null){animateSpellingLetterToSlot(spellingState.selected,i);spellingState.selected=null}});
   word.appendChild(slot);
  });
  letters.innerHTML="";
  spellingState.letters.forEach((letter,i)=>{
-  const b=document.createElement("button");b.type="button";b.className="spellLetter"+(spellingState.slots.includes(i)?" used":"")+(spellingState.selected===i?" selected":"");b.textContent=letter.toLowerCase();b.draggable=true;b.dataset.letterIndex=i;
-  b.addEventListener("dragstart",e=>{if(spellingState.slots.includes(i)){e.preventDefault();return}e.dataTransfer.setData("text/plain",String(i));b.classList.add("dragging")});b.addEventListener("dragend",()=>b.classList.remove("dragging"));
-  b.addEventListener("click",()=>{if(spellingState.slots.includes(i))return;spellingState.selected=spellingState.selected===i?null:i;renderSpellingFromIndices()});
+  const b=document.createElement("button");b.type="button";b.className="spellLetter"+(spellingState.slots.includes(i)?" used":"")+(spellingState.selected===i?" selected":"");
+  b.textContent=letter.toLowerCase();b.draggable=true;b.dataset.letterIndex=i;
+  b.addEventListener("dragstart",e=>{if(spellingState.slots.includes(i)){e.preventDefault();return}e.dataTransfer.setData("text/plain",String(i));b.classList.add("dragging")});
+  b.addEventListener("dragend",()=>b.classList.remove("dragging"));
+  const choose=e=>{
+   if(spellingState.slots.includes(i))return;
+   if(e.cancelable)e.preventDefault();
+   if(b.dataset.pointerHandled==="1")return;
+   b.dataset.pointerHandled="1";
+   const target=getFirstEmptySpellingSlot();
+   if(target>=0){spellingState.selected=null;animateSpellingLetterToSlot(i,target)}
+  };
+  b.addEventListener("pointerdown",choose,{passive:false});
+  b.addEventListener("click",e=>{if(b.dataset.pointerHandled==="1"){b.dataset.pointerHandled="0";return}if(!spellingState.slots.includes(i)){const target=getFirstEmptySpellingSlot();if(target>=0){spellingState.selected=null;animateSpellingLetterToSlot(i,target)}}});
+  b.addEventListener("pointercancel",()=>{b.dataset.pointerHandled="0"});
   letters.appendChild(b);
  });
 }
