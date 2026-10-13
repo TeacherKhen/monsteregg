@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Monster Egg: Halloween Gold Rush</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Luckiest+Guy&display=swap');
+
+:root{
+  --purple:#24113f;--purple2:#3d1b68;--orange:#ff8a00;--gold:#ffd34d;
+  --green:#49d17d;--red:#ff5c6c;--white:#fff;--panel:rgba(18,8,36,.86);
+  --line:rgba(255,255,255,.18);--shadow:0 10px 35px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font-family:"Comic Sans MS","Comic Sans",cursive;background:#140921;color:#fff;overflow:hidden}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+.hidden{display:none!important}
+.screen{position:fixed;inset:0;overflow:hidden}
+.bg{position:absolute;inset:0;background:#24113f center/cover no-repeat;z-index:-3}
+.overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,3,25,.48),rgba(20,5,37,.74));z-index:-2}
+.decor{position:absolute;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.decor span{position:absolute;opacity:.15;font-size:clamp(25px,4vw,65px);animation:drift 7s ease-in-out infinite alternate}
+.decor span:nth-child(1){left:4%;top:12%}.decor span:nth-child(2){right:6%;top:18%;animation-delay:1s}
+.decor span:nth-child(3){left:10%;bottom:12%;animation-delay:2s}.decor span:nth-child(4){right:14%;bottom:10%;animation-delay:3s}
+@keyframes drift{to{transform:translateY(-20px) rotate(8deg)}}
+.titleFont{font-family:"Creepster","Luckiest Guy",Impact,cursive;letter-spacing:2px}
+.screenCenter{height:100%;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{width:min(1050px,96vw);max-height:94vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:25px;box-shadow:var(--shadow);backdrop-filter:blur(9px)}
+.logo{text-align:center;color:var(--gold);font-size:clamp(42px,7vw,78px);line-height:.95;text-shadow:0 5px 0 #7a3300,0 0 24px #ff8a00;margin:8px 0 18px}
+.subtitle{text-align:center;font-size:18px;opacity:.9;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.section{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:16px;padding:16px}
+.section h3{margin:0 0 12px;color:var(--gold)}
+label{display:block;font-weight:bold;margin:8px 0 5px}
+input[type=text],input[type=number],input[type=file],select,textarea{
+ width:100%;padding:11px 12px;border-radius:10px;border:1px solid #755a93;background:#160a27;color:#fff;outline:none;
+}
+input[type=range]{width:100%}
+textarea{min-height:75px;resize:vertical}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{
+ border:0;border-radius:12px;padding:11px 16px;background:linear-gradient(135deg,#ff9d1c,#f25c1b);
+ color:#fff;font-weight:bold;box-shadow:0 4px 0 #8b310b;transition:.15s transform,.15s filter;
+}
+.btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 #8b310b}
+.btn.secondary{background:linear-gradient(135deg,#6d4bc1,#4c2b91);box-shadow:0 4px 0 #2c1958}
+.btn.green{background:linear-gradient(135deg,#42dc87,#199b59);box-shadow:0 4px 0 #11633a}
+.btn.red{background:linear-gradient(135deg,#ff6877,#d9344c);box-shadow:0 4px 0 #7f1726}
+.btn.big{font-size:21px;padding:15px 24px}
+.help{font-size:13px;opacity:.7}
+.rangeVal{min-width:52px;text-align:right;color:var(--gold)}.customTimeChoices{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.timeChoice{border:1px solid #8a69ad;background:#24103f;color:#fff;border-radius:8px;padding:7px 10px;font-weight:bold;cursor:pointer}.timeChoice:hover,.timeChoice.active{background:#ff7a18;border-color:#ffc04d}.customTimeWrap input{margin-bottom:2px}
+#intro{display:flex;align-items:center;justify-content:center;text-align:center;background:#10051d;z-index:100}
+.introBg{position:absolute;inset:0;background:url("intro.gif") center/cover no-repeat;z-index:0}
+.introOverlay{position:absolute;inset:0;background:radial-gradient(circle at center,rgba(15,3,30,.12),rgba(10,2,20,.68));z-index:1}
+.introContent{position:relative;z-index:2;padding:24px;max-width:900px;width:94vw;text-shadow:0 4px 12px #000}
+.introTitle{font-size:clamp(55px,10vw,120px);line-height:.9;color:#ffb52e;text-shadow:0 5px 0 #6d2100,0 0 30px #ff6b00,0 0 60px #9b27ff;animation:introPulse 2s ease-in-out infinite}
+.introCreator{font-size:clamp(18px,3vw,30px);font-weight:bold;margin:24px 0 28px;color:#fff}.introCreator>span{font-size:.8em;color:#ffd34d}.introGameTitle{display:flex;align-items:center;justify-content:center;gap:.18em;white-space:nowrap;font-family:"Creepster","Luckiest Guy",Impact,cursive;font-size:clamp(30px,5vw,58px);line-height:1.05;letter-spacing:1px;margin-bottom:12px;filter:drop-shadow(0 4px 8px #000)}.titleMonster{color:#ffb52e;text-shadow:0 3px 0 #6d2100,0 0 18px #ff6b00}.titleHalloween{color:#ff8a00;text-shadow:0 3px 0 #6d2100,0 0 22px #ff6b00,0 0 34px #9b27ff}.titleGold{color:#ffd34d;text-shadow:0 3px 0 #6d2100,0 0 18px #ff9d1c}
+.introEnter{animation:introButton 1.4s ease-in-out infinite alternate}
+@keyframes introPulse{50%{transform:scale(1.035);filter:brightness(1.12)}}
+@keyframes introButton{to{transform:translateY(-4px) scale(1.025)}}
+#game{display:none}
+.gameUI{height:100%;display:grid;grid-template-rows:auto auto 1fr auto;gap:8px;padding:10px;position:relative}
+.topbar{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.gameTitle{font-size:clamp(24px,4vw,48px);color:var(--gold);text-shadow:0 3px #6d2800;white-space:nowrap}
+.timer{font-size:clamp(24px,4vw,44px);font-weight:bold;background:rgba(0,0,0,.48);padding:5px 18px;border:2px solid var(--gold);border-radius:16px;text-align:center;min-width:150px}
+.timer.warning{animation:pulse .7s infinite;color:#ff6877;border-color:#ff6877}
+@keyframes pulse{50%{transform:scale(1.06)}}
+.topActions{display:flex;justify-content:flex-end;gap:7px}
+.iconBtn{border:1px solid var(--line);background:rgba(0,0,0,.4);color:#fff;border-radius:10px;padding:8px 11px}
+.endRoundBtn{border-color:#ff6676;background:linear-gradient(135deg,#d9344c,#8f182b);box-shadow:0 3px 0 #5f101d;font-weight:bold;color:#fff;min-width:120px}
+.endRoundBtn:hover{background:linear-gradient(135deg,#f04b60,#a51d32)}
+.endRoundBtn:active{transform:translateY(2px);box-shadow:0 1px 0 #5f101d}
+.questionBar{display:none}
+.teamQuestions{display:grid;gap:8px;min-height:72px}
+.teamQuestions.two{grid-template-columns:repeat(2,1fr)}
+.teamQuestions.three{grid-template-columns:repeat(3,1fr)}
+.teamQuestion{background:rgba(12,4,25,.84);border:2px solid rgba(255,211,77,.45);border-radius:14px;padding:9px 12px;text-align:center;min-height:82px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.teamQuestion .questionText{font-size:clamp(16px,2vw,27px);font-weight:bold}
+.teamQuestion img{width:auto;height:auto;max-width:min(220px,32vw);max-height:105px;object-fit:contain;border-radius:10px;vertical-align:middle;margin:6px auto;display:block;filter:drop-shadow(0 3px 5px rgba(0,0,0,.35))}
+.questionLabel{display:block;color:var(--gold);font-size:12px;font-weight:bold;margin-bottom:2px}
+.questionContent{max-width:100%;overflow:hidden}
+.questionContent img{object-fit:contain;max-width:100%;height:auto}
+.questionText{font-size:clamp(20px,2.8vw,34px);font-weight:bold}
+.arena{position:relative;min-height:0;display:flex;align-items:center;justify-content:center}
+.eggWrap{position:relative;width:min(100vw,90vh,1200px);height:min(100vw,90vh,1200px);display:flex;align-items:center;justify-content:center}.egg{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.5));animation:eggFloat 2.4s ease-in-out infinite}.eggWrap.round2Mode{width:min(100vw,94vh,1260px);height:min(100vw,94vh,1260px)}.egg.round2Size{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 0 14px rgba(255,50,50,.95)) drop-shadow(0 14px 28px rgba(0,0,0,.85))}
+@keyframes eggFloat{50%{transform:translateY(-13px) rotate(1deg)}}
+.egg.hit{animation:eggHit .55s ease}
+.egg.round2Hit{animation:round2Hit .72s ease}
+@keyframes round2Hit{0%{transform:scale(1) rotate(0)}18%{transform:scale(1.08) translateX(-18px) rotate(-4deg)}36%{transform:scale(1.1) translateX(20px) rotate(5deg)}54%{transform:scale(1.08) translateX(-14px) rotate(-3deg)}72%{transform:scale(1.05) translateX(10px) rotate(2deg)}100%{transform:scale(1) rotate(0)}}
+/* Round 2 depth movement: the monster slowly comes forward (bigger) and moves back (normal size). */
+.egg.round2Size{animation:round2Advance 2.8s ease-in-out infinite;transform-origin:center center;will-change:transform}
+@keyframes round2Advance{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.22) translateY(-3px)}}
+@keyframes eggHit{20%{transform:translateX(-18px) rotate(-5deg)}40%{transform:translateX(18px) rotate(5deg)}60%{transform:translateX(-12px)}80%{transform:translateX(10px)}100%{transform:none}}
+.egg.explode{animation:eggOut .9s forwards}
+@keyframes eggOut{50%{transform:scale(1.35) rotate(8deg);filter:brightness(2)}100%{transform:scale(0);opacity:0}}
+@keyframes finalEggShake{0%,100%{transform:translate(0,0) rotate(0) scale(1)}25%{transform:translate(-10px,3px) rotate(-2deg) scale(1.02)}50%{transform:translate(12px,-2px) rotate(2deg) scale(1.03)}75%{transform:translate(-8px,2px) rotate(-1deg) scale(1.02)}}
+@keyframes finalEggCrack{0%,100%{transform:translate(0,0) rotate(0) scale(1);filter:brightness(1)}20%{transform:translate(-15px,4px) rotate(-4deg) scale(1.04);filter:brightness(1.3)}40%{transform:translate(17px,-3px) rotate(4deg) scale(1.08);filter:brightness(1.6)}60%{transform:translate(-13px,2px) rotate(-3deg) scale(1.06);filter:brightness(2)}80%{transform:translate(12px,-2px) rotate(3deg) scale(1.12);filter:brightness(2.2)}}
+.impact{position:absolute;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,#fff 0,#ffd34d 22%,#ff7b00 45%,transparent 70%);opacity:0;pointer-events:none}
+.impact.show{animation:impact .55s ease}
+@keyframes impact{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(2.2)}}
+@keyframes magicBombBurst{0%{opacity:1;transform:translate(-50%,-50%) scale(.2) rotate(0)}35%{opacity:1;transform:translate(-50%,-50%) scale(2.1) rotate(180deg)}100%{opacity:0;transform:translate(-50%,-50%) scale(4.8) rotate(360deg)}}
+@keyframes magicRing{0%{opacity:1;transform:translate(-50%,-50%) scale(.2)}100%{opacity:0;transform:translate(-50%,-50%) scale(5)}}
+@keyframes magicSpark{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(calc(-50% + var(--sx)),calc(-50% + var(--sy))) scale(.15)}}
+.teamArea{display:grid;gap:8px;min-height:145px}
+.teamArea.two{grid-template-columns:repeat(2,1fr)}
+.teamArea.three{grid-template-columns:repeat(3,1fr)}
+.teamPanel{background:rgba(12,5,25,.82);border:2px solid rgba(255,255,255,.18);border-radius:16px;padding:9px;min-width:0;position:relative;overflow:hidden}
+.teamPanel.active{border-color:var(--gold);box-shadow:0 0 18px rgba(255,211,77,.35)}
+.teamHead{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:6px}
+.teamName{font-size:clamp(16px,2vw,24px);font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.score{color:var(--gold);font-size:clamp(17px,2.2vw,28px);font-weight:bold;white-space:nowrap}
+.moneyIcon{width:32px;height:32px;object-fit:contain;vertical-align:middle}
+.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.answer{
+ min-height:55px;touch-action:none;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;border:2px solid rgba(255,255,255,.18);background:linear-gradient(145deg,#39205b,#24133e);
+ color:#fff;border-radius:12px;padding:7px;font-weight:bold;transition:.15s;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;
+}
+.answer:hover:not(:disabled){transform:scale(1.025);border-color:var(--gold);background:#51317a}
+.answer:disabled{cursor:not-allowed;opacity:.62}
+.answer img{max-width:100%;max-height:65px;border-radius:7px;object-fit:contain}
+.answer.correct{background:#157c4c;border-color:#70f0a5}
+.answer.wrong{background:#8f2638;border-color:#ff9aa4}
+.fireball{position:fixed;width:72px;height:72px;object-fit:contain;z-index:50;pointer-events:none;filter:drop-shadow(0 0 10px #ff8a00) drop-shadow(0 0 20px rgba(255,120,0,.8));will-change:transform,left,top}.magicBomb{position:fixed;width:24px;height:24px;border-radius:50%;z-index:75;pointer-events:none;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff 0 12%,#ffd34d 18%,#ff7b00 38%,#d21cff 58%,transparent 72%);filter:drop-shadow(0 0 8px #ffd34d) drop-shadow(0 0 18px #d21cff);animation:magicBombBurst .72s ease-out forwards}.magicBomb::before,.magicBomb::after{content:"";position:absolute;left:50%;top:50%;width:100%;height:100%;border-radius:50%;border:3px solid rgba(255,211,77,.9);transform:translate(-50%,-50%) scale(.3);animation:magicRing .72s ease-out forwards}.magicBomb::after{border-color:rgba(210,28,255,.8);animation-delay:.08s}.magicSpark{position:fixed;width:10px;height:10px;border-radius:50%;z-index:74;pointer-events:none;background:#fff3a8;box-shadow:0 0 8px #ffd34d,0 0 14px #d21cff;transform:translate(-50%,-50%);animation:magicSpark .7s cubic-bezier(.15,.8,.2,1) forwards}
+.coin{position:fixed;width:34px;height:34px;object-fit:contain;z-index:60;pointer-events:none}
+.floatText{position:fixed;z-index:70;font-size:clamp(24px,4vw,44px);font-weight:bold;color:var(--gold);text-shadow:0 3px #6a2c00;pointer-events:none;animation:floatText 1s forwards}
+@keyframes floatText{to{transform:translateY(-65px) scale(1.2);opacity:0}}
+.centerMessage{position:fixed;left:50%;top:45%;transform:translate(-50%,-50%) scale(.7);z-index:80;background:rgba(15,4,28,.9);border:2px solid var(--gold);border-radius:18px;padding:15px 30px;font-size:32px;text-align:center;opacity:0;pointer-events:none}
+.centerMessage.show{animation:msg .9s ease}
+@keyframes msg{15%{opacity:1;transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-60%) scale(1.05)}}
+.editorList{display:flex;flex-direction:column;gap:9px;max-height:310px;overflow:auto;margin-top:10px}
+.qitem{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:11px;padding:10px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.qitemText{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.68);display:flex;align-items:center;justify-content:center;padding:15px;z-index:100}
+.modalCard{width:min(900px,96vw);max-height:94vh;overflow:auto;background:#1a0c2c;border:1px solid #765b94;border-radius:20px;padding:20px;box-shadow:var(--shadow)}
+.optionRow{display:grid;grid-template-columns:1fr 130px 100px;gap:8px;align-items:end;margin:8px 0}
+.previewBox{background:#10071b;border-radius:10px;padding:8px;min-height:55px;text-align:center}
+.previewBox img{max-width:100%;max-height:70px}
+.dropZone{border:2px dashed #765b94;padding:12px;border-radius:10px;text-align:center;margin-top:5px}
+.winnerCard{text-align:center;position:relative;overflow:hidden}
+.winnerTitle{font-size:clamp(34px,6vw,72px);color:var(--gold);text-shadow:0 5px #7a3300;white-space:nowrap;line-height:1.05}
+.roundWinnerTitle{font-size:clamp(18px,5vw,64px);white-space:nowrap}
+.roundWinnerTrophy{width:115px;height:115px;object-fit:contain;display:block;margin:4px auto 2px;filter:drop-shadow(0 0 14px rgba(255,211,77,.65));animation:winnerFloat 1.9s ease-in-out infinite}
+.roundWinnerHint{color:#ffd34d;font-size:clamp(16px,2.5vw,24px);font-weight:bold;margin:4px 0 10px}
+.winnerAssets{display:flex;justify-content:center;align-items:center;gap:35px;flex-wrap:wrap}
+.winnerAssets img{max-width:170px;max-height:170px;object-fit:contain;animation:winnerFloat 1.9s ease-in-out infinite;filter:drop-shadow(0 10px 12px rgba(0,0,0,.4))}
+.winnerAssets img:nth-child(2){animation-delay:.25s}.winnerAssets img:nth-child(3){animation-delay:.5s}
+@keyframes winnerFloat{0%,100%{transform:translateY(0) rotate(-2deg) scale(1)}50%{transform:translateY(-14px) rotate(2deg) scale(1.06)}}
+#halloweenReveal{position:fixed;inset:0;z-index:95;background:radial-gradient(circle,rgba(255,150,0,.25),rgba(12,3,25,.96) 72%);display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0}
+#halloweenReveal.show{animation:revealScreen 5s forwards}
+#halloweenReveal img{max-width:min(600px,80vw);max-height:70vh;object-fit:contain;filter:drop-shadow(0 0 30px #ff9b00);animation:halloweenBounce 1s ease-in-out infinite}
+@keyframes revealScreen{0%{opacity:0}12%{opacity:1}78%{opacity:1}100%{opacity:1}}
+@keyframes halloweenBounce{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.08) rotate(2deg)}}
+#eggFinalGlow{position:fixed;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.98) 0,rgba(255,214,66,.9) 18%,rgba(255,124,0,.5) 42%,transparent 70%);z-index:90;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.3)}
+#eggFinalGlow.show{animation:finalGlow 5s forwards}
+@keyframes finalGlow{0%{opacity:0;transform:translate(-50%,-50%) scale(.25)}20%{opacity:.85;transform:translate(-50%,-50%) scale(.75)}55%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}82%{opacity:.95;transform:translate(-50%,-50%) scale(1.45)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.4)}}
+.finalScores{display:flex;flex-direction:column;gap:8px;margin:16px auto;width:min(600px,95%)}
+.finalRow{display:flex;justify-content:space-between;padding:10px 15px;background:rgba(255,255,255,.08);border-radius:10px;font-size:20px}
+.howToContent{font-size:clamp(16px,2vw,20px);line-height:1.45;text-align:left;max-width:720px;margin:0 auto}.howToItem{display:grid;grid-template-columns:34px 1fr;gap:8px;align-items:start;margin:10px 0;padding:8px 10px;background:rgba(255,255,255,.055);border-radius:10px}.howToIcon{font-size:22px;text-align:center;line-height:1.2}.howToItem b{color:#ffd34d}.championTitle{font-size:clamp(38px,7vw,78px);color:var(--gold);text-shadow:0 5px #7a3300,0 0 25px #ff7b00;animation:championFlash 1s ease-in-out infinite alternate;line-height:1.05}.championSub{font-size:clamp(18px,3vw,28px);font-weight:bold;color:#fff;margin:4px 0 12px}.scoreTable{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:clamp(15px,2vw,22px)}.scoreTable th{color:#ffd34d;padding:6px}.scoreTable td{background:rgba(255,255,255,.08);padding:9px 8px;text-align:center}.scoreTable td:first-child{text-align:left;border-radius:9px 0 0 9px;font-weight:bold}.scoreTable td:last-child{border-radius:0 9px 9px 0;color:#ffd34d;font-weight:bold}.scoreTable tbody tr{animation:scoreFlash .9s ease-in-out both}.scoreTable tbody tr:nth-child(2){animation-delay:.15s}.scoreTable tbody tr:nth-child(3){animation-delay:.3s}@keyframes scoreFlash{0%{opacity:.2;transform:scale(.96)}55%{opacity:1;transform:scale(1.025)}100%{opacity:1;transform:scale(1)}}@keyframes championFlash{from{transform:scale(1);filter:brightness(1)}to{transform:scale(1.045);filter:brightness(1.3)}}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#12071e;border:1px solid var(--gold);padding:10px 18px;border-radius:10px;z-index:200;opacity:0;pointer-events:none}
+.toast.show{opacity:1}
+@media(max-width:750px){
+ .screen{overflow:auto;overscroll-behavior:contain}
+ .game{overflow:hidden}
+
+ .grid{grid-template-columns:1fr}
+ .gameUI{grid-template-rows:auto auto 1fr auto}
+ .gameTitle{font-size:24px}.timer{min-width:105px;font-size:23px;padding:5px}
+ .topActions .hideSmall{display:none}
+ .endRoundBtn{min-width:0;padding:8px 9px;font-size:12px}
+ .eggWrap{width:min(100vw,64vh,760px);height:min(100vw,64vh,760px)}.eggWrap.round2Mode{width:min(100vw,70vh,840px);height:min(100vw,70vh,840px)}
+ .teamArea{min-height:120px}
+ .answer{min-height:45px;font-size:clamp(24px,2.4vw,32px)}
+ .moneyIcon{width:25px;height:25px}
+}
+
+/* EXTRA-LARGE MONSTER / ANSWER TEXT UPDATE */
+.eggWrap{width:min(100vw,90vh,1200px);height:min(100vw,90vh,1200px)}
+.eggWrap.round2Mode{width:min(100vw,94vh,1260px);height:min(100vw,94vh,1260px)}
+.answer{font-size:clamp(24px,2.4vw,32px);line-height:1.08}
+@media (max-width:900px){
+  .eggWrap{width:min(100vw,70vh,900px);height:min(100vw,70vh,900px)}
+  .eggWrap.round2Mode{width:min(100vw,76vh,980px);height:min(100vw,76vh,980px)}
+  .answer{font-size:clamp(20px,4.4vw,26px)}
+}
+@media (max-width:600px){
+  .eggWrap{width:min(100vw,64vh,760px);height:min(100vw,64vh,760px)}
+  .eggWrap.round2Mode{width:min(100vw,70vh,840px);height:min(100vw,70vh,840px)}
+  .answer{font-size:clamp(20px,4.4vw,26px)}
+}
+/* BALANCED MONSTER SIZE - FIT JUST ABOVE THE QUESTION BOXES */
+.eggWrap{width:min(78vw,52vh,620px);height:min(78vw,52vh,620px)}
+.eggWrap.round2Mode{width:min(82vw,56vh,680px);height:min(82vw,56vh,680px)}
+@media (max-width:900px){
+  .eggWrap{width:min(82vw,48vh,560px);height:min(82vw,48vh,560px)}
+  .eggWrap.round2Mode{width:min(86vw,52vh,620px);height:min(86vw,52vh,620px)}
+}
+@media (max-width:600px){
+  .eggWrap{width:min(88vw,40vh,500px);height:min(88vw,40vh,500px)}
+  .eggWrap.round2Mode{width:min(92vw,44vh,540px);height:min(92vw,44vh,540px)}
+}
+
+/* =========================
+   HALLOWEEN CHARACTER HUB
+   ========================= */
+.characterToolBtn{min-width:46px;font-size:22px;padding:7px 10px}
+.characterHubModal{z-index:120;background:rgba(7,2,16,.82);backdrop-filter:blur(4px)}
+.characterHubCard{width:min(1080px,97vw);max-height:95vh;padding:16px 18px 20px;background:linear-gradient(145deg,#170724,#28103d 55%,#14051f);border:2px solid rgba(255,180,45,.5);box-shadow:0 0 35px rgba(255,123,0,.22),inset 0 0 30px rgba(112,35,168,.18)}
+.characterHubHeader{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:10px}
+.characterHubTitle{font-size:clamp(25px,4vw,44px);color:var(--gold);text-shadow:0 3px #6b2b00;line-height:1}
+.characterHubSubtitle{margin-top:5px;color:#f1ddff;font-size:clamp(13px,1.7vw,17px)}
+.characterHubTabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.hubTab{border:2px solid rgba(255,255,255,.14);background:linear-gradient(145deg,#321653,#211034);color:#fff;border-radius:12px;padding:9px 15px;font-weight:bold;font-size:clamp(14px,1.8vw,18px);cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.22);transition:.15s}
+.hubTab:hover,.hubTab.active{border-color:var(--gold);color:#fff4b0;background:linear-gradient(145deg,#5b267f,#321653);transform:translateY(-1px)}
+.hubPanel{display:none;animation:hubFade .2s ease}.hubPanel.active{display:block}@keyframes hubFade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.hubSectionTitle{text-align:center;color:#ffd34d;font-size:clamp(20px,2.7vw,30px);font-weight:bold;margin:3px 0 8px;text-shadow:0 2px #5c2500}
+.presentationStage{display:grid;grid-template-columns:58px minmax(0,1fr) 58px;gap:10px;align-items:center;justify-items:center;min-height:360px}
+.hubNavBtn{width:52px;height:52px;border-radius:50%;border:2px solid var(--gold);background:radial-gradient(circle,#6c318e,#2b123f);color:#fff4b0;font-size:22px;font-weight:bold;cursor:pointer;box-shadow:0 0 14px rgba(255,211,77,.2);transition:.15s}.hubNavBtn:hover{transform:scale(1.08);background:#63307e}
+.characterSingleCard{width:min(430px,72vw);background:linear-gradient(145deg,rgba(62,24,83,.92),rgba(18,6,31,.96));border:2px solid rgba(255,211,77,.5);border-radius:22px;padding:12px 18px 16px;text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.35),0 0 20px rgba(210,28,255,.12);position:relative;overflow:hidden}
+.characterSingleCard:before{content:"🕸️";position:absolute;left:8px;top:5px;font-size:24px;opacity:.55}.characterSingleCard:after{content:"🦇";position:absolute;right:8px;bottom:5px;font-size:24px;opacity:.55}
+.characterCounter{font-weight:bold;color:#f6d87a;font-size:14px;margin-bottom:3px}.characterImageFrame{height:245px;display:flex;align-items:center;justify-content:center}.characterImageFrame img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 12px rgba(0,0,0,.45));animation:characterFloat 2.2s ease-in-out infinite}@keyframes characterFloat{50%{transform:translateY(-7px) rotate(1deg) scale(1.03)}}
+.characterPresentName{font-size:clamp(28px,4vw,46px);font-weight:900;color:#fff;text-shadow:0 3px #7a3300;letter-spacing:1px}.characterPresentCaption{font-size:15px;color:#e8d9f3;margin-top:2px}
+.presentationControls{display:flex;justify-content:center;margin-top:4px}.allCharactersGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin-top:12px;max-height:45vh;overflow:auto;padding:4px}.allCharacterCard{background:rgba(255,255,255,.055);border:1px solid rgba(255,211,77,.28);border-radius:14px;padding:8px;text-align:center;cursor:pointer;transition:.15s}.allCharacterCard:hover{transform:translateY(-3px) scale(1.02);border-color:var(--gold);background:rgba(255,123,0,.12)}.allCharacterCard img{width:100%;height:100px;object-fit:contain;filter:drop-shadow(0 5px 8px rgba(0,0,0,.4))}.allCharacterCard b{display:block;color:#ffd34d;margin-top:2px;font-size:16px}.allCharacterCard span{display:block;color:#d9c9e5;font-size:12px}
+.spellingInstructions,.matchingInstructions{text-align:center;color:#e9dbf5;font-size:14px;margin-bottom:8px}.spellingScoreLine,.matchingTopLine{display:flex;justify-content:space-between;gap:10px;color:#ffd34d;font-weight:bold;max-width:720px;margin:0 auto 7px}.spellingCharacterFrame{width:min(230px,58vw);margin:0 auto 8px;text-align:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,211,77,.25);border-radius:16px;padding:6px}.spellingCharacterFrame img{width:100%;height:125px;object-fit:contain;filter:drop-shadow(0 5px 8px rgba(0,0,0,.45))}.spellingCharacterFrame div{font-weight:bold;color:#fff3b0;font-size:14px}
+.spellingWordArea{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;min-height:58px;margin:7px auto}.spellingSlot{width:44px;height:50px;border:2px dashed #9b71b8;border-radius:10px;background:rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;color:#fff;font-size:25px;font-weight:900;cursor:pointer;transition:.15s}.spellingSlot.over{border-color:var(--gold);background:rgba(255,211,77,.12);transform:scale(1.04)}.spellingSlot.filled{border-style:solid;border-color:#7c51a0;background:linear-gradient(145deg,#43205d,#241238)}
+.spellingFlyClone{position:fixed;z-index:250;pointer-events:none;margin:0;transition:transform .22s cubic-bezier(.2,.8,.2,1),opacity .22s ease;will-change:transform,opacity}
+.spellingLetters{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;min-height:58px;max-width:800px;margin:0 auto;padding:4px}.spellLetter{width:46px;height:46px;border:2px solid rgba(255,255,255,.18);border-radius:10px;background:linear-gradient(145deg,#6b2d83,#32154d);color:#fff;font-size:24px;font-weight:900;cursor:grab;touch-action:none;user-select:none;box-shadow:0 4px 0 rgba(0,0,0,.22);transition:.12s}.spellLetter:hover{border-color:var(--gold);transform:translateY(-2px)}.spellLetter.used{opacity:.22;transform:scale(.9);cursor:default}.spellLetter.dragging{opacity:.4}.spellLetter.selected{border-color:var(--gold);box-shadow:0 0 12px rgba(255,211,77,.4)}
+.spellingMessage{min-height:24px;text-align:center;font-weight:bold;color:#ffd34d;margin:4px 0}.spellingActions{justify-content:center;flex-wrap:wrap;margin-top:4px}
+.matchingGrid{display:grid;grid-template-columns:repeat(4,minmax(75px,1fr));gap:9px;max-width:720px;margin:7px auto}.matchCard{aspect-ratio:1/1;border:2px solid rgba(255,255,255,.13);border-radius:13px;background:linear-gradient(145deg,#32164b,#180a29);position:relative;cursor:pointer;transform-style:preserve-3d;transition:transform .25s,border-color .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;padding:6px;overflow:hidden}.matchCard:hover{border-color:var(--gold);box-shadow:0 0 12px rgba(255,211,77,.16)}.matchCard.flipped,.matchCard.matched{background:linear-gradient(145deg,#57216c,#2d103d);border-color:var(--gold)}.matchCard img{width:88%;height:78%;object-fit:contain}.matchCard .matchName{font-size:clamp(13px,1.7vw,18px);font-weight:900;color:#fff3b0;text-transform:none}.matchCard .matchBack{font-size:clamp(26px,4vw,42px);filter:drop-shadow(0 3px 5px rgba(255,123,0,.25))}.matchCard.matched{border-color:#72efad;box-shadow:0 0 14px rgba(114,239,173,.2);cursor:default}.matchCard.matched:after{content:"✓";position:absolute;right:5px;top:2px;color:#72efad;font-size:22px;font-weight:900}
+@media(max-width:700px){.characterHubCard{padding:12px}.presentationStage{grid-template-columns:42px minmax(0,1fr) 42px;min-height:300px}.hubNavBtn{width:40px;height:40px;font-size:17px}.characterImageFrame{height:190px}.characterSingleCard{padding:10px 12px}.matchingGrid{grid-template-columns:repeat(3,minmax(70px,1fr));gap:7px}.spellingSlot{width:38px;height:44px}.spellLetter{width:40px;height:40px;font-size:21px}}
+@media(max-width:450px){.characterHubTabs{gap:5px}.hubTab{padding:8px 9px;font-size:13px}.characterPresentName{font-size:29px}.characterPresentCaption{font-size:12px}.matchingGrid{grid-template-columns:repeat(3,1fr)}.matchCard .matchName{font-size:12px}.spellingInstructions,.matchingInstructions{font-size:12px}}
+</style>
+</head>
+<body>
+<div id="premiumProtectedApp" hidden>
+
+<div id="intro" class="screen">
+ <div class="introBg"></div><div class="introOverlay"></div>
+ <div class="introContent">
+  <div class="introTitle titleFont">HAPPY HALLOWEEN</div>
+  <div class="introCreator"><div class="introGameTitle"><span class="titleMonster">🎃 Monster Egg:</span> <span class="titleHalloween">Halloween</span> <span class="titleGold">Gold Rush</span></div><span>Game created by <b>Teacher Khen</b></span></div>
+  <button class="btn big introEnter" id="introEnter">👻 ENTER THE GAME</button>
+ </div>
+</div>
+
+<div id="setup" class="screen hidden">
+ <div id="setupBg" class="bg"></div><div class="overlay"></div>
+ <div class="decor"><span>🎃</span><span>🦇</span><span>👻</span><span>🕷️</span></div>
+ <div class="screenCenter">
+  <div class="card">
+   <div class="logo titleFont">MONSTER EGG</div>
+   <div class="subtitle">🎃 HALLOWEEN GOLD RUSH 🎃</div>
+   <div class="grid">
+    <div class="section">
+     <h3>Game Settings</h3>
+      <button type="button" class="btn secondary" id="premiumLogoutBtn" style="margin-bottom:10px">↪ Log Out of Premium</button>
+     <label>Number of Teams</label>
+     <select id="teamCount"><option value="2">2 Teams</option><option value="3">3 Teams</option></select>
+     <label>Team 1 Name</label><input id="team1" value="Witches">
+     <label>Team 2 Name</label><input id="team2" value="Vampires">
+     <div id="team3Wrap"><label>Team 3 Name</label><input id="team3" value="Zombies"></div>
+     <label>Number of Rounds</label>
+     <select id="roundCount"><option value="1">1 Round</option><option value="2" selected>2 Rounds</option></select>
+     <label>Round 1 Time</label>
+     <select id="duration"><option value="60">1 minute</option><option value="120">2 minutes</option><option value="180">3 minutes</option><option value="300" selected>5 minutes</option><option value="360">6 minutes</option><option value="420">7 minutes</option><option value="480">8 minutes</option><option value="540">9 minutes</option><option value="600">10 minutes</option><option value="custom">Custom</option></select>
+     <div id="customTimeWrap" class="hidden">
+      <label>Custom Round 1 minutes</label>
+      <input id="customTime" type="number" min="1" max="60" value="5" inputmode="numeric">
+      <div class="customTimeChoices" aria-label="Quick custom time choices">
+       <button type="button" class="timeChoice" data-minutes="5">5 min</button>
+       <button type="button" class="timeChoice" data-minutes="8">8 min</button>
+       <button type="button" class="timeChoice" data-minutes="10">10 min</button>
+      </div>
+      <div class="help">Choose a quick time or type any value from 1–60 minutes.</div>
+     </div>
+     <div id="round2TimeWrap">
+      <label>Round 2 Time</label>
+      <select id="round2Duration"><option value="60">1 minute</option><option value="120">2 minutes</option><option value="180">3 minutes</option><option value="300" selected>5 minutes</option><option value="360">6 minutes</option><option value="420">7 minutes</option><option value="480">8 minutes</option><option value="540">9 minutes</option><option value="600">10 minutes</option></select>
+      <div class="help">Round 1 ends automatically, shows its winner, then Round 2 starts with this timer.</div>
+     </div>
+     <label>Background</label>
+     <select id="backgroundSelect"><option value="background1.gif">Background 1</option><option value="background2.gif">Background 2</option></select>
+    </div>
+    <div class="section">
+     <h3>Audio</h3>
+     <label>Music Volume <span class="rangeVal" id="musicVal">40%</span></label>
+     <input id="musicVol" type="range" min="0" max="1" step=".01" value=".4">
+     <label>Sound Effects <span class="rangeVal" id="sfxVal">70%</span></label>
+     <input id="sfxVol" type="range" min="0" max="1" step=".01" value=".7">
+     <div class="row" style="margin-top:12px">
+      <button class="btn secondary" id="musicMute">🔇 Music</button>
+      <button class="btn secondary" id="sfxMute">🔊 SFX</button>
+     </div>
+     <h3 style="margin-top:20px">Game Data</h3>
+     <div class="row">
+      <button class="btn secondary" id="editorBtn">📝 Question Editor</button>
+      <button class="btn secondary" id="loadBtn">📂 Load JSON</button>
+      <button class="btn secondary" id="exportBtn">💾 Export JSON</button>
+      <input id="jsonFile" type="file" accept=".json,application/json" class="hidden">
+     </div>
+     <p class="help">Questions and answer images can use filenames or browser-selected local files. Export JSON stores the game data and settings.</p>
+    </div>
+   </div>
+   <div style="text-align:center;margin-top:18px">
+    <button class="btn big" id="startBtn">🎃 START GAME</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<div id="instructions" class="screen hidden">
+ <div id="instructionBg" class="bg"></div><div class="overlay"></div>
+ <div class="decor"><span>🎃</span><span>🦇</span><span>👻</span><span>🕷️</span></div>
+ <div class="screenCenter"><div class="card" style="max-width:850px;text-align:center">
+  <div class="logo titleFont" style="font-size:clamp(38px,6vw,68px)">HOW TO PLAY</div>
+  <div class="howToContent">
+   <div class="howToItem"><span class="howToIcon">🎃</span><div><b>1. Look at your question.</b><br>Read the question in your team's box.</div></div>
+   <div class="howToItem"><span class="howToIcon">🔥</span><div><b>2. Choose an answer.</b><br>Tap the correct answer as quickly as you can.</div></div>
+   <div class="howToItem"><span class="howToIcon">🪙</span><div><b>3. Collect gold!</b><br>A correct and fast answer gives <b>3–10 points</b>.</div></div>
+   <div class="howToItem"><span class="howToIcon">👻</span><div><b>4. Keep playing.</b><br>A wrong answer gives no points. Try again with the next question.</div></div>
+   <div class="howToItem"><span class="howToIcon">💥</span><div><b>5. Finish the round.</b><br>When time is over, the Monster Egg will shake, crack, and reveal a Halloween surprise.</div></div>
+   <div class="howToItem"><span class="howToIcon">🏆</span><div><b>6. Become the Champion!</b><br>After Round 1 and Round 2, the team with the most total points wins.</div></div>
+  </div>
+  <div class="row" style="justify-content:center;margin-top:22px"><button class="btn big" id="instructionStart">🎃 START GAME</button><button class="btn secondary big" id="instructionSettings">⚙ SETTINGS</button></div>
+ </div></div>
+</div>
+
+<div id="game" class="screen">
+ <div id="gameBg" class="bg"></div><div class="overlay"></div>
+ <div class="decor"><span>🎃</span><span>🦇</span><span>👻</span><span>🕷️</span></div>
+ <div class="gameUI">
+  <div class="topbar">
+   <div class="gameTitle titleFont">MONSTER EGG</div>
+   <div id="timer" class="timer">05:00</div>
+   <div class="topActions">
+    <button class="iconBtn endRoundBtn" id="endRoundBtn">⏹ END ROUND</button><button class="iconBtn characterToolBtn" id="characterToolBtn" title="Halloween Character Hub" aria-label="Halloween Character Hub">👻</button><button class="iconBtn" id="fullscreenBtn">⛶</button>
+    <button class="iconBtn hideSmall" id="backBtn">⚙</button>
+   </div>
+  </div>
+  <div id="questionBar" class="questionBar"></div>
+  <div id="teamQuestions" class="teamQuestions two"></div>
+  <div class="arena">
+   <div class="eggWrap" id="eggWrap">
+    <img id="egg" class="egg" src="monsteregg.gif" alt="Monster Egg">
+    <div id="impact" class="impact"></div>
+   </div>
+  </div>
+  <div id="teamArea" class="teamArea two"></div>
+ </div>
+</div>
+
+
+<div id="characterHubModal" class="modal hidden characterHubModal">
+ <div class="modalCard characterHubCard">
+  <div class="characterHubHeader">
+   <div>
+    <div class="characterHubTitle titleFont">👻 HALLOWEEN CHARACTER HUB 🎃</div>
+    <div class="characterHubSubtitle">Meet the characters, practice spelling, and play a matching game!</div>
+   </div>
+   <button class="iconBtn" id="closeCharacterHub" aria-label="Close Halloween Character Hub">✕</button>
+  </div>
+  <div class="characterHubTabs" role="tablist" aria-label="Character Hub activities">
+   <button class="hubTab active" data-hubtab="presentation" role="tab">👻 Characters</button>
+   <button class="hubTab" data-hubtab="spelling" role="tab">🔤 Spell It</button>
+   <button class="hubTab" data-hubtab="matching" role="tab">🃏 Matching</button>
+  </div>
+
+  <section class="hubPanel active" id="hubPresentation" data-hubpanel="presentation">
+   <div class="hubSectionTitle">🎃 Character Presentation</div>
+   <div class="presentationStage">
+    <button class="hubNavBtn" id="characterPrev" aria-label="Previous character">◀</button>
+    <div class="characterSingleCard">
+     <div class="characterCounter" id="characterCounter">1 / 11</div>
+     <div class="characterImageFrame"><img id="characterPresentImage" src="ghost.png" alt="Ghost"></div>
+     <div class="characterPresentName" id="characterPresentName">GHOST</div>
+     <div class="characterPresentCaption" id="characterPresentCaption">A spooky friend who says BOO!</div>
+    </div>
+    <button class="hubNavBtn" id="characterNext" aria-label="Next character">▶</button>
+   </div>
+   <div class="presentationControls">
+    <button class="btn secondary" id="characterAllBtn">👻 SHOW ALL CHARACTERS</button>
+   </div>
+   <div class="allCharactersGrid hidden" id="allCharactersGrid"></div>
+  </section>
+
+  <section class="hubPanel" id="hubSpelling" data-hubpanel="spelling">
+   <div class="hubSectionTitle">🔤 Halloween Spelling Challenge</div>
+   <div class="spellingInstructions">Drag the letters into the boxes, or simply tap a letter and it will fly into the next empty box.</div>
+   <div class="spellingScoreLine"><span id="spellingRoundText">Round 1</span><span id="spellingScoreText">⭐ 0</span></div>
+   <div class="spellingCharacterFrame"><img id="spellingImage" src="ghost.png" alt="Ghost"><div id="spellingClue">What character is this?</div></div>
+   <div class="spellingWordArea" id="spellingWordArea"></div>
+   <div class="spellingLetters" id="spellingLetters"></div>
+   <div class="spellingMessage" id="spellingMessage">Drag the letters into the boxes!</div>
+   <div class="row spellingActions">
+    <button class="btn secondary" id="spellingResetBtn">🔄 Reset Letters</button>
+    <button class="btn" id="spellingCheckBtn">✨ CHECK SPELLING</button>
+    <button class="btn green" id="spellingNextBtn">➡️ NEXT WORD</button>
+   </div>
+  </section>
+
+  <section class="hubPanel" id="hubMatching" data-hubpanel="matching">
+   <div class="hubSectionTitle">🃏 Halloween Matching Game</div>
+   <div class="matchingInstructions">Match each Halloween picture with its name. Click two cards to turn them over.</div>
+   <div class="matchingTopLine"><span id="matchingMoves">Moves: 0</span><span id="matchingPairs">Pairs: 0 / 6</span></div>
+   <div class="matchingGrid" id="matchingGrid"></div>
+   <div class="spellingMessage" id="matchingMessage">Find all the pairs!</div>
+   <div class="row" style="justify-content:center;margin-top:12px"><button class="btn" id="matchingNewBtn">🎃 NEW MATCHING GAME</button></div>
+  </section>
+ </div>
+</div>
+
+<div id="editorModal" class="modal hidden">
+ <div class="modalCard">
+  <div class="row" style="justify-content:space-between"><h2 class="titleFont" style="color:var(--gold);margin:0">QUESTION EDITOR</h2><button class="iconBtn" id="closeEditor">✕</button></div>
+  <div class="grid">
+   <div class="section">
+    <h3>Question</h3>
+    <label>Question Text</label><textarea id="qText" placeholder="What animal is this?"></textarea>
+    <label>Question Image Filename / Path</label><input id="qImage" placeholder="cat.png">
+    <div class="help">You can also use a local path such as assets/cat.png.</div>
+    <div class="previewBox" id="qPreview">Preview</div>
+   </div>
+   <div class="section">
+    <h3>Answers</h3>
+    <div id="answerEditor"></div>
+    <button class="btn green" id="addAnswer">+ Add Answer</button>
+   </div>
+  </div>
+  <div class="row" style="justify-content:flex-end;margin-top:14px">
+   <button class="btn secondary" id="newQuestion">New</button>
+   <button class="btn green" id="saveQuestion">Save Question</button>
+  </div>
+  <h3 style="color:var(--gold)">Question Bank (<span id="qCount">0</span>)</h3>
+  <div id="editorList" class="editorList"></div>
+ </div>
+</div>
+
+<div id="eggFinalGlow"></div>
+<div id="halloweenReveal"><img src="happy halloween.gif" alt="Happy Halloween"></div>
+<div id="roundWinnerModal" class="modal hidden">
+ <div class="modalCard winnerCard">
+  <div id="roundWinnerTitle" class="winnerTitle titleFont roundWinnerTitle">🏆 ROUND 1 COMPLETE</div>
+  <img class="roundWinnerTrophy" src="trophy.gif" alt="Trophy">
+  <div id="roundWinnerName" style="font-size:clamp(24px,4vw,46px);font-weight:bold"></div>
+  <div id="roundWinnerScores" class="finalScores"></div>
+  <div id="roundWinnerNext" class="roundWinnerHint">Round 2 is ready!</div>
+  <button class="btn big" id="nextRoundBtn">🎃 NEXT ROUND</button>
+ </div>
+</div>
+<div id="winnerModal" class="modal hidden">
+ <div class="modalCard winnerCard">
+  <div class="championTitle titleFont">🏆 THE CHAMPION! 🏆</div>
+  <div id="winnerName" class="championSub"></div>
+  <div class="winnerAssets">
+   <img src="trophy.gif" alt="Trophy"><img src="chest.gif" alt="Treasure Chest"><img src="money.gif" alt="Money">
+  </div>
+  <div class="championSub">FINAL SCOREBOARD</div>
+  <div id="finalScores" class="finalScores"></div>
+  <div id="tieText" style="color:var(--gold);font-size:22px;font-weight:bold"></div>
+  <div class="row" style="justify-content:center;margin-top:15px">
+   <button class="btn big" id="playAgain">🔄 Play Again</button>
+   <button class="btn secondary big" id="winnerSettings">⚙ SETTINGS</button>
+  </div>
+ </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<audio id="titleMusic" src="first.mp3" loop autoplay preload="auto"></audio>
+<audio id="music" src="background music.mp3" loop preload="auto"></audio>
+<audio id="sndClick" src="click.mp3" preload="auto"></audio>
+<audio id="sndCoins" src="collect coins.mp3" preload="auto"></audio>
+<audio id="sndExplosion" src="explosion.mp3" preload="auto"></audio>
+<audio id="sndFireball" src="fireball.mp3" preload="auto"></audio>
+<audio id="sndPoint" src="point.mp3" preload="auto"></audio>
+<audio id="sndWinner" src="winner.mp3" preload="auto"></audio>
+<audio id="sndLaugh" src="laugh.mp3" preload="auto"></audio>
+<audio id="sndRoar" src="roar.mp3" preload="auto"></audio>
+
+<script>
+"use strict";
+
+/* =========================
+   MONSTER EGG GAME
+   ========================= */
+
+const ASSETS = {
+ background1:"background1.gif", background2:"background2.gif",
+ egg:"monsteregg.gif", round2:"round2.gif", fireball:"magicball.gif", coin:"coin.gif",
+ money:"money.gif", trophy:"trophy.gif", chest:"chest.gif"
+};
+
+const HALLOWEEN_CHARACTER_POOL = [
+ "ghost","witch","candy","moon","vampire","mummy","owl","zombie","pumpkin","spider","bat"
+];
+
+const HALLOWEEN_CHARACTER_IMAGES = [
+ "ghost.png","witch.png","candy.png","moon.png","vampire.png","mummy.png",
+ "ghost.png","owl.png","zombie.png","pumpkin.png","spider.png","bat.png"
+];
+
+function createPresetHalloweenQuestions(){
+ const seen=new Set();
+ return HALLOWEEN_CHARACTER_IMAGES.map((image,index)=>{
+  const correct=image.replace(/\.png$/i,"").toLowerCase();
+  const distractors=shuffle(HALLOWEEN_CHARACTER_POOL.filter(name=>name!==correct)).slice(0,3);
+  const answers=shuffle([correct,...distractors]).map(name=>({
+   text:name,
+   image:"",
+   correct:name===correct
+  }));
+  return {
+   id:"halloween_"+(index+1),
+   text:"Which Halloween character is this?",
+   image,
+   answers
+  };
+ });
+}
+
+const DEFAULT_QUESTIONS = createPresetHalloweenQuestions();
+let questions = JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));
+let settings = {
+ teams:2,names:["Witches","Vampires","Zombies"],duration:300,round2Duration:300,rounds:2,
+ background:"background1.gif",music:.4,sfx:.7,musicMuted:false,sfxMuted:false
+};
+let game = {
+ active:false,endTime:0,interval:null,scores:[],queues:[],current:[],
+ busy:[],roundStarted:[],questionStarted:[],answered:[],gameDuration:0,round:1,roundScores:[],round1Scores:[],round2Scores:[],roundTransition:false
+};
+
+const $ = id => document.getElementById(id);
+
+function shuffle(arr){
+ const a=[...arr];
+ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+ return a;
+}
+function escapeHTML(s){
+ return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+}
+function safeSrc(src){
+ return src ? String(src) : "";
+}
+function showToast(msg){
+ $("toast").textContent=msg;$("toast").classList.add("show");
+ clearTimeout(showToast.t);showToast.t=setTimeout(()=>$("toast").classList.remove("show"),1800);
+}
+// Animated GIF backgrounds remain animated when used as CSS background images.
+function applyBackground(target,src){
+ target.style.backgroundImage=`url("${src||ASSETS.background1}")`;
+}
+function syncSettingsUI(){
+ $("roundCount").value=String(settings.rounds||2);
+ $("round2TimeWrap").classList.toggle("hidden",Number(settings.rounds||2)!==2);
+ $("round2Duration").value=String(settings.round2Duration||300);
+ $("teamCount").value=settings.teams;
+ $("team1").value=settings.names[0];$("team2").value=settings.names[1];$("team3").value=settings.names[2];
+ $("duration").value=[60,120,180,300,360,420,480,540,600].includes(settings.duration)?String(settings.duration):"custom";
+ $("customTime").value=Math.round(settings.duration/60);
+ $("customTimeWrap").classList.toggle("hidden",$("duration").value!=="custom");
+ const customMinutes=Math.round(settings.duration/60);document.querySelectorAll(".timeChoice").forEach(b=>b.classList.toggle("active",Number(b.dataset.minutes)===customMinutes));
+ $("backgroundSelect").value=settings.background;
+ $("musicVol").value=settings.music;$("sfxVol").value=settings.sfx;
+ $("musicVal").textContent=Math.round(settings.music*100)+"%";$("sfxVal").textContent=Math.round(settings.sfx*100)+"%";
+ $("musicMute").textContent=settings.musicMuted?"🔇 Music":"🔊 Music";
+ $("sfxMute").textContent=settings.sfxMuted?"🔇 SFX":"🔊 SFX";
+ $("team3Wrap").classList.toggle("hidden",settings.teams!==3);
+ applyBackground($("setupBg"),settings.background);
+}
+function readSettings(){
+ settings.rounds=Number($("roundCount").value)===2?2:1;
+ settings.round2Duration=Math.max(60,Math.min(600,Number($("round2Duration").value)||300));
+ settings.teams=Number($("teamCount").value);
+ settings.names=[$("team1").value.trim()||"Team 1",$("team2").value.trim()||"Team 2",$("team3").value.trim()||"Team 3"];
+ settings.duration=$("duration").value==="custom"
+  ? Math.max(1,Math.min(60,Number($("customTime").value)||5))*60
+  : Number($("duration").value);
+ settings.background=$("backgroundSelect").value;
+ settings.music=Number($("musicVol").value);settings.sfx=Number($("sfxVol").value);
+}
+function audio(id){
+ const el=$(id);
+ if(!el)return;
+ el.volume=settings.sfxMuted?0:settings.sfx;
+ try{el.currentTime=0;const p=el.play();if(p)p.catch(()=>{});}catch(e){}
+}
+function updateMusic(){
+ $("music").volume=settings.musicMuted?0:settings.music;
+ const titleMusic=$("titleMusic");
+ if(titleMusic)titleMusic.volume=settings.musicMuted?0:settings.music;
+}
+let titleMusicAllowed=true; function startTitleMusic(){ const titleMusic=$("titleMusic"); if(!titleMusic || !titleMusicAllowed)return; titleMusic.volume=settings.musicMuted?0:settings.music; try{const p=titleMusic.play();if(p)p.catch(()=>{});}catch(e){} } function stopTitleMusic(){ titleMusicAllowed=false; const titleMusic=$("titleMusic"); if(!titleMusic)return; try{titleMusic.pause();titleMusic.currentTime=0;}catch(e){} } function startMusic(){
+ updateMusic();
+ try{const p=$("music").play();if(p)p.catch(()=>showToast("Tap START GAME again if browser blocked music."));}catch(e){}
+}
+function preloadAssets(){
+ [ASSETS.egg,ASSETS.round2,ASSETS.fireball,ASSETS.coin,ASSETS.money,ASSETS.trophy,ASSETS.chest,...HALLOWEEN_CHARACTER_IMAGES].forEach(src=>{const i=new Image();i.src=src});
+}
+function formatTime(sec){
+ sec=Math.max(0,Math.ceil(sec));return String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0");
+}
+
+/* INTRO */
+function playIntroSpooky(){
+ try{
+  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+  const ctx=window.__introSfxCtx||(window.__introSfxCtx=new AC());if(ctx.state==="suspended")ctx.resume();
+  const now=ctx.currentTime,master=ctx.createGain();master.gain.setValueAtTime(.0001,now);master.gain.exponentialRampToValueAtTime(.28,now+.08);master.gain.exponentialRampToValueAtTime(.0001,now+1.8);master.connect(ctx.destination);
+  const osc=ctx.createOscillator();osc.type="sawtooth";osc.frequency.setValueAtTime(180,now);osc.frequency.exponentialRampToValueAtTime(42,now+1.45);osc.connect(master);osc.start(now);osc.stop(now+1.6);
+  const lfo=ctx.createOscillator(),lg=ctx.createGain();lfo.frequency.value=5;lg.gain.value=28;lfo.connect(lg);lg.connect(osc.frequency);lfo.start(now);lfo.stop(now+1.5);
+  const b=ctx.createBuffer(1,ctx.sampleRate*.7,ctx.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
+  const n=ctx.createBufferSource(),ng=ctx.createGain();n.buffer=b;ng.gain.setValueAtTime(.12,now+.05);ng.gain.exponentialRampToValueAtTime(.0001,now+.7);n.connect(ng);ng.connect(master);n.start(now+.05);
+ }catch(e){}
+}
+$("introEnter").addEventListener("click",()=>{startTitleMusic();$("intro").classList.add("hidden");$("setup").classList.remove("hidden");syncSettingsUI();});
+
+/* SETTINGS EVENTS */
+$("teamCount").addEventListener("change",()=>{settings.teams=Number($("teamCount").value);syncSettingsUI();savePrefs();if(game.active)refreshRunningGameLayout()});
+$("duration").addEventListener("change",()=>{
+ if($("duration").value==="custom"){
+  settings.duration=Math.max(1,Math.min(60,Number($("customTime").value)||6))*60;
+ }else{
+  settings.duration=Number($("duration").value);
+ }
+ savePrefs();
+ syncSettingsUI();
+});
+$("customTime").addEventListener("input",()=>{
+ const minutes=Math.max(1,Math.min(60,Number($("customTime").value)||1));
+ $("duration").value="custom";
+ $("customTimeWrap").classList.remove("hidden");
+ settings.duration=minutes*60; savePrefs();
+ document.querySelectorAll(".timeChoice").forEach(b=>b.classList.toggle("active",Number(b.dataset.minutes)===minutes));
+});
+document.querySelectorAll(".timeChoice").forEach(btn=>btn.addEventListener("click",()=>{
+ const minutes=Number(btn.dataset.minutes);
+ $("duration").value="custom";
+ $("customTime").value=minutes;
+ settings.duration=minutes*60;
+ document.querySelectorAll(".timeChoice").forEach(b=>b.classList.toggle("active",b===btn));
+ savePrefs();
+ $("customTimeWrap").classList.remove("hidden");
+}));
+$("roundCount").addEventListener("change",()=>{settings.rounds=Number($("roundCount").value)===2?2:1;savePrefs();syncSettingsUI();});
+$("round2Duration").addEventListener("change",()=>{settings.round2Duration=Math.max(60,Math.min(600,Number($("round2Duration").value)||300));savePrefs();});
+$("musicVol").addEventListener("input",()=>{settings.music=Number($("musicVol").value);syncSettingsUI();updateMusic()});
+$("sfxVol").addEventListener("input",()=>{settings.sfx=Number($("sfxVol").value);syncSettingsUI()});
+$("backgroundSelect").addEventListener("change",()=>{settings.background=$("backgroundSelect").value;applyBackground($("setupBg"),settings.background);applyBackground($("instructionBg"),settings.background)});
+$("musicMute").addEventListener("click",()=>{settings.musicMuted=!settings.musicMuted;syncSettingsUI();updateMusic()});
+$("sfxMute").addEventListener("click",()=>{settings.sfxMuted=!settings.sfxMuted;syncSettingsUI()});
+$("fullscreenBtn").addEventListener("click",()=>{
+ if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.();
+});
+$("backBtn").addEventListener("click",()=>endGameToSettings());
+$("startBtn").addEventListener("click",()=>{
+ readSettings();
+ if(questions.length<1){showToast("Add at least one question.");return;}
+ showInstructions();
+});
+$("instructionStart").addEventListener("click",()=>{$("instructions").classList.add("hidden");startGame();});
+$("instructionSettings").addEventListener("click",()=>{titleMusicAllowed=true;startTitleMusic();$("instructions").classList.add("hidden");$("setup").style.display="block";});
+function showInstructions(){readSettings();$("setup").style.display="none";applyBackground($("instructionBg"),settings.background);$("instructions").classList.remove("hidden");}
+$("loadBtn").addEventListener("click",()=>$("jsonFile").click());
+$("jsonFile").addEventListener("change",handleJSONLoad);
+$("exportBtn").addEventListener("click",exportJSON);
+
+/* QUESTION EDITOR */
+let editingIndex=-1;
+$("editorBtn").addEventListener("click",openEditor);
+$("closeEditor").addEventListener("click",closeEditor);
+$("newQuestion").addEventListener("click",clearEditor);
+$("addAnswer").addEventListener("click",()=>addAnswerEditor());
+$("saveQuestion").addEventListener("click",saveEditorQuestion);
+$("qImage").addEventListener("input",updateQuestionPreview);
+
+function openEditor(){
+ editingIndex=-1;clearEditor();renderEditorList();$("editorModal").classList.remove("hidden");
+}
+function closeEditor(){$("editorModal").classList.add("hidden")}
+function clearEditor(){
+ editingIndex=-1;$("qText").value="";$("qImage").value="";$("answerEditor").innerHTML="";
+ for(let i=0;i<4;i++)addAnswerEditor(i===0);
+ updateQuestionPreview();
+}
+function addAnswerEditor(correct=false,data=null){
+ const wrap=document.createElement("div");wrap.className="optionRow";
+ wrap.innerHTML=`
+  <div><label>Answer</label><input class="aText" value="${escapeHTML(data?.text||"")}" placeholder="Answer text"></div>
+  <div><label>Image</label><input class="aImage" value="${escapeHTML(data?.image||"")}" placeholder="image.png"></div>
+  <div><label>Correct</label><input class="aCorrect" type="radio" name="correctAnswer" ${correct||data?.correct?"checked":""}></div>`;
+ $("answerEditor").appendChild(wrap);
+}
+function updateQuestionPreview(){
+ const img=$("qImage").value.trim();
+ $("qPreview").innerHTML=img?`<img src="${escapeHTML(img)}" onerror="this.parentElement.innerHTML='Image not found: '+this.src">`:"Preview";
+}
+function saveEditorQuestion(){
+ const text=$("qText").value.trim(),image=$("qImage").value.trim();
+ const rows=[...document.querySelectorAll("#answerEditor .optionRow")];
+ const answers=rows.map(r=>({text:r.querySelector(".aText").value.trim(),image:r.querySelector(".aImage").value.trim(),correct:r.querySelector(".aCorrect").checked}))
+   .filter(a=>a.text||a.image);
+ if(!text&&!image){showToast("Add question text or an image.");return}
+ if(answers.length<2){showToast("Add at least 2 answers.");return}
+ if(!answers.some(a=>a.correct)){showToast("Select the correct answer.");return}
+ const obj={id:editingIndex>=0?questions[editingIndex].id:"q_"+Date.now(),text,image,answers};
+ if(editingIndex>=0)questions[editingIndex]=obj;else questions.push(obj);
+ renderEditorList();saveQuestionBank();clearEditor();showToast("Question saved.");
+}
+function editQuestion(i){
+ const q=questions[i];editingIndex=i;$("qText").value=q.text||"";$("qImage").value=q.image||"";$("answerEditor").innerHTML="";
+ q.answers.forEach(a=>addAnswerEditor(!!a.correct,a));updateQuestionPreview();
+}
+function deleteQuestion(i){if(confirm("Delete this question?")){questions.splice(i,1);saveQuestionBank();renderEditorList()}}
+function duplicateQuestion(i){const q=JSON.parse(JSON.stringify(questions[i]));q.id="q_"+Date.now()+"_"+Math.random().toString(36).slice(2,6);questions.splice(i+1,0,q);saveQuestionBank();renderEditorList()}
+function renderEditorList(){
+ $("qCount").textContent=questions.length;$("editorList").innerHTML="";
+ questions.forEach((q,i)=>{
+  const d=document.createElement("div");d.className="qitem";
+  d.innerHTML=`<div class="qitemText"><b>${i+1}.</b> ${escapeHTML(q.text||"[Image question]")} <span class="help">(${q.answers.length} answers)</span></div>
+  <div class="row"><button class="btn secondary" onclick="editQuestion(${i})">Edit</button><button class="btn secondary" onclick="duplicateQuestion(${i})">Copy</button><button class="btn red" onclick="deleteQuestion(${i})">Delete</button></div>`;
+  $("editorList").appendChild(d);
+ });
+}
+window.editQuestion=editQuestion;window.deleteQuestion=deleteQuestion;window.duplicateQuestion=duplicateQuestion;
+
+/* JSON */
+function exportJSON(){
+ readSettings();
+ const data={version:1,app:"Monster Egg: Halloween Gold Rush",settings,questions};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="monster-egg-game.json";a.click();
+ setTimeout(()=>URL.revokeObjectURL(a.href),1000);showToast("Game data exported.");
+}
+function handleJSONLoad(e){
+ const file=e.target.files?.[0];if(!file)return;
+ const reader=new FileReader();
+ reader.onload=()=>{
+  try{
+   const data=JSON.parse(reader.result);
+   if(!Array.isArray(data.questions))throw new Error("No questions");
+   questions=data.questions;saveQuestionBank();
+   if(data.settings)settings={...settings,...data.settings};
+   settings.names=Array.isArray(settings.names)?settings.names:["Witches","Vampires","Zombies"];
+   syncSettingsUI();renderEditorList();showToast(`Loaded ${questions.length} questions.`);
+  }catch(err){alert("This JSON file is invalid or does not contain a valid question bank.")}
+  e.target.value="";
+ };
+ reader.readAsText(file);
+}
+
+/* GAME */
+function startGame(){
+ if(!window.monsterPremiumAuthorized){document.getElementById("premiumProtectedApp").hidden=true;document.getElementById("premiumGate").hidden=false;return;}
+
+ readSettings();
+ stopTitleMusic();
+ game.round=1;
+ $("eggWrap").classList.remove("round2Mode");
+ $("egg").classList.remove("round2Size");
+ $("egg").src=ASSETS.egg;
+ $("egg").alt="Monster Egg";
+ $("setup").style.display="none";$("game").style.display="block";
+ applyBackground($("gameBg"),settings.background);
+ game.active=true;game.gameDuration=settings.duration;game.endTime=Date.now()+settings.duration*1000;game.roundScores=Array(settings.teams).fill(0);game.round1Scores=Array(settings.teams).fill(0);game.round2Scores=Array(settings.teams).fill(0);game.roundTransition=false;
+ game.scores=Array(settings.teams).fill(0);game.busy=Array(settings.teams).fill(false);
+ game.current=Array(settings.teams).fill(null);game.questionStarted=Array(settings.teams).fill(Date.now());
+ game.queues=Array(settings.teams).fill(0).map((_,team)=>makeQueue(team));
+ renderTeams();
+ $("teamQuestions").innerHTML="";
+ renderQuestion();
+ nextQuestionForAll();
+ updateTimer();clearInterval(game.interval);game.interval=setInterval(updateTimer,250);
+ startMusic();
+}
+function makeQueue(team){
+ // Give each team a differently shuffled queue. Rotate each subsequent queue to reduce simultaneous duplicates.
+ let q=shuffle(questions);
+ if(questions.length>1){
+  for(let tries=0;tries<8;tries++){
+   const first=q[0]?.id, others=game.queues?.filter(Boolean).map(x=>x[0]?.id);
+   if(!others?.includes(first))break;q=shuffle(questions);
+  }
+ }
+ return q;
+}
+function nextQuestionForAll(){
+ for(let t=0;t<settings.teams;t++)nextQuestion(t);
+}
+function cloneQuestionForTeam(source){
+ if(!source)return null;
+ // Each team gets its own question object and its own answer array.
+ // This prevents one team's answer shuffling or state changes from affecting another team.
+ const copy={...source};
+ copy.answers=(source.answers||[]).map(a=>({...a}));
+ copy.answers=shuffle(copy.answers);
+ return copy;
+}
+function nextQuestion(team){
+ if(!game.active||game.busy[team])return;
+ let queue=game.queues[team];
+ if(!queue||!queue.length){
+  queue=makeQueue(team);game.queues[team]=queue;
+ }
+ // Try not to show another team's current question simultaneously when enough questions exist.
+ let idx=0;
+ if(queue.length>1){
+  const otherIds=game.current.filter((q,i)=>i!==team&&q).map(q=>q.id);
+  while(idx<queue.length-1&&otherIds.includes(queue[idx].id))idx++;
+ }
+ const baseQuestion=queue.splice(idx,1)[0];
+ game.current[team]=cloneQuestionForTeam(baseQuestion);
+ game.questionStarted[team]=performance.now();
+ renderTeamPanel(team);
+ renderQuestionForTeam(team);
+}
+function buildQuestionCard(team){
+ const q=game.current[team];
+ const card=document.createElement("div");
+ card.className="teamQuestion";
+ card.dataset.teamQuestion=team;
+ card.innerHTML=`<div class="questionContent"><div class="questionLabel">🎃 ${escapeHTML(settings.names[team])}'S QUESTION</div>${q?.image?`<img src="${escapeHTML(q.image)}" alt="">`:""}${q?.text?`<span class="questionText">${escapeHTML(q.text)}</span>`:""}</div>`;
+ return card;
+}
+function renderQuestion(){
+ const box=$("teamQuestions");
+ box.className="teamQuestions "+(settings.teams===2?"two":"three");
+ box.innerHTML="";
+ for(let i=0;i<settings.teams;i++)box.appendChild(buildQuestionCard(i));
+}
+function renderQuestionForTeam(team){
+ const box=$("teamQuestions");
+ if(!box)return;
+ box.className="teamQuestions "+(settings.teams===2?"two":"three");
+ let old=box.querySelector(`[data-team-question="${team}"]`);
+ const card=buildQuestionCard(team);
+ if(old)old.replaceWith(card);else box.appendChild(card);
+}
+function renderTeamPanel(team){
+ const old=$("teamPanel"+team);
+ const panel=document.createElement("div");
+ panel.className="teamPanel";
+ panel.id=`teamPanel${team}`;
+ const q=game.current[team];
+ panel.innerHTML=`
+  <div class="teamHead">
+   <div class="teamName">🎃 ${escapeHTML(settings.names[team])}</div>
+   <div class="score"><img class="moneyIcon" src="${ASSETS.money}"> <span id="score${team}">${game.scores[team]||0}</span></div>
+  </div>
+  <div class="answers" id="answers${team}"></div>`;
+ if(old)old.replaceWith(panel);else $("teamArea").appendChild(panel);
+ const box=panel.querySelector(".answers");
+ if(q){
+  q.answers.forEach((a,i)=>{
+   const b=document.createElement("button");
+   b.className="answer";
+   b.dataset.team=team;
+   b.dataset.answer=i;
+   b.innerHTML=(a.image?`<img src="${escapeHTML(a.image)}" alt="">`:"")+(a.text?`<div>${escapeHTML(a.text)}</div>`:"");
+   // Pointer Events let mouse, phone touch, tablet touch, and smart-board
+   // touches use the same path. Each answer button can receive its own
+   // pointer, so different teams can answer at the same time.
+   b.addEventListener("pointerdown",e=>{
+    if(e.pointerType!=="mouse")e.preventDefault();
+    if(b.disabled||b.dataset.pointerHandled==="1")return;
+    b.dataset.pointerHandled="1";
+    answer(team,i,b);
+   },{passive:false});
+   b.addEventListener("click",()=>{
+    // Mouse/keyboard fallback. Touch/pointer taps have already been handled.
+    if(b.dataset.pointerHandled==="1"){b.dataset.pointerHandled="0";return;}
+    answer(team,i,b);
+   });
+   b.addEventListener("pointercancel",()=>{b.dataset.pointerHandled="0"});
+   box.appendChild(b);
+  });
+ }
+}
+function renderTeams(){
+ $("teamArea").className="teamArea "+(settings.teams===2?"two":"three");
+ $("teamArea").innerHTML="";
+ for(let t=0;t<settings.teams;t++)renderTeamPanel(t);
+}
+function disableTeam(team){document.querySelectorAll(`#answers${team} .answer`).forEach(b=>b.disabled=true)}
+function answer(team,index,button){
+ if(!game.active||game.busy[team]||Date.now()>=game.endTime)return;
+ const q=game.current[team];if(!q)return;
+ game.busy[team]=true;disableTeam(team);audio("sndClick");
+ const correct=!!q.answers[index]?.correct;
+ if(correct){
+  button.classList.add("correct");
+  const elapsed=(performance.now()-game.questionStarted[team])/1000;
+  const remaining=Math.max(0,Math.min(1,1-elapsed/20));
+  const points=Math.max(3,Math.min(10,Math.round(3+7*remaining)));
+  game.scores[team]+=points;game.roundScores[team]+=points;updateScore(team,points);
+  launchFireball(team,points).then(()=>{
+   game.busy[team]=false;
+   if(game.active)nextQuestion(team);
+  });
+ }else{
+  button.classList.add("wrong");
+  setTimeout(()=>{
+   game.busy[team]=false;
+   if(game.active)nextQuestion(team);
+  },280);
+ }
+}
+function updateScore(team,points){
+ const el=$(`score${team}`);if(el)el.textContent=game.scores[team];
+ const p=document.createElement("div");p.className="floatText";p.textContent=`+${points} GOLD!`;
+ const panel=$(`teamPanel${team}`);const r=panel.getBoundingClientRect();p.style.left=(r.left+r.width/2-50)+"px";p.style.top=(r.top-8)+"px";document.body.appendChild(p);
+ setTimeout(()=>p.remove(),1000);audio("sndPoint");
+}
+function getTeamOrigin(team){
+ const panel=$(`teamPanel${team}`);const r=panel.getBoundingClientRect();
+ return {x:r.left+r.width/2,y:r.top+r.height/2};
+}
+function getEggCenter(){const r=$("eggWrap").getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2}}
+function createMagicBomb(x,y){
+ const bomb=document.createElement("div");bomb.className="magicBomb";bomb.style.left=x+"px";bomb.style.top=y+"px";document.body.appendChild(bomb);
+ const angles=[0,45,90,135,180,225,270,315];
+ angles.forEach((deg,i)=>{
+  const spark=document.createElement("div");spark.className="magicSpark";spark.style.left=x+"px";spark.style.top=y+"px";
+  const rad=deg*Math.PI/180,dist=70+Math.random()*55;
+  spark.style.setProperty("--sx",Math.cos(rad)*dist+"px");spark.style.setProperty("--sy",Math.sin(rad)*dist+"px");
+  spark.style.animationDelay=(i*0.018)+"s";document.body.appendChild(spark);
+  setTimeout(()=>spark.remove(),850);
+ });
+ setTimeout(()=>bomb.remove(),850);
+}
+function launchFireball(team,points){
+ return new Promise(resolve=>{
+  const start=getTeamOrigin(team),end=getEggCenter(),f=document.createElement("img");
+  f.src=ASSETS.fireball;f.className="fireball";document.body.appendChild(f);
+  f.style.left=(start.x-36)+"px";f.style.top=(start.y-36)+"px";audio("sndFireball");
+  const dx=end.x-start.x,dy=end.y-start.y,duration=760;
+  f.animate([
+   {transform:"translate(0,0) scale(.42) rotate(0deg)"},
+   {transform:`translate(${dx*.58}px,${dy*.58}px) scale(1.05) rotate(420deg)`,offset:.58},
+   {transform:`translate(${dx*.86}px,${dy*.86}px) scale(1.72) rotate(650deg)`,offset:.86},
+   {transform:`translate(${dx}px,${dy}px) scale(2.25) rotate(900deg)`}
+  ],{duration,easing:"cubic-bezier(.18,.72,.16,1)"})
+   .finished.catch(()=>{}).then(()=>{
+    f.remove();
+    createMagicBomb(end.x,end.y);
+    eggHit();
+    setTimeout(()=>coinSplash(team,points,resolve),300);
+   });
+ });
+}
+function switchToRound2(){
+ if(!game.active||game.round===2)return;
+ game.round1Scores=[...game.roundScores];
+ game.round=2;
+ game.roundScores=Array(settings.teams).fill(0);
+ game.gameDuration=settings.round2Duration||settings.duration;
+ game.endTime=Date.now()+game.gameDuration*1000;
+ applyBackground($("gameBg"),ASSETS.background2);
+ $("egg").src=ASSETS.round2;
+ $("egg").alt="Round 2 Monster";
+ $("eggWrap").classList.add("round2Mode");
+ $("egg").classList.add("round2Size");
+ $("egg").classList.remove("hit","round2Hit");
+ showToast("ROUND 2! The monster is awake!");
+}
+$("endRoundBtn").addEventListener("click",()=>{
+ if(!game.active||game.roundTransition)return;
+ endRound();
+});
+$("nextRoundBtn").addEventListener("click",startNextRound);
+
+function eggHit(){
+ if(game.round===2){
+  $("egg").classList.remove("round2Hit");void $("egg").offsetWidth;$("egg").classList.add("round2Hit");
+  audio("sndRoar");
+  setTimeout(()=>$("egg").classList.remove("round2Hit"),760);
+ }else{
+  $("egg").classList.remove("hit");void $("egg").offsetWidth;$("egg").classList.add("hit");
+  audio("sndExplosion");
+ }
+ $("impact").classList.remove("show");void $("impact").offsetWidth;$("impact").classList.add("show");
+}
+function coinSplash(team,points,resolve){
+ const center=getEggCenter(),target=getTeamOrigin(team),count=Math.min(12,4+Math.ceil(points/2));
+ const coins=[];
+ for(let i=0;i<count;i++){
+  const c=document.createElement("img");c.src=ASSETS.coin;c.className="coin";
+  document.body.appendChild(c);c.style.left=(center.x-17)+"px";c.style.top=(center.y-17)+"px";coins.push(c);
+  const angle=Math.random()*Math.PI*2,dist=50+Math.random()*100;
+  c.animate([{transform:"translate(0,0) rotate(0) scale(.5)",opacity:0},
+   {transform:`translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px) rotate(${Math.random()*240-120}deg) scale(1)`,opacity:1},
+   {transform:`translate(${target.x-center.x}px,${target.y-center.y}px) rotate(${Math.random()*600}deg) scale(.6)`,opacity:.9}],
+   {duration:850+Math.random()*350,easing:"cubic-bezier(.2,.7,.2,1)",delay:i*18});
+ }
+ setTimeout(()=>{
+  audio("sndCoins");coins.forEach(c=>c.remove());resolve();
+ },1150);
+}
+function updateTimer(){
+ if(!game.active)return;
+ const remain=(game.endTime-Date.now())/1000;
+ $("timer").textContent=formatTime(remain);
+ $("timer").classList.toggle("warning",remain<=10);
+ if(remain<=0)endRound();
+}
+function playEggBreakSfx(){
+ // Short procedural crack/break effect; no extra audio file is required.
+ try{
+  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+  const ctx=window.__eggSfxCtx||(window.__eggSfxCtx=new AC());if(ctx.state==="suspended")ctx.resume();
+  const now=ctx.currentTime,g=ctx.createGain();g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(.45,now+.015);g.gain.exponentialRampToValueAtTime(.0001,now+.28);g.connect(ctx.destination);
+  const o=ctx.createOscillator();o.type="square";o.frequency.setValueAtTime(150,now);o.frequency.exponentialRampToValueAtTime(55,now+.22);o.connect(g);o.start(now);o.stop(now+.3);
+  const b=ctx.createBuffer(1,ctx.sampleRate*.16,ctx.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
+  const n=ctx.createBufferSource();n.buffer=b;const ng=ctx.createGain();ng.gain.setValueAtTime(.28,now);ng.gain.exponentialRampToValueAtTime(.0001,now+.16);n.connect(ng);ng.connect(ctx.destination);n.start(now);
+ }catch(e){}
+}
+function resetEggForRound(round){
+ if(round===2){
+  $("egg").src=ASSETS.round2;
+  $("egg").alt="Round 2 Monster";
+  $("eggWrap").classList.add("round2Mode");
+  $("egg").classList.add("round2Size");
+ }else{
+  $("egg").src=ASSETS.egg;
+  $("egg").alt="Monster Egg";
+  $("eggWrap").classList.remove("round2Mode");
+  $("egg").classList.remove("round2Size");
+ }
+ $("egg").classList.remove("hit","round2Hit","explode");
+ $("egg").style.animation="";
+ $("eggFinalGlow").classList.remove("show");
+ $("halloweenReveal").classList.remove("show");
+}
+function playRoundEndReveal(callback){
+ const r=$("eggWrap").getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+ $("eggFinalGlow").style.left=cx+"px";$("eggFinalGlow").style.top=cy+"px";
+ $("eggFinalGlow").classList.remove("show");void $("eggFinalGlow").offsetWidth;$("eggFinalGlow").classList.add("show");
+ $("egg").classList.remove("hit","round2Hit","explode");
+ $("egg").style.animation="finalEggShake .18s ease-in-out infinite";
+ setTimeout(()=>$("egg").style.animation="finalEggCrack .75s ease-in-out infinite",900);
+ setTimeout(()=>{
+  playEggBreakSfx();audio("sndExplosion");
+  $("egg").style.animation="";$("egg").classList.add("explode");
+  setTimeout(()=>{
+   $("halloweenReveal").classList.remove("show");void $("halloweenReveal").offsetWidth;
+   $("halloweenReveal").classList.add("show");audio("sndLaugh");
+  },180);
+ },2200);
+ setTimeout(()=>{
+  $("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");
+  if(typeof callback==='function')callback();
+ },7200);
+}
+function endRound(){
+ if(!game.active||game.roundTransition)return;
+ game.roundTransition=true;
+ game.active=false;
+ clearInterval(game.interval);
+ $("timer").textContent="00:00";
+ document.querySelectorAll(".answer").forEach(b=>b.disabled=true);
+ if(game.round===1 && Number(settings.rounds||2)===2){
+  game.round1Scores=[...game.roundScores];
+  showRoundWinner();
+  playRoundEndReveal(()=>{
+   $("roundWinnerModal").classList.remove("hidden");
+  });
+  return;
+ }
+ game.round1Scores=[...game.roundScores];
+ game.round2Scores=[...game.roundScores];
+ showFinalWinnerAfterReveal();
+}
+function showFinalWinnerAfterReveal(){
+ playRoundEndReveal(()=>{
+  game.roundTransition=false;
+  showWinner();
+ });
+}
+function startNextRound(){
+ if(!game.roundTransition||game.round!==1)return;
+ $("roundWinnerModal").classList.add("hidden");
+ game.roundTransition=false;
+ game.active=true;
+ switchToRound2();
+ resetEggForRound(2);
+ nextQuestionForAll();
+ updateTimer();
+ clearInterval(game.interval);
+ game.interval=setInterval(updateTimer,250);
+}
+function endGame(){
+ // Kept as a compatibility wrapper for any existing callers.
+ if(!game.active)return;
+ game.active=false;game.roundTransition=true;clearInterval(game.interval);
+ document.querySelectorAll(".answer").forEach(b=>b.disabled=true);
+ showFinalWinnerAfterReveal();
+}
+function showRoundWinner(){
+ audio("sndWinner");
+ const teamCount=Math.max(1,Number(settings.teams)||2);
+ const scores=(game.roundScores||[]).slice(0,teamCount);
+ const names=settings.names.slice(0,teamCount);
+ const max=Math.max(...scores);
+ const winners=names.map((n,i)=>({n,score:scores[i]||0,i})).filter(x=>x.score===max);
+ $("roundWinnerTitle").textContent=`🏆 ROUND ${game.round} COMPLETE`;
+ $("roundWinnerName").textContent=winners.length>1?`TIE: ${winners.map(x=>x.n).join(" & ")}`:`WINNER: ${winners[0].n}`;
+ $("roundWinnerScores").innerHTML=names.map((n,i)=>({name:n,score:scores[i]||0})).sort((a,b)=>b.score-a.score).map((x,i)=>`<div class="finalRow"><span>${i+1}. ${escapeHTML(x.name)}</span><b>🪙 ${x.score} GOLD</b></div>`).join("");
+ $("roundWinnerNext").textContent="Ready for the next round?";
+ $("nextRoundBtn").style.display="block";
+}
+function showWinner(){
+ audio("sndWinner");
+ const teamCount=Math.max(1,Number(settings.teams)||2);
+ const round1=(game.round1Scores||[]).slice(0,teamCount);
+ const round2=(game.round2Scores||[]).slice(0,teamCount);
+ const names=settings.names.slice(0,teamCount);
+ const totals=names.map((n,i)=>({n,round1:round1[i]||0,round2:round2[i]||0,total:(round1[i]||0)+(round2[i]||0),i}));
+ const max=Math.max(...totals.map(x=>x.total));
+ const winners=totals.filter(x=>x.total===max);
+ $("winnerName").textContent=winners.length>1?`TIE: ${winners.map(x=>x.n).join(" & ")} — ${max} GOLD`:`${winners[0].n} — ${max} GOLD`;
+ $("tieText").textContent=winners.length>1?"IT'S A TIE! Everyone played well!":"Congratulations! You are the Halloween Gold Rush Champion!";
+ const rows=[...totals].sort((a,b)=>b.total-a.total).map((x,i)=>`<tr><td>${i+1}. ${escapeHTML(x.n)}</td><td>🪙 ${x.round1}</td><td>🪙 ${x.round2}</td><td>🏆 ${x.total}</td></tr>`).join("");
+ $("finalScores").innerHTML=`<table class="scoreTable"><thead><tr><th>TEAM</th><th>ROUND 1</th><th>ROUND 2</th><th>TOTAL</th></tr></thead><tbody>${rows}</tbody></table>`;
+ $("winnerModal").classList.remove("hidden");
+}
+function endGameToSettings(){
+ game.active=false;clearInterval(game.interval);$("music").pause();stopTitleMusic();titleMusicAllowed=true;startTitleMusic();$("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");$("winnerModal").classList.add("hidden");$("instructions").classList.add("hidden");$("game").style.display="none";$("setup").style.display="block";$("setup").classList.remove("hidden");syncSettingsUI();startTitleMusic();
+}
+$("playAgain").addEventListener("click",()=>{$("winnerModal").classList.add("hidden");$("roundWinnerModal").classList.add("hidden");$("halloweenReveal").classList.remove("show");$("eggFinalGlow").classList.remove("show");$("egg").classList.remove("explode","round2Hit","round2Size");$("egg").style.animation="";startGame()});
+$("winnerSettings").addEventListener("click",()=>{$("winnerModal").classList.add("hidden");endGameToSettings()});
+
+/* Rebuild the live game immediately when structural settings change. */
+function refreshRunningGameLayout(){
+ if(!game.active||characterHubOpen||game.roundTransition)return;
+ game.busy=Array(settings.teams).fill(false);
+ game.scores=Array.from({length:settings.teams},(_,i)=>game.scores?.[i]||0);
+ game.roundScores=Array.from({length:settings.teams},(_,i)=>game.roundScores?.[i]||0);
+ game.round1Scores=Array.from({length:settings.teams},(_,i)=>game.round1Scores?.[i]||0);
+ game.round2Scores=Array.from({length:settings.teams},(_,i)=>game.round2Scores?.[i]||0);
+ game.current=Array(settings.teams).fill(null);
+ game.questionStarted=Array(settings.teams).fill(performance.now());
+ game.queues=Array(settings.teams).fill(0).map((_,team)=>makeQueue(team));
+ renderTeams();
+ $("teamQuestions").innerHTML="";
+ renderQuestion();
+ nextQuestionForAll();
+ applyBackground($("gameBg"),settings.background);
+ updateMusic();
+}
+
+/* Save settings locally, but never overwrite question bank unexpectedly. */
+function savePrefs(){
+ try{localStorage.setItem("monsterEggPrefs",JSON.stringify(settings))}catch(e){}
+}
+function loadPrefs(){
+ try{const x=JSON.parse(localStorage.getItem("monsterEggPrefs"));if(x)settings={...settings,...x}}catch(e){}
+}
+function saveQuestionBank(){
+ try{localStorage.setItem("monsterEggQuestions",JSON.stringify(questions))}catch(e){}
+}
+function loadQuestionBank(){
+ try{
+  const saved=JSON.parse(localStorage.getItem("monsterEggQuestions"));
+  if(Array.isArray(saved)&&saved.length)questions=saved;
+ }catch(e){}
+}
+["change","input"].forEach(evt=>{
+ document.addEventListener(evt,e=>{
+  if(["team1","team2","team3","customTime","duration","backgroundSelect","teamCount","musicVol","sfxVol"].includes(e.target.id)){
+   readSettings();savePrefs();
+   if(game.active && ["team1","team2","team3","teamCount","backgroundSelect"].includes(e.target.id))refreshRunningGameLayout();
+  }
+ });
+});
+
+loadPrefs();
+loadQuestionBank();
+syncSettingsUI();
+preloadAssets();
+renderEditorList();
+
+// Start first.mp3 as soon as the Halloween intro page opens. Keep it playing
+// through the title/settings/how-to-play screens. Browsers may block unmuted
+// autoplay, so every early user interaction retries the same audio.
+startTitleMusic();
+window.addEventListener("load",startTitleMusic,{once:true});
+document.addEventListener("DOMContentLoaded",()=>{if(window.monsterPremiumAuthorized)startTitleMusic();},{once:true});
+const unlockTitleMusic=()=>{startTitleMusic();};
+document.addEventListener("pointerdown",unlockTitleMusic,{passive:true});
+document.addEventListener("keydown",unlockTitleMusic,{passive:true});
+document.addEventListener("touchstart",unlockTitleMusic,{passive:true});
+document.addEventListener("visibilitychange",()=>{if(!document.hidden && !$('game').style.display)startTitleMusic();});
+
+window.addEventListener("beforeunload",savePrefs);
+
+/* =========================
+   HALLOWEEN CHARACTER HUB
+   ========================= */
+const CHARACTER_HUB_DATA = [
+ {name:"ghost",image:"ghost.png",caption:"A spooky friend who says BOO!"},
+ {name:"witch",image:"witch.png",caption:"A magical Halloween character with a broom."},
+ {name:"candy",image:"candy.png",caption:"A sweet Halloween treat!"},
+ {name:"moon",image:"moon.png",caption:"The bright moon in the Halloween night sky."},
+ {name:"vampire",image:"vampire.png",caption:"A mysterious creature of the night."},
+ {name:"mummy",image:"mummy.png",caption:"An ancient character wrapped in bandages."},
+ {name:"owl",image:"owl.png",caption:"A wise night bird that flies in the dark."},
+ {name:"zombie",image:"zombie.png",caption:"A spooky monster walking around at night."},
+ {name:"pumpkin",image:"pumpkin.png",caption:"A classic Halloween pumpkin!"},
+ {name:"spider",image:"spider.png",caption:"A little creepy crawler with eight legs."},
+ {name:"bat",image:"bat.png",caption:"A flying night animal seen at Halloween."}
+];
+let characterHubIndex=0;
+let characterHubOpen=false;
+let utilityPausedAt=0;
+let spellingState={index:0,score:0,round:1,target:"",letters:[],slots:[],selected:null};
+let matchingState={cards:[],flipped:[],moves:0,pairs:0,locked:false};
+
+function openCharacterHub(){
+ if(characterHubOpen)return;
+ if(!game.active){showToast("Open the Character Hub while the game is running.");return;}
+ characterHubOpen=true;
+ utilityPausedAt=Date.now();
+ clearInterval(game.interval);
+ game.active=false;
+ $("characterHubModal").classList.remove("hidden");
+ switchHubTab("presentation");
+ renderCharacterPresentation();
+}
+function closeCharacterHub(){
+ if(!characterHubOpen)return;
+ characterHubOpen=false;
+ $("characterHubModal").classList.add("hidden");
+ if(game.roundTransition)return;
+ if(utilityPausedAt){
+  const pausedMs=Date.now()-utilityPausedAt;
+  game.endTime+=pausedMs;
+  game.questionStarted=game.questionStarted.map(t=>t? t+pausedMs:t);
+ }
+ utilityPausedAt=0;
+ game.active=true;
+ updateTimer();
+ clearInterval(game.interval);game.interval=setInterval(updateTimer,250);
+}
+function switchHubTab(tab){
+ document.querySelectorAll(".hubTab").forEach(b=>b.classList.toggle("active",b.dataset.hubtab===tab));
+ document.querySelectorAll(".hubPanel").forEach(p=>p.classList.toggle("active",p.dataset.hubpanel===tab));
+ if(tab==="presentation")renderCharacterPresentation();
+ if(tab==="spelling")initSpellingGame();
+ if(tab==="matching")newMatchingGame();
+}
+function renderCharacterPresentation(){
+ const c=CHARACTER_HUB_DATA[characterHubIndex];
+ $("characterCounter").textContent=`${characterHubIndex+1} / ${CHARACTER_HUB_DATA.length}`;
+ $("characterPresentImage").src=c.image;
+ $("characterPresentImage").alt=c.name;
+ $("characterPresentName").textContent=c.name;
+ $("characterPresentCaption").textContent=c.caption;
+ $("characterPrev").disabled=characterHubIndex===0;
+ $("characterNext").disabled=characterHubIndex===CHARACTER_HUB_DATA.length-1;
+ renderAllCharacters();
+}
+function renderAllCharacters(){
+ const grid=$("allCharactersGrid");
+ grid.innerHTML=CHARACTER_HUB_DATA.map((c,i)=>`<button class="allCharacterCard" type="button" data-character-index="${i}"><img src="${escapeHTML(c.image)}" alt="${escapeHTML(c.name)}"><b>${escapeHTML(c.name)}</b><span>Character ${i+1}</span></button>`).join("");
+ grid.querySelectorAll("[data-character-index]").forEach(b=>b.addEventListener("click",()=>{
+  characterHubIndex=Number(b.dataset.characterIndex);renderCharacterPresentation();grid.classList.add("hidden");
+  $("characterAllBtn").textContent="👻 SHOW ALL CHARACTERS";
+ }));
+}
+function toggleAllCharacters(){
+ const grid=$("allCharactersGrid"),btn=$("characterAllBtn");
+ const show=grid.classList.contains("hidden");
+ grid.classList.toggle("hidden",!show);
+ btn.textContent=show?"⬆️ HIDE ALL CHARACTERS":"👻 SHOW ALL CHARACTERS";
+ if(show)grid.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+function initSpellingGame(){
+ spellingState.index=Math.floor(Math.random()*CHARACTER_HUB_DATA.length);
+ spellingState.target=CHARACTER_HUB_DATA[spellingState.index].name.toLowerCase();
+ spellingState.letters=shuffle(spellingState.target.split(""));
+ spellingState.slots=Array(spellingState.target.length).fill(null);
+ spellingState.selected=null;
+ const c=CHARACTER_HUB_DATA[spellingState.index];
+ $("spellingImage").src=c.image;$("spellingImage").alt=c.name;
+ $("spellingRoundText").textContent=`Round ${spellingState.round}`;
+ $("spellingScoreText").textContent=`⭐ ${spellingState.score}`;
+ $("spellingMessage").textContent="Tap a letter or drag it into a box!";
+ renderSpellingFromIndices();
+}
+function renderSpelling(){
+ const word=$("spellingWordArea"),letters=$("spellingLetters");
+ word.innerHTML="";
+ spellingState.slots.forEach((letter,i)=>{
+  const slot=document.createElement("button");slot.type="button";slot.className="spellingSlot"+(letter?" filled":"");slot.dataset.slot=i;slot.textContent=(letter||"_").toLowerCase();
+  slot.addEventListener("pointerover",()=>slot.classList.add("over"));slot.addEventListener("pointerout",()=>slot.classList.remove("over"));
+  slot.addEventListener("dragover",e=>{e.preventDefault();slot.classList.add("over")});slot.addEventListener("dragleave",()=>slot.classList.remove("over"));
+  slot.addEventListener("drop",e=>{e.preventDefault();slot.classList.remove("over");placeSpellingLetter(Number(e.dataTransfer.getData("text/plain")),i)});
+  slot.addEventListener("click",()=>{
+   if(spellingState.selected!==null){placeSpellingLetter(spellingState.selected,i);spellingState.selected=null;renderSpelling();}
+  });
+  word.appendChild(slot);
+ });
+ letters.innerHTML="";
+ spellingState.letters.forEach((letter,i)=>{
+  const b=document.createElement("button");b.type="button";b.className="spellLetter"+(spellingState.slots.includes(i)?" used":"")+(spellingState.selected===i?" selected":"");b.textContent=letter.toLowerCase();b.draggable=true;b.dataset.letterIndex=i;
+  b.addEventListener("dragstart",e=>{if(spellingState.slots.includes(i)){e.preventDefault();return}e.dataTransfer.setData("text/plain",String(i));b.classList.add("dragging")});
+  b.addEventListener("dragend",()=>b.classList.remove("dragging"));
+  b.addEventListener("click",()=>{if(spellingState.slots.includes(i))return;spellingState.selected=spellingState.selected===i?null:i;renderSpelling()});
+  letters.appendChild(b);
+ });
+}
+function placeSpellingLetter(letterIndex,slotIndex){
+ if(!Number.isInteger(letterIndex)||!Number.isInteger(slotIndex))return;
+ if(spellingState.slots.includes(letterIndex))return;
+ if(spellingState.slots[slotIndex]!==null){
+  const oldLetter=spellingState.slots[slotIndex];
+  const oldIdx=spellingState.slots.indexOf(oldLetter);
+  if(oldIdx>=0){} // The old tile becomes available again automatically.
+ }
+ // If the chosen letter is already elsewhere, do not duplicate it.
+ spellingState.slots=spellingState.slots.map((v,i)=>i===slotIndex?null:v);
+ const firstEmpty=spellingState.slots.findIndex(v=>v===letterIndex);
+ if(firstEmpty>=0)spellingState.slots[firstEmpty]=null;
+ spellingState.slots[slotIndex]=letterIndex;
+ // Store the index, not the character, so duplicate letters work correctly.
+ renderSpellingFromIndices();
+}
+function animateSpellingLetterToSlot(letterIndex,slotIndex){
+ if(!Number.isInteger(letterIndex)||!Number.isInteger(slotIndex))return;
+ if(spellingState.slots.includes(letterIndex))return;
+ const letterEl=document.querySelector(`.spellLetter[data-letter-index="${letterIndex}"]`);
+ const slotEl=document.querySelector(`.spellingSlot[data-slot="${slotIndex}"]`);
+ if(!letterEl||!slotEl){placeSpellingLetter(letterIndex,slotIndex);return;}
+ const from=letterEl.getBoundingClientRect(),to=slotEl.getBoundingClientRect();
+ const clone=letterEl.cloneNode(true);clone.classList.remove("used","selected");clone.classList.add("spellingFlyClone");
+ clone.style.left=from.left+"px";clone.style.top=from.top+"px";clone.style.width=from.width+"px";clone.style.height=from.height+"px";
+ document.body.appendChild(clone);
+ const dx=to.left+to.width/2-(from.left+from.width/2),dy=to.top+to.height/2-(from.top+from.height/2);
+ requestAnimationFrame(()=>{clone.style.transform=`translate(${dx}px,${dy}px) scale(.78)`;clone.style.opacity=".15"});
+ setTimeout(()=>{clone.remove();placeSpellingLetter(letterIndex,slotIndex)},220);
+}
+function getFirstEmptySpellingSlot(){return spellingState.slots.findIndex(v=>v===null)}
+function renderSpellingFromIndices(){
+ const word=$("spellingWordArea"),letters=$("spellingLetters");word.innerHTML="";
+ spellingState.slots.forEach((letterIndex,i)=>{
+  const slot=document.createElement("button");slot.type="button";slot.className="spellingSlot"+(letterIndex!==null?" filled":"");slot.dataset.slot=i;
+  slot.textContent=letterIndex===null?"_":spellingState.letters[letterIndex].toLowerCase();
+  slot.addEventListener("dragover",e=>{e.preventDefault();slot.classList.add("over")});slot.addEventListener("dragleave",()=>slot.classList.remove("over"));
+  slot.addEventListener("drop",e=>{e.preventDefault();slot.classList.remove("over");placeSpellingLetter(Number(e.dataTransfer.getData("text/plain")),i)});
+  slot.addEventListener("click",()=>{if(letterIndex!==null){spellingState.slots[i]=null;renderSpellingFromIndices()}else if(spellingState.selected!==null){animateSpellingLetterToSlot(spellingState.selected,i);spellingState.selected=null}});
+  word.appendChild(slot);
+ });
+ letters.innerHTML="";
+ spellingState.letters.forEach((letter,i)=>{
+  const b=document.createElement("button");b.type="button";b.className="spellLetter"+(spellingState.slots.includes(i)?" used":"")+(spellingState.selected===i?" selected":"");
+  b.textContent=letter.toLowerCase();b.draggable=true;b.dataset.letterIndex=i;
+  b.addEventListener("dragstart",e=>{if(spellingState.slots.includes(i)){e.preventDefault();return}e.dataTransfer.setData("text/plain",String(i));b.classList.add("dragging")});
+  b.addEventListener("dragend",()=>b.classList.remove("dragging"));
+  const choose=e=>{
+   if(spellingState.slots.includes(i))return;
+   if(e.cancelable)e.preventDefault();
+   if(b.dataset.pointerHandled==="1")return;
+   b.dataset.pointerHandled="1";
+   const target=getFirstEmptySpellingSlot();
+   if(target>=0){spellingState.selected=null;animateSpellingLetterToSlot(i,target)}
+  };
+  b.addEventListener("pointerdown",choose,{passive:false});
+  b.addEventListener("click",e=>{if(b.dataset.pointerHandled==="1"){b.dataset.pointerHandled="0";return}if(!spellingState.slots.includes(i)){const target=getFirstEmptySpellingSlot();if(target>=0){spellingState.selected=null;animateSpellingLetterToSlot(i,target)}}});
+  b.addEventListener("pointercancel",()=>{b.dataset.pointerHandled="0"});
+  letters.appendChild(b);
+ });
+}
+function resetSpelling(){
+ spellingState.slots=Array(spellingState.target.length).fill(null);spellingState.selected=null;$("spellingMessage").textContent="Drag the letters into the boxes!";renderSpellingFromIndices();
+}
+function checkSpelling(){
+ const built=spellingState.slots.map(i=>i===null?"":spellingState.letters[i]).join("");
+ if(spellingState.slots.includes(null)){ $("spellingMessage").textContent="🕷️ Fill every box first!";audio("sndClick");return; }
+ if(built===spellingState.target){
+  spellingState.score+=10;$("spellingScoreText").textContent=`⭐ ${spellingState.score}`;$("spellingMessage").textContent=`🎃 CORRECT! ${spellingState.target} +10 points!`;audio("sndWinner");
+ }else{$("spellingMessage").textContent=`👻 Almost! Try again. The word has ${spellingState.target.length} letters.`;audio("sndClick")}
+}
+function nextSpellingWord(){spellingState.round++;initSpellingGame()}
+
+function newMatchingGame(){
+ const chosen=shuffle(CHARACTER_HUB_DATA).slice(0,6);
+ matchingState.cards=shuffle(chosen.flatMap((c,i)=>[
+  {id:`${i}-img`,pair:i,type:"image",image:c.image,name:c.name},
+  {id:`${i}-name`,pair:i,type:"name",image:c.image,name:c.name}
+ ]));
+ matchingState.flipped=[];matchingState.moves=0;matchingState.pairs=0;matchingState.locked=false;
+ renderMatching();
+}
+function renderMatching(){
+ $("matchingMoves").textContent=`Moves: ${matchingState.moves}`;$("matchingPairs").textContent=`Pairs: ${matchingState.pairs} / 6`;
+ const grid=$("matchingGrid");grid.innerHTML="";
+ matchingState.cards.forEach((card,i)=>{
+  const b=document.createElement("button");b.type="button";b.className="matchCard";b.dataset.index=i;
+  b.innerHTML=`<span class="matchBack">🎃</span>`;
+  b.addEventListener("click",()=>flipMatchingCard(i));grid.appendChild(b);
+ });
+ $("matchingMessage").textContent="Find all the pairs!";
+}
+function flipMatchingCard(index){
+ if(matchingState.locked||matchingState.flipped.includes(index))return;
+ const el=$("matchingGrid").querySelector(`[data-index="${index}"]`);if(!el||el.classList.contains("matched"))return;
+ const card=matchingState.cards[index];el.classList.add("flipped");el.innerHTML=card.type==="image"?`<img src="${escapeHTML(card.image)}" alt="${escapeHTML(card.name)}">`:`<span class="matchName">${escapeHTML(card.name)}</span>`;
+ matchingState.flipped.push(index);
+ if(matchingState.flipped.length<2)return;
+ matchingState.moves++;$("matchingMoves").textContent=`Moves: ${matchingState.moves}`;matchingState.locked=true;
+ const [a,b]=matchingState.flipped,ca=matchingState.cards[a],cb=matchingState.cards[b];
+ if(ca.pair===cb.pair){
+  setTimeout(()=>{
+   [a,b].forEach(i=>$("matchingGrid").querySelector(`[data-index="${i}"]`)?.classList.add("matched"));
+   matchingState.pairs++;matchingState.flipped=[];matchingState.locked=false;$("matchingPairs").textContent=`Pairs: ${matchingState.pairs} / 6`;
+   if(matchingState.pairs===6){$("matchingMessage").textContent="🏆 AMAZING! You found all the Halloween pairs!";audio("sndWinner")}else{$("matchingMessage").textContent="✨ Great match! Find the next pair.";audio("sndPoint")}
+  },450);
+ }else{
+  setTimeout(()=>{
+   [a,b].forEach(i=>{const e=$("matchingGrid").querySelector(`[data-index="${i}"]`);if(e){e.classList.remove("flipped");e.innerHTML=`<span class="matchBack">🎃</span>`}});
+   matchingState.flipped=[];matchingState.locked=false;$("matchingMessage").textContent="👻 Not a match. Try again!";audio("sndClick");
+  },700);
+ }
+}
+
+$("characterToolBtn").addEventListener("click",openCharacterHub);
+$("closeCharacterHub").addEventListener("click",closeCharacterHub);
+$("characterHubModal").addEventListener("click",e=>{if(e.target===$("characterHubModal"))closeCharacterHub()});
+document.querySelectorAll(".hubTab").forEach(b=>b.addEventListener("click",()=>switchHubTab(b.dataset.hubtab)));
+$("characterPrev").addEventListener("click",()=>{if(characterHubIndex>0){characterHubIndex--;renderCharacterPresentation()}});
+$("characterNext").addEventListener("click",()=>{if(characterHubIndex<CHARACTER_HUB_DATA.length-1){characterHubIndex++;renderCharacterPresentation()}});
+$("characterAllBtn").addEventListener("click",toggleAllCharacters);
+$("spellingResetBtn").addEventListener("click",resetSpelling);
+$("spellingCheckBtn").addEventListener("click",checkSpelling);
+$("spellingNextBtn").addEventListener("click",nextSpellingWord);
+$("matchingNewBtn").addEventListener("click",newMatchingGame);
+</script>
+
+</div><!-- End of protected Monster Egg application -->
+
+<section id="premiumGate" class="premium-gate" aria-label="Premium access">
+  <div class="premium-box">
+    <div class="premium-logo">🎃 MONSTER EGG</div>
+    <h1>Halloween Gold Rush</h1>
+    <p id="premiumStatus" role="status">Checking your Premium membership…</p>
+    <form id="premiumLoginForm" hidden>
+      <label for="premiumEmail">Email address</label>
+      <input id="premiumEmail" type="email" autocomplete="email" required placeholder="you@example.com">
+      <label for="premiumPassword">Password</label>
+      <input id="premiumPassword" type="password" autocomplete="current-password" required placeholder="Your password">
+      <button id="premiumLoginButton" type="submit">🔓 Log In to Premium</button>
+    </form>
+    <button id="premiumRetry" type="button" hidden>Check Membership Again</button>
+    <button id="premiumGateLogout" type="button" hidden>Log Out / Change Account</button>
+    <p class="premium-note">Use the same account as Teacher Khen's Learning Hub.</p>
+    <a href="https://teacherkhen.com/" target="_blank" rel="noopener noreferrer">Visit Teacher Khen's Learning Hub</a>
+  </div>
+</section>
+<style>
+  #premiumProtectedApp[hidden], #premiumGate[hidden], #premiumLoginForm[hidden],
+  #premiumRetry[hidden], #premiumGateLogout[hidden] {display:none!important}
+  .premium-gate{position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;
+    justify-content:center;padding:18px;overflow:auto;background:radial-gradient(circle at top,#50206f,#130820 75%);
+    color:#fff;font-family:Arial,sans-serif}
+  .premium-box{width:min(440px,100%);padding:30px 26px;border-radius:22px;
+    border:2px solid #f8b740;background:#211032;text-align:center;box-shadow:0 16px 55px #0008}
+  .premium-logo{font-weight:900;font-size:clamp(25px,5vw,36px);color:#ffcb52}
+  .premium-box h1{font-size:23px;margin:8px 0 16px}
+  .premium-box p{line-height:1.5}
+  .premium-box form{text-align:left;margin:18px 0}
+  .premium-box label{display:block;font-weight:bold;margin:13px 0 6px}
+  .premium-box input{display:block;width:100%;padding:13px;border:1px solid #9672b2;
+    border-radius:10px;background:#13091f;color:white;font-size:16px}
+  .premium-box button{display:block;width:100%;margin-top:15px;padding:13px;border:0;
+    border-radius:10px;background:#ff8a00;color:#210c25;font-weight:800;font-size:16px;cursor:pointer}
+  .premium-box button:disabled{opacity:.6;cursor:wait}
+  .premium-box #premiumGateLogout{background:#624483;color:white}
+  .premium-box .premium-note{font-size:13px;color:#d8c8e5;margin-top:20px}
+  .premium-box a{color:#ffcf70}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(() => {
+  "use strict";
+  const SUPABASE_URL = "https://onigbrcsfcbuporhylxv.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_MMXsHQKzKYn0mAA3MQOlWA_pEdCS-r3";
+  const app = document.getElementById("premiumProtectedApp");
+  const gate = document.getElementById("premiumGate");
+  const status = document.getElementById("premiumStatus");
+  const form = document.getElementById("premiumLoginForm");
+  const retry = document.getElementById("premiumRetry");
+  const gateLogout = document.getElementById("premiumGateLogout");
+  const logout = document.getElementById("premiumLogoutBtn");
+  const loginButton = document.getElementById("premiumLoginButton");
+  let client;
+  let checkSerial = 0;
+  let authorizedUserId = null;
+  window.monsterPremiumAuthorized = false;
+
+  function message(text) { status.textContent = text; }
+  function lock() {
+    window.monsterPremiumAuthorized = false;
+    authorizedUserId = null;
+    app.hidden = true;
+    gate.hidden = false;
+    try {
+      document.getElementById("titleMusic")?.pause();
+      document.getElementById("music")?.pause();
+    } catch (_) {}
+  }
+  function showLogin(text) {
+    lock();
+    message(text || "Log in to access your Premium game.");
+    form.hidden = false;
+    retry.hidden = true;
+    gateLogout.hidden = true;
+  }
+  function showMembershipError(text) {
+    lock();
+    message(text);
+    form.hidden = true;
+    retry.hidden = false;
+    gateLogout.hidden = false;
+  }
+  function unlock(userId) {
+    authorizedUserId = userId;
+    window.monsterPremiumAuthorized = true;
+    form.hidden = true;
+    retry.hidden = true;
+    gateLogout.hidden = true;
+    gate.hidden = true;
+    app.hidden = false;
+  }
+  async function verifyMembership() {
+    const current = ++checkSerial;
+    lock();
+    form.hidden = true;
+    retry.hidden = true;
+    gateLogout.hidden = true;
+    message("Checking your Premium membership…");
+    try {
+      const {data: {session}, error: sessionError} = await client.auth.getSession();
+      if (current !== checkSerial) return;
+      if (sessionError || !session?.user) {
+        showLogin("Please log in with your Learning Hub account.");
+        return;
+      }
+      const {data, error} = await client
+        .from("learning_hub_memberships")
+        .select("user_id,plan,status,expires_at")
+        .eq("user_id", session.user.id)
+        .eq("status", "active")
+        .in("plan", ["monthly", "yearly", "premium"])
+        .gt("expires_at", new Date().toISOString())
+        .order("expires_at", {ascending:false})
+        .limit(1);
+      if (current !== checkSerial) return;
+      if (error) {
+        showMembershipError("Could not verify membership. Please try again. " + error.message);
+      } else if (!data?.length) {
+        showMembershipError("No active, unexpired Premium membership was found for this account.");
+      } else {
+        unlock(session.user.id);
+      }
+    } catch (err) {
+      if (current === checkSerial)
+        showMembershipError("Connection error. Check your internet and try again.");
+    }
+  }
+  async function signOut() {
+    ++checkSerial;
+    lock();
+    try { await client.auth.signOut(); }
+    catch (_) {}
+    showLogin("You have logged out. Sign in with a Premium account.");
+  }
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    loginButton.disabled = true;
+    message("Signing in…");
+    const email = document.getElementById("premiumEmail").value.trim();
+    const password = document.getElementById("premiumPassword").value;
+    try {
+      const {error} = await client.auth.signInWithPassword({email,password});
+      if (error) {
+        message(error.message);
+      } else {
+        await verifyMembership();
+      }
+    } catch (_) {
+      message("Unable to sign in. Please check your connection.");
+    } finally {
+      loginButton.disabled = false;
+    }
+  });
+  retry.addEventListener("click", verifyMembership);
+  gateLogout.addEventListener("click", signOut);
+  logout?.addEventListener("click", signOut);
+
+  if (!window.supabase?.createClient) {
+    showMembershipError("Unable to load the login service. Check your internet and refresh.");
+    retry.disabled = true;
+    return;
+  }
+  client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+    auth: {persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
+  });
+  client.auth.onAuthStateChange((event) => {
+    if (event === "SIGNED_OUT") {
+      ++checkSerial;
+      showLogin("Please log in with your Learning Hub account.");
+    }
+    if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
+      setTimeout(verifyMembership, 0);
+    }
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) verifyMembership();
+  });
+  setInterval(() => {
+    if (window.monsterPremiumAuthorized) verifyMembership();
+  }, 5 * 60 * 1000);
+  verifyMembership();
+})();
+</script>
+
+</body>
+</html>
