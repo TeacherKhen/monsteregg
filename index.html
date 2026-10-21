@@ -267,6 +267,20 @@ textarea{min-height:75px;resize:vertical}
  #game .teamHead{margin-bottom:3px;}
 }
 
+
+/* Halloween classroom visibility refinement */
+#game .answer{font-size:clamp(25px,2.75vw,37px);}
+#game .teamArea.three .answer{font-size:clamp(20px,2.1vw,29px);}
+@container (max-width:300px){#game .answer{font-size:clamp(18px,2.7vw,26px);}}
+@container (max-width:210px){#game .answer{font-size:clamp(16px,2.1vw,22px);}}
+#game .arena .eggWrap{height:100%;max-height:100%;width:auto;max-width:100%;aspect-ratio:1;transform:scale(1.10);transform-origin:center center;}
+#game .arena .eggWrap.round2Mode{transform:scale(1.12);}
+#game .arena{overflow:hidden;}
+#game .egg.round2Size{animation:round2AdvanceSafe 2.8s ease-in-out infinite;}
+@keyframes round2AdvanceSafe{0%,100%{transform:scale(.90)}50%{transform:scale(1.035) translateY(-2px)}}
+.floatText{font-family:"Creepster","Luckiest Guy",Impact,fantasy;font-weight:900;letter-spacing:2px;font-size:clamp(30px,4.4vw,52px);color:#ffd34d;-webkit-text-stroke:1px #6b2200;text-shadow:0 3px 0 #742500,0 6px 0 #321040,0 0 12px #ff8a00,0 0 22px rgba(255,150,0,.8);}
+@media(max-width:900px){#game .answer{font-size:clamp(21px,3.2vw,30px)}#game .teamArea.three .answer{font-size:clamp(17px,2.5vw,25px)}}
+@media(max-width:600px){#game .arena .eggWrap{transform:scale(1.05)}#game .arena .eggWrap.round2Mode{transform:scale(1.07)}}
 </style>
 </head>
 <body>
