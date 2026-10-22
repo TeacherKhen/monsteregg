@@ -291,6 +291,20 @@ textarea{min-height:75px;resize:vertical}
 .matchCard .matchName{font-size:clamp(18px,2.5vw,28px);line-height:1.12;overflow-wrap:anywhere;word-break:normal}
 @media(max-width:700px){.characterPresentName{font-size:clamp(34px,7vw,48px)}.spellingSlot{width:clamp(35px,7vw,46px);height:clamp(42px,8vw,54px);font-size:clamp(25px,5vw,32px)}.spellLetter{width:clamp(36px,7vw,48px);height:clamp(42px,8vw,54px);font-size:clamp(25px,5vw,32px)}.matchCard .matchName{font-size:clamp(16px,3.5vw,23px)}}
 @media(max-width:450px){.characterPresentName{font-size:clamp(32px,8vw,40px)}.matchCard .matchName{font-size:clamp(15px,4vw,19px)}}
+
+/* Halloween scoreboards and game headings */
+#roundWinnerTitle, #roundWinnerName, #roundWinnerNext,
+#roundWinnerScores, #winnerName, #finalScores, #tieText,
+.scoreTable th, .scoreTable td, .finalRow b, .teamName, .score,
+.championTitle, .championSub, .gameTitle {
+ font-family:"Creepster","Luckiest Guy",Impact,cursive;
+ letter-spacing:1.2px;
+}
+.scoreTable{font-size:clamp(18px,2.4vw,28px)}
+.scoreTable th{font-size:clamp(16px,2.2vw,26px)}
+.scoreTable td{font-size:clamp(17px,2.3vw,27px)}
+.finalRow{font-size:clamp(19px,2.5vw,29px)}
+#roundWinnerName,#winnerName{color:#ffd34d;text-shadow:0 3px #6d2800,0 0 12px #ff8a00}
 </style>
 </head>
 <body>
@@ -1012,7 +1026,7 @@ function launchFireball(team,points){
 }
 function switchToRound2(){
  if(!game.active||game.round===2)return;
- game.round1Scores=[...game.roundScores];
+ // Round 1 is finalized in endRound; do not overwrite it on transition.
  game.round=2;
  game.roundScores=Array(settings.teams).fill(0);
  game.gameDuration=settings.round2Duration||settings.duration;
@@ -1128,8 +1142,12 @@ function endRound(){
   });
   return;
  }
- game.round1Scores=[...game.roundScores];
- game.round2Scores=[...game.roundScores];
+ if(game.round===2){
+  game.round2Scores=[...game.roundScores];
+ }else{
+  game.round1Scores=[...game.roundScores];
+  game.round2Scores=Array(settings.teams).fill(0);
+ }
  showFinalWinnerAfterReveal();
 }
 function showFinalWinnerAfterReveal(){
@@ -1153,14 +1171,12 @@ function startNextRound(){
 function endGame(){
  // Kept as a compatibility wrapper for any existing callers.
  if(!game.active)return;
- game.active=false;game.roundTransition=true;clearInterval(game.interval);
- document.querySelectorAll(".answer").forEach(b=>b.disabled=true);
- showFinalWinnerAfterReveal();
+ endRound();
 }
 function showRoundWinner(){
  audio("sndWinner");
  const teamCount=Math.max(1,Number(settings.teams)||2);
- const scores=(game.roundScores||[]).slice(0,teamCount);
+ const scores=(game.round1Scores||[]).slice(0,teamCount);
  const names=settings.names.slice(0,teamCount);
  const max=Math.max(...scores);
  const winners=names.map((n,i)=>({n,score:scores[i]||0,i})).filter(x=>x.score===max);
@@ -1176,7 +1192,10 @@ function showWinner(){
  const round1=(game.round1Scores||[]).slice(0,teamCount);
  const round2=(game.round2Scores||[]).slice(0,teamCount);
  const names=settings.names.slice(0,teamCount);
- const totals=names.map((n,i)=>({n,round1:round1[i]||0,round2:round2[i]||0,total:(round1[i]||0)+(round2[i]||0),i}));
+ const totals=names.map((n,i)=>{
+  const r1=Number(round1[i])||0, r2=Number(round2[i])||0;
+  return {n,round1:r1,round2:r2,total:r1+r2,i};
+ });
  const max=Math.max(...totals.map(x=>x.total));
  const winners=totals.filter(x=>x.total===max);
  $("winnerName").textContent=winners.length>1?`TIE: ${winners.map(x=>x.n).join(" & ")} — ${max} GOLD`:`${winners[0].n} — ${max} GOLD`;
